@@ -12,7 +12,13 @@ Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int d
   this->ani_name = "idle";
 }
 
-Hero::~Hero() {}
+Hero::~Hero()
+{
+  for (auto &i : this->hero_ani)
+  {
+    delete i.second;
+  }
+}
 
 void Hero::poll_events(sf::Event &event)
 {

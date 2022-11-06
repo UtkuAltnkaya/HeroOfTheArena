@@ -64,7 +64,7 @@ void LeafArcher::upgrade()
 
 void LeafArcher::update()
 {
-  for (auto i : this->get_hero_ani())
+  for (auto &i : this->get_hero_ani())
   {
     auto name = this->get_ani_name(5); // todo delete index
     if (i.first == name)
@@ -78,7 +78,7 @@ void LeafArcher::update()
 void LeafArcher::render(sf::RenderTarget &target)
 {
 
-  for (auto i : this->get_hero_ani())
+  for (auto &i : this->get_hero_ani())
   {
     auto name = this->get_ani_name(5); // todo delete index
     if (i.first == name)
