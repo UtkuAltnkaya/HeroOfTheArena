@@ -1,0 +1,12 @@
+.vscode
+
+obj/*.o
+
+bin/main.exe
+
+bin/image
+bin/Fonts
+
+
+image
+Fonts
