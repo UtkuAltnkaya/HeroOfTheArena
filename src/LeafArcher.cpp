@@ -4,6 +4,7 @@
 LeafArcher::LeafArcher() : Hero{"image", 5000, 200, 500, 250, 0.1f}
 {
   this->init_var();
+  std::cout << this->ani_name << std::endl;
 }
 
 LeafArcher::~LeafArcher()
@@ -66,7 +67,7 @@ void LeafArcher::update()
 {
   for (auto &i : this->get_hero_ani())
   {
-    auto name = this->get_ani_name(5); // todo delete index
+    auto name = this->get_ani_name();
     if (i.first == name)
     {
       this->get_hero_ani()[name]->update();
@@ -80,7 +81,7 @@ void LeafArcher::render(sf::RenderTarget &target)
 
   for (auto &i : this->get_hero_ani())
   {
-    auto name = this->get_ani_name(5); // todo delete index
+    auto name = this->get_ani_name();
     if (i.first == name)
     {
       this->get_hero_ani()[name]->render(target);

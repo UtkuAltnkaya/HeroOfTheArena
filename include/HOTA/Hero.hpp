@@ -8,8 +8,8 @@
 
 class Hero
 {
-private:
-  //
+protected:
+  
   std::string path;
   // std::string ani_name[10] = {"idle", "1_atk", "2_atk", "sp_atk", "run", "roll", "jump_full", "defend", "death", "take_hit"};
   std::string ani_name;
@@ -49,7 +49,7 @@ public:
 
   // Getters
   std::string get_path();
-  std::string get_ani_name(int index);
+  std::string get_ani_name();
   int get_health();
   int get_damage();
   int get_mana();

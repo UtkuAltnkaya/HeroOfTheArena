@@ -86,7 +86,6 @@ void Game::render()
   {
     this->hero->render(*this->window);
   }
-
   this->window->display();
 }
 

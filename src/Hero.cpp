@@ -35,7 +35,7 @@ std::map<std::string, Animation *> &Hero::get_hero_ani()
   return this->hero_ani;
 }
 
-std::string Hero::get_ani_name(int index)
+std::string Hero::get_ani_name()
 {
   return this->ani_name;
 }

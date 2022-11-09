@@ -37,7 +37,7 @@ void MainMenu::render(sf::RenderWindow &window)
   else if (this->char_menu->get_open())
   {
     this->char_menu->render(window);
-    }
+  }
 }
 
 void MainMenu::MoveUp()
@@ -92,7 +92,6 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero)
         this->open = false;
       }
     }
-    return;
   }
   else if (this->char_menu->get_open())
   {
@@ -107,7 +106,6 @@ bool MainMenu::IsOpen()
   {
     return false;
   }
-
   return true;
 }
 
