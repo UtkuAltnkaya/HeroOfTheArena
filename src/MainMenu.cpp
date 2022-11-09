@@ -4,7 +4,7 @@ MainMenu::MainMenu(float width, float height)
 {
   std::string menuText[3] = {"Play", "Options", "Quit"};
   this->open = true;
-  if (!font.loadFromFile("bin/image/Fonts/PixelHigh.ttf"))
+  if (!font.loadFromFile("bin/Fonts/PixelHigh.ttf"))
   {
     // handle error
   }

@@ -25,6 +25,7 @@ public:
   void upgrade();
   void update();
   void render(sf::RenderTarget &target);
+  void move_character();
 };
 
 #endif

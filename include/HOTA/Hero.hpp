@@ -9,7 +9,6 @@
 class Hero
 {
 protected:
-  
   std::string path;
   // std::string ani_name[10] = {"idle", "1_atk", "2_atk", "sp_atk", "run", "roll", "jump_full", "defend", "death", "take_hit"};
   std::string ani_name;
@@ -18,22 +17,24 @@ protected:
   int damage;
   int mana;
   int defense;
-  float critChance;
+  float crit_chance;
 
   //
   std::map<std::string, Animation *> hero_ani;
 
   //
-  int idleNum;
-  int atkOneNum;
-  int atkTwoNum;
-  int atkSpNum;
-  int runNum;
-  int rollNum;
-  int jumpNum;
-  int defendNum;
-  int deathNum;
-  int takeDmgNum;
+  int idle_num;
+  int atk_one_num;
+  int atk_two_num;
+  int atk_sp_num;
+  int run_num;
+  int roll_num;
+  int jump_num;
+  int defend_num;
+  int death_num;
+  int take_dmg_num;
+
+  void move(sf::Keyboard::Key key);
 
 public:
   Hero();
@@ -44,11 +45,16 @@ public:
   virtual void update() = 0;
   virtual void render(sf::RenderTarget &target) = 0;
   void poll_events(sf::Event &event);
+  void poll_events_loop(sf::Event &event);
+};
 
-  //
+#endif
+
+/**
+ *  //
 
   // Getters
-  std::string get_path();
+ *  std::string get_path();
   std::string get_ani_name();
   int get_health();
   int get_damage();
@@ -93,6 +99,4 @@ public:
 
   //
   void set_hero_ani(std::pair<std::string, Animation *> pair);
-};
-
-#endif
+*/

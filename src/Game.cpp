@@ -73,8 +73,6 @@ void Game::update()
   {
     this->hero->update();
   }
-
-  // this->player->update(this->animation_name);
 }
 
 void Game::render()
@@ -98,27 +96,14 @@ void Game::poll_events()
       this->window->close();
     }
     this->main_menu->MenuUpDown(this->event, this->hero);
+    if (this->hero)
+    {
+      this->hero->poll_events_loop(event);
+    }
   }
 
   if (this->hero)
   {
     this->hero->poll_events(this->event);
   }
-
-  // if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) // TODO
-  // {
-  //   this->animation_name = "run";
-  //   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-  //   {
-  //     this->animation_name = "roll";
-  //   }
-  // }
-  // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-  // {
-  //   this->animation_name = "run_left";
-  //   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-  //   {
-  //     this->animation_name = "roll_left";
-  //   }
-  // }
 }

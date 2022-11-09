@@ -7,7 +7,7 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f}
 }
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : path(pathVal), health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), critChance(critChanceVal)
+    : path(pathVal), health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
   this->ani_name = "idle";
 }
@@ -26,10 +26,44 @@ void Hero::poll_events(sf::Event &event)
   {
     this->ani_name = "run";
   }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+  {
+    this->ani_name = "run_left";
+  }
 };
 
-//
+void Hero::poll_events_loop(sf::Event &event)
+{
+  if (event.type == sf::Event::KeyReleased)
+  {
+    if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::A)
+    {
+      this->ani_name = "idle";
+    }
+  }
+}
 
+void Hero::move(sf::Keyboard::Key key)
+{
+  for (auto &&i : this->hero_ani)
+  {
+    for (auto &&j : *i.second->get_sprite())
+    {
+      auto pos = j->getPosition();
+      if (key == sf::Keyboard::D)
+      {
+        j->setPosition(pos.x + 5, pos.y);
+      }
+      else if (key == sf::Keyboard::A)
+      {
+        j->setPosition(pos.x - 5, pos.y);
+      }
+    }
+  }
+}
+
+/**
+ *
 std::map<std::string, Animation *> &Hero::get_hero_ani()
 {
   return this->hero_ani;
@@ -74,39 +108,39 @@ int Hero::get_idle_num()
 }
 int Hero::get_atk_one_num()
 {
-  return this->atkOneNum;
+  return this->atk_one_num;
 }
 int Hero::get_atk_two_num()
 {
-  return this->atkTwoNum;
+  return this->atk_two_num;
 }
 int Hero::get_atk_sp_num()
 {
-  return this->atkSpNum;
+  return this->atk_sp_num;
 }
 int Hero::get_run_num()
 {
-  return this->runNum;
+  return this->run_num;
 }
 int Hero::get_roll_num()
 {
-  return this->rollNum;
+  return this->roll_num;
 }
 int Hero::get_jump_num()
 {
-  return this->jumpNum;
+  return this->jump_num;
 }
 int Hero::get_defend_num()
 {
-  return this->defendNum;
+  return this->defend_num;
 }
 int Hero::get_death_num()
 {
-  return this->deathNum;
+  return this->death_num;
 }
 int Hero::get_take_dmg_num()
 {
-  return this->takeDmgNum;
+  return this->take_dmg_num;
 }
 //
 void Hero::set_hero_ani(std::pair<std::string, Animation *> pair)
@@ -148,37 +182,38 @@ void Hero::set_idle_num(int idleNum)
 }
 void Hero::set_atk_one_num(int atkOneNum)
 {
-  this->atkOneNum = atkOneNum;
+  this->atk_one_num = atkOneNum;
 }
 void Hero::set_atk_two_num(int atkTwoNum)
 {
-  this->atkTwoNum = atkTwoNum;
+  this->atk_two_num = atkTwoNum;
 }
 void Hero::set_atk_sp_num(int atkSpNum)
 {
-  this->atkSpNum = atkSpNum;
+  this->atk_sp_num = atkSpNum;
 }
 void Hero::set_run_num(int runNum)
 {
-  this->runNum = runNum;
+  this->run_num = runNum;
 }
 void Hero::set_roll_num(int rollNum)
 {
-  this->rollNum = rollNum;
+  this->roll_num = rollNum;
 }
 void Hero::set_jump_num(int jumpNum)
 {
-  this->jumpNum = jumpNum;
+  this->jump_num = jumpNum;
 }
 void Hero::set_defend_num(int defendNum)
 {
-  this->defendNum = deathNum;
+  this->defend_num = death_num;
 }
 void Hero::set_death_num(int deathNum)
 {
-  this->deathNum = deathNum;
+  this->death_num = deathNum;
 }
 void Hero::set_take_dmg_num(int takeDmgNum)
 {
-  this->takeDmgNum = takeDmgNum;
+  this->take_dmg_num = takeDmgNum;
 }
+*/

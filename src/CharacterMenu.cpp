@@ -175,7 +175,7 @@ void CharMenu::Animated(sf::RenderTarget &target)
 
   if (que <= this->characterAtkNums[this->animate])
   {
-    this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/atk/atk_" + std::to_string(this->que) + ".png");
+    this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
   }
 }
 
