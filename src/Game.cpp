@@ -71,7 +71,7 @@ void Game::update()
   this->main_menu->update();
   if (this->hero)
   {
-    this->hero->update();
+    this->hero->update(*this->window);
   }
 }
 

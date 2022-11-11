@@ -30,6 +30,10 @@ void Hero::poll_events(sf::Event &event)
   {
     this->ani_name = "run_left";
   }
+  // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  // {
+  //   this->ani_name = "jump";
+  // }
 };
 
 void Hero::poll_events_loop(sf::Event &event)
@@ -43,25 +47,48 @@ void Hero::poll_events_loop(sf::Event &event)
   }
 }
 
-void Hero::move(sf::Keyboard::Key key)
+void Hero::move(sf::Keyboard::Key key, sf::RenderWindow &window)
 {
-  for (auto &&i : this->hero_ani)
+  for (auto &i : this->hero_ani)
   {
-    for (auto &&j : *i.second->get_sprite())
+    for (auto &j : *i.second->get_sprite())
     {
       auto pos = j->getPosition();
-      if (key == sf::Keyboard::D)
+
+      // std::cout << pos.y << std::endl;
+
+      if (pos.x < (1548 - 505))
       {
-        j->setPosition(pos.x + 5, pos.y);
+        if (key == sf::Keyboard::D)
+        {
+          j->setPosition(pos.x + 5, pos.y);
+        }
       }
-      else if (key == sf::Keyboard::A)
+      if (pos.x != -355)
       {
-        j->setPosition(pos.x - 5, pos.y);
+        if (key == sf::Keyboard::A)
+        {
+          j->setPosition(pos.x - 5, pos.y);
+        }
       }
+
+      //   if (key == sf::Keyboard::W)
+      //   {
+
+      //     if (pos.y <= 200)
+      //     {
+      //       j->setPosition(pos.x, pos.y - 5);
+      //       std::cout << pos.y << std::endl;
+      //     }
+      //     else if (pos.y >= 200 && pos.y > 354)
+      //     {
+      //       j->setPosition(pos.x, pos.y + 5);
+      //     }
+      //   }
+      // }
     }
   }
 }
-
 /**
  *
 std::map<std::string, Animation *> &Hero::get_hero_ani()

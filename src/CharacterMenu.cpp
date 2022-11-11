@@ -1,5 +1,10 @@
 #include "HOTA/CharacterMenu.hpp"
 #include <SFML/Graphics.hpp>
+#include "HOTA/FireKnight.hpp"
+#include "HOTA/Wind.hpp"
+#include "HOTA/Water.hpp"
+#include "HOTA/BladeKeeper.hpp"
+#include "HOTA/GroundMonk.hpp"
 #include <iostream>
 
 CharMenu::CharMenu(std::string type, std::string version)
@@ -207,7 +212,7 @@ void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero)
     {
       this->open = false;
       // index = this->animate;
-      hero = new LeafArcher();
+      hero = new Water();
     }
   }
 }

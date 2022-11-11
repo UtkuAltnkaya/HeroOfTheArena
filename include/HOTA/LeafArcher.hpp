@@ -23,9 +23,9 @@ public:
   ~LeafArcher();
   void skill();
   void upgrade();
-  void update();
+  void update(sf::RenderWindow &window);
   void render(sf::RenderTarget &target);
-  void move_character();
+  void move_character(sf::RenderWindow &window);
 };
 
 #endif
