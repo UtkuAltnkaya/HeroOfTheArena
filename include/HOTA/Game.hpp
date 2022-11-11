@@ -1,7 +1,6 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "HOTA/Player.hpp"
 #include "HOTA/Background.hpp"
 #include "HOTA/MainMenu.hpp"
 
@@ -13,7 +12,6 @@ private:
   sf::VideoMode video_mode;
   sf::Event event;
 
-  Player *player;
   Background *background;
   Hero *hero;
 
@@ -25,7 +23,6 @@ private:
   int index;
   void init_var();
   void init_window();
-  void init_player();
   void init_background();
   void init_main_menu();
 

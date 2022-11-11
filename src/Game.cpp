@@ -7,14 +7,11 @@ Game::Game()
   this->init_window();
   this->init_background();
   this->init_main_menu();
-
-  this->init_player();
 }
 
 Game::~Game()
 {
   delete this->window;
-  delete this->player;
   delete this->background;
   delete this->main_menu;
 }
@@ -23,7 +20,6 @@ Game::~Game()
 void Game::init_var()
 {
   this->window = nullptr;
-  this->player = nullptr;
   this->background = nullptr;
   this->hero = nullptr;
   this->video_mode.width = 512 * 3;
@@ -36,11 +32,6 @@ void Game::init_window()
   this->window = new sf::RenderWindow(this->video_mode, "Hero of the Arena");
   this->window->setFramerateLimit(60);
   // this->window->setVerticalSyncEnabled(false);
-}
-
-void Game::init_player()
-{
-  // this->player = new Player();
 }
 
 void Game::init_background()
