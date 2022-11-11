@@ -1,9 +1,9 @@
 #include "HOTA/Animation.hpp"
 #include <iostream>
 
-Animation::Animation(std::string type, std::string ani, std::string ani_name, size_t size)
+Animation::Animation(std::string type, std::string ani, std::string ani_name, size_t size, bool is_repeat)
 {
-  this->init_var(type, ani, ani_name, size);
+  this->init_var(type, ani, ani_name, size, is_repeat);
   this->init_texture();
   this->init_sprite();
   this->init_clock();
@@ -25,19 +25,35 @@ Animation::~Animation()
   delete this->clock;
 }
 // Public
-void Animation::update()
+void Animation::update(bool is_repeat = true)
 {
+  if (is_repeat)
+  {
+    if (this->clock->getElapsedTime().asSeconds() > 0.1f)
+    {
+      if (this->que == this->size - 1)
+      {
+        this->que = 0;
+        is_repeat = false;
+      }
+      else
+      {
+        this->que++;
+      }
+      this->clock->restart();
+    }
+  }
+  else
+  {
+  }
+}
 
+void Animation::update_once()
+{
+  this->que = 0;
   if (this->clock->getElapsedTime().asSeconds() > 0.1f)
   {
-    if (this->que == this->size - 1)
-    {
-      this->que = 0;
-    }
-    else
-    {
-      this->que++;
-    }
+    this->que++;
     this->clock->restart();
   }
 }
@@ -53,7 +69,7 @@ std::vector<sf::Sprite *> *Animation::get_sprite()
 }
 
 // Private
-void Animation::init_var(std::string &type, std::string &ani, std::string &ani_name, size_t &size)
+void Animation::init_var(std::string &type, std::string &ani, std::string &ani_name, size_t &size, bool &is_repeat)
 {
   this->path = type + "/" + ani + "/" + ani_name;
   this->clock = nullptr;

@@ -212,7 +212,7 @@ void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero)
     {
       this->open = false;
       // index = this->animate;
-      hero = new Water();
+      hero = new LeafArcher();
     }
   }
 }

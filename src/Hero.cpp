@@ -30,6 +30,10 @@ void Hero::poll_events(sf::Event &event)
   {
     this->ani_name = "run_left";
   }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+  {
+    this->ani_name = "1_atk";
+  }
   // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
   // {
   //   this->ani_name = "jump";
