@@ -22,7 +22,7 @@ void LeafArcher::init_ani_stats()
 {
 
   this->path += "/Leaf Archer";
-  this->atk_one_num = 10;
+  this->atk_one_num = 15;
   this->atk_two_num = 15;
   this->atk_sp_num = 17;
   this->death_num = 19;
