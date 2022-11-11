@@ -51,7 +51,7 @@ void Hero::poll_events_loop(sf::Event &event)
   }
 }
 
-void Hero::move(sf::Keyboard::Key key, sf::RenderWindow &window)
+void Hero::move(sf::Keyboard::Key key)
 {
   for (auto &i : this->hero_ani)
   {

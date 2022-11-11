@@ -22,7 +22,7 @@ void LeafArcher::init_ani_stats()
 {
 
   this->path += "/Leaf Archer";
-  this->atk_one_num = 10;
+  this->atk_one_num = 15;
   this->atk_two_num = 15;
   this->atk_sp_num = 17;
   this->death_num = 19;
@@ -68,13 +68,13 @@ void LeafArcher::upgrade()
   // TODO
 }
 
-void LeafArcher::update(sf::RenderWindow &window)
+void LeafArcher::update()
 {
   for (auto &i : this->hero_ani)
   {
     if (i.first == this->ani_name)
     {
-      this->move_character(window);
+      this->move_character();
       this->hero_ani[this->ani_name]->update(this->is_ani_over);
       this->atk_character();
     }
@@ -94,19 +94,19 @@ void LeafArcher::render(sf::RenderTarget &target)
   }
 }
 
-void LeafArcher::move_character(sf::RenderWindow &window)
+void LeafArcher::move_character()
 {
   if (this->ani_name == "run")
   {
-    this->move(sf::Keyboard::D, window);
+    this->move(sf::Keyboard::D);
   }
   else if (this->ani_name == "run_left")
   {
-    this->move(sf::Keyboard::A, window);
+    this->move(sf::Keyboard::A);
   }
   if (this->ani_name == "jump")
   {
-    this->move(sf::Keyboard::W, window);
+    this->move(sf::Keyboard::W);
   }
 }
 

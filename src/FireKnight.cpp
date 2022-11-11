@@ -67,13 +67,13 @@ void FireKnight::upgrade()
     // TODO
 }
 
-void FireKnight::update(sf::RenderWindow &window)
+void FireKnight::update()
 {
     for (auto &i : this->hero_ani)
     {
         if (i.first == this->ani_name)
         {
-            this->move_character(window);
+            this->move_character();
             this->hero_ani[this->ani_name]->update(this->is_ani_over);
             this->atk_character();
         }
@@ -93,19 +93,19 @@ void FireKnight::render(sf::RenderTarget &target)
     }
 }
 
-void FireKnight::move_character(sf::RenderWindow &window)
+void FireKnight::move_character()
 {
     if (this->ani_name == "run")
     {
-        this->move(sf::Keyboard::D, window);
+        this->move(sf::Keyboard::D);
     }
     else if (this->ani_name == "run_left")
     {
-        this->move(sf::Keyboard::A, window);
+        this->move(sf::Keyboard::A);
     }
     if (this->ani_name == "jump")
     {
-        this->move(sf::Keyboard::W, window);
+        this->move(sf::Keyboard::W);
     }
 }
 

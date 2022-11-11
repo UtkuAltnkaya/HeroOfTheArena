@@ -34,13 +34,11 @@ void Animation::update(bool &is_ani_over)
   {
     if (this->que >= this->size - 1) // if animation is over then the condition enters this if statement.
     {
-      if (this->is_repeat) // if animation is repeated animation like "idle" then que is set to 0 and animation starts again.
+
+      this->que = 0; // Set que to 0 and start the animation again.
+
+      if (!is_repeat) // If is not repeated, assign the is_ani_over to true and end the animation
       {
-        this->que = 0;
-      }
-      else // TODO
-      {
-        this->que = 0;
         is_ani_over = true;
       }
     }
