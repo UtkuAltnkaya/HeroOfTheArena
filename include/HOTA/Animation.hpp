@@ -8,7 +8,6 @@
 class Animation
 {
 private:
-  bool is_repeat;
   std::vector<sf::Texture *> *texture;
   std::vector<sf::Sprite *> *sprite;
   sf::Clock *clock;
@@ -16,6 +15,8 @@ private:
   std::string path;
   size_t size;
   size_t que;
+
+  bool is_repeat;
 
   void init_texture();
   void init_sprite();
@@ -26,7 +27,7 @@ public:
   Animation(std::string, std::string, std::string, size_t, bool is_repeat);
   ~Animation();
   void render(sf::RenderTarget &);
-  void update(bool is_repeat);
+  void update();
   void update_once();
   std::vector<sf::Sprite *> *get_sprite();
 };

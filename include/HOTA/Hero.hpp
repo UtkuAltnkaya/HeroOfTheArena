@@ -12,6 +12,7 @@ protected:
   std::string path;
   // std::string ani_name[10] = {"idle", "1_atk", "2_atk", "sp_atk", "run", "roll", "jump_full", "defend", "death", "take_hit"};
   std::string ani_name;
+
   //
   int health;
   int damage;
@@ -34,7 +35,7 @@ protected:
   int death_num;
   int take_dmg_num;
 
-  void move(sf::Keyboard::Key key,sf::RenderWindow&window);
+  void move(sf::Keyboard::Key key, sf::RenderWindow &window);
 
 public:
   Hero();
@@ -42,7 +43,7 @@ public:
   ~Hero();
   virtual void skill() = 0;
   virtual void upgrade() = 0;
-  virtual void update(sf::RenderWindow&window) = 0;
+  virtual void update(sf::RenderWindow &window) = 0;
   virtual void render(sf::RenderTarget &target) = 0;
   void poll_events(sf::Event &event);
   void poll_events_loop(sf::Event &event);

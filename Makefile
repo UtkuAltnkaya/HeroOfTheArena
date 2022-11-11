@@ -33,4 +33,4 @@ run:
 
 #Clean obj dir
 clean:
-	powershell rm -r $(OBJDIR)/*
+	powershell rm -r $(OBJDIR)/*.o

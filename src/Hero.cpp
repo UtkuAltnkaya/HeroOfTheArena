@@ -44,7 +44,12 @@ void Hero::poll_events_loop(sf::Event &event)
 {
   if (event.type == sf::Event::KeyReleased)
   {
+    std::cout << this->que << std::endl;
     if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::A)
+    {
+      this->ani_name = "idle";
+    }
+    if ((event.key.code == sf::Keyboard::Q && this->que >= this->atk_one_num - 1))
     {
       this->ani_name = "idle";
     }

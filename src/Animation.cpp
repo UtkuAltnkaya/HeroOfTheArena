@@ -25,26 +25,22 @@ Animation::~Animation()
   delete this->clock;
 }
 // Public
-void Animation::update(bool is_repeat = true)
+void Animation::update()
 {
-  if (is_repeat)
+  if (this->clock->getElapsedTime().asSeconds() > 0.1f)
   {
-    if (this->clock->getElapsedTime().asSeconds() > 0.1f)
+    if (this->que >= this->size - 1)
     {
-      if (this->que == this->size - 1)
+      if (this->is_repeat)
       {
         this->que = 0;
-        is_repeat = false;
       }
-      else
-      {
-        this->que++;
-      }
-      this->clock->restart();
     }
-  }
-  else
-  {
+    else
+    {
+      this->que++;
+    }
+    this->clock->restart();
   }
 }
 
@@ -75,6 +71,7 @@ void Animation::init_var(std::string &type, std::string &ani, std::string &ani_n
   this->clock = nullptr;
   this->size = size;
   this->que = 0;
+  this->is_repeat = is_repeat;
 }
 
 void Animation::init_texture()
