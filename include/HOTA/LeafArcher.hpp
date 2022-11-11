@@ -26,6 +26,7 @@ public:
   void update(sf::RenderWindow &window);
   void render(sf::RenderTarget &target);
   void move_character(sf::RenderWindow &window);
+  void atk_character();
 };
 
 #endif

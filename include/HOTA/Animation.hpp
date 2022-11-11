@@ -27,7 +27,7 @@ public:
   Animation(std::string, std::string, std::string, size_t, bool is_repeat);
   ~Animation();
   void render(sf::RenderTarget &);
-  void update();
+  void update(bool &is_ani_over);
   void update_once();
   std::vector<sf::Sprite *> *get_sprite();
 };

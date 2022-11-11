@@ -31,7 +31,6 @@ public:
   void update();
   void MenuUpDown(sf::Event &, Hero *&hero);
 
-  bool IsOpen();
   bool GetOpen();
   void SetOpen(bool changeOpen);
 };

@@ -19,6 +19,7 @@ protected:
   int mana;
   int defense;
   float crit_chance;
+  bool is_ani_over;
 
   //
   std::map<std::string, Animation *> hero_ani;

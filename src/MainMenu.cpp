@@ -100,15 +100,6 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero)
   }
 }
 
-bool MainMenu::IsOpen()
-{
-  if (!open)
-  {
-    return false;
-  }
-  return true;
-}
-
 // bool MainMenu::GetOpen()
 // {
 //   return this->open;

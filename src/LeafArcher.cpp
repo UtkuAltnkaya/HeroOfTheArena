@@ -75,7 +75,8 @@ void LeafArcher::update(sf::RenderWindow &window)
     if (i.first == this->ani_name)
     {
       this->move_character(window);
-      return this->hero_ani[this->ani_name]->update();
+      this->hero_ani[this->ani_name]->update(this->is_ani_over);
+      this->atk_character();
     }
   }
   // this->get_hero_ani()["idle"]->update();
@@ -106,5 +107,17 @@ void LeafArcher::move_character(sf::RenderWindow &window)
   if (this->ani_name == "jump")
   {
     this->move(sf::Keyboard::W, window);
+  }
+}
+
+void LeafArcher::atk_character()
+{
+  if (this->ani_name == "1_atk")
+  {
+    if (this->is_ani_over)
+    {
+      this->ani_name = "idle";
+      this->is_ani_over = false;
+    }
   }
 }

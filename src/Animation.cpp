@@ -25,15 +25,20 @@ Animation::~Animation()
   delete this->clock;
 }
 // Public
-void Animation::update()
+void Animation::update(bool &is_ani_over)
 {
   if (this->clock->getElapsedTime().asSeconds() > 0.1f)
   {
-    if (this->que >= this->size - 1)
+    if (this->que >= this->size - 1) // ani is over
     {
       if (this->is_repeat)
       {
         this->que = 0;
+      }
+      else
+      {
+        this->que = 0;
+        is_ani_over = true;
       }
     }
     else

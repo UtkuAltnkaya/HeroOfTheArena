@@ -52,6 +52,9 @@ void GroundMonk::init_ani()
     this->hero_ani.insert(std::pair<std::string, Animation *>("roll_left", new Animation(this->path, "roll", "roll_", this->roll_num, true)));
     this->hero_ani.insert(std::pair<std::string, Animation *>("run_left", new Animation(this->path, "run_left", "run_", this->run_num, true)));
     this->hero_ani.insert(std::pair<std::string, Animation *>("jump", new Animation(this->path, "jump_up", "jump_up_", 3, true)));
+
+    this->hero_ani.insert(std::pair<std::string, Animation *>("1_atk", new Animation(this->path, "1_atk", "atk_", this->atk_one_num, false)));
+
     //  this->hero_ani.insert(std::pair<std::string, Animation *>("jump", new Animation(this->path, "jump_up", "jump_up_", this->jump_num)));
 }
 
@@ -72,7 +75,8 @@ void GroundMonk::update(sf::RenderWindow &window)
         if (i.first == this->ani_name)
         {
             this->move_character(window);
-            return this->hero_ani[this->ani_name]->update();
+            this->hero_ani[this->ani_name]->update(this->is_ani_over);
+            this->atk_character();
         }
     }
     // this->get_hero_ani()["idle"]->update();
@@ -104,4 +108,16 @@ void GroundMonk::move_character(sf::RenderWindow &window)
     // {
     //     this->move(sf::Keyboard::W, window);
     // }
+}
+
+void GroundMonk::atk_character()
+{
+    if (this->ani_name == "1_atk")
+    {
+        if (this->is_ani_over)
+        {
+            this->ani_name = "idle";
+            this->is_ani_over = false;
+        }
+    }
 }

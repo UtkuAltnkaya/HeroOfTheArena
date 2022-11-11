@@ -19,7 +19,7 @@ Player::~Player()
 // Public
 void Player::update(std::string &ani_name)
 {
-
+  bool is;
   for (auto i : this->player_ani)
   {
     if (i.first == ani_name)
@@ -32,7 +32,7 @@ void Player::update(std::string &ani_name)
       {
         this->move("left");
       }
-      return i.second->update();
+      return i.second->update(is);
     }
   }
 }
