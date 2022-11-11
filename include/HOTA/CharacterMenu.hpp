@@ -35,6 +35,7 @@ private:
     void MoveLeft();
     void MoveUp();
     void MoveDown();
+    void selectedHero(Hero *&hero);
 
 public:
     CharMenu(std::string, std::string);

@@ -52,7 +52,11 @@ void BladeKeeper::init_ani()
     this->hero_ani.insert(std::pair<std::string, Animation *>("roll_left", new Animation(this->path, "roll", "roll_", this->roll_num, true)));
     this->hero_ani.insert(std::pair<std::string, Animation *>("run_left", new Animation(this->path, "run_left", "run_", this->run_num, true)));
     this->hero_ani.insert(std::pair<std::string, Animation *>("jump", new Animation(this->path, "jump_up", "jump_up_", 3, true)));
+
     this->hero_ani.insert(std::pair<std::string, Animation *>("1_atk", new Animation(this->path, "1_atk", "atk_", this->atk_one_num, false)));
+    this->hero_ani.insert(std::pair<std::string, Animation *>("2_atk", new Animation(this->path, "2_atk", "atk_", this->atk_two_num, false)));
+    this->hero_ani.insert(std::pair<std::string, Animation *>("sp_atk", new Animation(this->path, "sp_atk", "sp_atk_", this->atk_sp_num, false)));
+    this->hero_ani.insert(std::pair<std::string, Animation *>("defend", new Animation(this->path, "defend", "defend_", this->defend_num, false)));
 
     //  this->hero_ani.insert(std::pair<std::string, Animation *>("jump", new Animation(this->path, "jump_up", "jump_up_", this->jump_num)));
 }
@@ -111,7 +115,7 @@ void BladeKeeper::move_character()
 
 void BladeKeeper::atk_character()
 {
-    if (this->ani_name == "1_atk")
+    if (this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
     {
         if (this->is_ani_over)
         {
