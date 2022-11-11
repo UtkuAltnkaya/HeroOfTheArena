@@ -49,16 +49,6 @@ void Animation::update(bool &is_ani_over)
   }
 }
 
-void Animation::update_once()
-{
-  this->que = 0;
-  if (this->clock->getElapsedTime().asSeconds() > 0.1f)
-  {
-    this->que++;
-    this->clock->restart();
-  }
-}
-
 void Animation::render(sf::RenderTarget &target)
 {
   target.draw(*this->sprite->at(this->que));

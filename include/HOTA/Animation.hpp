@@ -28,7 +28,6 @@ public:
   ~Animation();
   void render(sf::RenderTarget &);
   void update(bool &is_ani_over);
-  void update_once();
   std::vector<sf::Sprite *> *get_sprite();
 };
 
