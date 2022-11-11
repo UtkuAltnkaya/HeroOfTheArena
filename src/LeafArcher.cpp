@@ -121,3 +121,9 @@ void LeafArcher::atk_character()
     }
   }
 }
+/*
+  We had a problem the animation was working only when the button is pressed and it was continuously being called.
+  We have added a attribute named is_ani_over to check whether the animation is over or not. And we passed the attribute to the animation update method with Pass by reference.
+  Since we want to make our animation fully done when it's pressed once by user for specific animations, We check if animation is over and then after the animation
+  character takes the idle position and the animation that we want to be done once stops.
+*/
