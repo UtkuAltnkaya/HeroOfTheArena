@@ -2,7 +2,6 @@
 
 int main()
 {
-  // example
   Game game;
   game.run();
 
