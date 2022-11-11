@@ -23,9 +23,9 @@ public:
     ~BladeKeeper();
     void skill();
     void upgrade();
-    void update(sf::RenderWindow &window);
+    void update();
     void render(sf::RenderTarget &target);
-    void move_character(sf::RenderWindow &window);
+    void move_character();
     void atk_character();
 };
 

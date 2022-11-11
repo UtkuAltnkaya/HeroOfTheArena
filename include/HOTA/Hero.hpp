@@ -36,7 +36,7 @@ protected:
   int death_num;
   int take_dmg_num;
 
-  void move(sf::Keyboard::Key key, sf::RenderWindow &window);
+  void move(sf::Keyboard::Key key);
 
 public:
   Hero();
@@ -44,7 +44,7 @@ public:
   ~Hero();
   virtual void skill() = 0;
   virtual void upgrade() = 0;
-  virtual void update(sf::RenderWindow &window) = 0;
+  virtual void update() = 0;
   virtual void render(sf::RenderTarget &target) = 0;
   void poll_events(sf::Event &event);
   void poll_events_loop(sf::Event &event);
