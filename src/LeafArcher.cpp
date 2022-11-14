@@ -46,7 +46,6 @@ void LeafArcher::init_stats()
 void LeafArcher::init_ani()
 {
   // auto ani_path = this->get_path();
-  std::cout << "LeafArcher::init_ani" << std::endl;
   this->hero_ani.insert(std::pair<std::string, Animation *>("idle", new Animation(this->path, "idle", "idle_", this->idle_num, true)));
   this->hero_ani.insert(std::pair<std::string, Animation *>("run", new Animation(this->path, "run", "run_", this->run_num, true)));
   this->hero_ani.insert(std::pair<std::string, Animation *>("roll", new Animation(this->path, "roll", "roll_", this->roll_num, true)));
