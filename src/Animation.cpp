@@ -34,9 +34,7 @@ void Animation::update(bool &is_ani_over)
   {
     if (this->que >= this->size - 1) // if animation is over then the condition enters this if statement.
     {
-
-      this->que = 0; // Set que to 0 and start the animation again.
-
+      this->que = 0;  // Set que to 0 and start the animation again.
       if (!is_repeat) // If is not repeated, assign the is_ani_over to true and end the animation
       {
         is_ani_over = true;

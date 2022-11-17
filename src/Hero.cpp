@@ -22,6 +22,10 @@ Hero::~Hero()
 
 void Hero::poll_events(sf::Event &event)
 {
+  if (this->ani_name == "jump_up" || this->ani_name == "jump_down")
+  {
+    return;
+  }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) // TODO
   {
     this->ani_name = "run";
@@ -46,10 +50,10 @@ void Hero::poll_events(sf::Event &event)
   {
     this->ani_name = "sp_atk";
   }
-  // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-  // {
-  //   this->ani_name = "jump";
-  // }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+  {
+    this->ani_name = "jump_up";
+  }
 };
 
 void Hero::poll_events_loop(sf::Event &event)
@@ -88,20 +92,22 @@ void Hero::move(sf::Keyboard::Key key)
         }
       }
 
-      //   if (key == sf::Keyboard::W)
-      //   {
-
-      //     if (pos.y <= 200)
-      //     {
-      //       j->setPosition(pos.x, pos.y - 5);
-      //       std::cout << pos.y << std::endl;
-      //     }
-      //     else if (pos.y >= 200 && pos.y > 354)
-      //     {
-      //       j->setPosition(pos.x, pos.y + 5);
-      //     }
-      //   }
-      // }
+      if (key == sf::Keyboard::Space)
+      {
+        if (this->ani_name == "jump_up" && pos.y > 250.f)
+        {
+          j->setPosition(pos.x, pos.y - 4);
+        }
+        else if (pos.y <= 343)
+        {
+          this->ani_name = "jump_down";
+          j->setPosition(pos.x, pos.y + 4);
+        }
+        else
+        {
+          this->ani_name = "idle";
+        }
+      }
     }
   }
 }
