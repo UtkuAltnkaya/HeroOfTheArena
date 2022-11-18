@@ -22,7 +22,7 @@ Hero::~Hero()
 
 void Hero::poll_events(sf::Event &event)
 {
-  if (this->ani_name == "jump_up" || this->ani_name == "jump_down")
+  if (this->ani_name == "jump_up" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
   {
     return;
   }
