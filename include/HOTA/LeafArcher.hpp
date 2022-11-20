@@ -15,6 +15,7 @@ private:
 
   /**
    * atk2 -> hit_entangle
+   * will be added
    * atk3 -> shower_effect
    */
 
