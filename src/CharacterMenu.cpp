@@ -66,7 +66,7 @@ void CharMenu::init_texture_vec(int i)
 
 void CharMenu::init_sprite_vec(int i)
 {
-  // we are creating characters and their positions for the menu 
+  // we are creating characters and their positions for the menu
   auto sp = new sf::Sprite(*this->texture.at(i), sf::IntRect(0, 0, 288, 128));
   if (i < 3)
   {
@@ -99,19 +99,19 @@ void CharMenu::init_clock()
 
 // getter for open
 bool CharMenu::get_open()
-{ 
+{
   return this->open;
 }
 
-//setter for open
+// setter for open
 void CharMenu::set_open(bool open)
-{ 
+{
   this->open = open;
 }
 
 // start of the menu move functions
 void CharMenu::MoveRight()
-{ 
+{
   // changing selected elemtents indexes
   if (this->selectedItem + 1 < Max_Items)
   {
@@ -160,7 +160,7 @@ void CharMenu::MoveUp()
 }
 
 void CharMenu::MoveDown()
-{ // conditions for down 
+{ // conditions for down
   if (this->selectedItem + 3 < Max_Items)
   {
     this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/idle/idle_1.png");
@@ -186,9 +186,9 @@ void CharMenu::selectedHero(Hero *&hero)
   }
   else if (selectedItem == 1)
   {
-   // std::cout << "before" << std::endl;
+    // std::cout << "before" << std::endl;
     hero = new FireKnight();
-   // std::cout << "after" << std::endl;
+    // std::cout << "after" << std::endl;
   }
   else if (selectedItem == 2)
   {

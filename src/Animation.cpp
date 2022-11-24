@@ -9,11 +9,6 @@ Animation::Animation(std::string type, std::string ani, std::string ani_name, si
   this->init_sprite();
   this->init_clock();
 }
-/*
-// copy constructor which delegates the main constructor
-Animation::Animation(const Animation &animation) : Animation { animation.type, animation.ani, animation.ani_name, animation.size, animation.is_repeat }{
-  // delegeate copy constructor
-}*/
 
 // Destructor deallocates memory after sprites and textures being used.
 Animation::~Animation()
@@ -67,15 +62,11 @@ std::vector<sf::Sprite *> *Animation::get_sprite()
 // TODO
 void Animation::init_var(std::string &type, std::string &ani, std::string &ani_name, size_t &size, bool &is_repeat)
 {
-  //this->type = type;
-  //this->ani = ani;       // delegate için gerkeli variablelar
-  //this->ani_name = ani_name;
   this->path = type + "/" + ani + "/" + ani_name;
   this->clock = nullptr;
   this->size = size;
   this->que = 0;
   this->is_repeat = is_repeat;
- 
 }
 
 void Animation::init_texture() // first we initialize textures and after this texture method sprite will be created.
