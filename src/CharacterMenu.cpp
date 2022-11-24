@@ -66,7 +66,7 @@ void CharMenu::init_texture_vec(int i)
 
 void CharMenu::init_sprite_vec(int i)
 {
-  // karakterli olusturup yerlerini ayarlıyoruz inndexlerine gore
+  // we are creating characters and their positions for the menu 
   auto sp = new sf::Sprite(*this->texture.at(i), sf::IntRect(0, 0, 288, 128));
   if (i < 3)
   {
@@ -80,11 +80,11 @@ void CharMenu::init_sprite_vec(int i)
   this->sprite.push_back(sp);
   this->sprite.at(i)->setScale(2.5f, 2.5f);
 }
-
+// initilazing variables
 void CharMenu::init_var(std::string &type, std::string &version)
 {
   for (int i = 0; i < charSize; i++)
-  { // pathlari initilaze ediyoruz
+  { // initilazing paths
     this->path = type + "/" + version + "/" + chars[i] + "/" + "idle/idle";
     this->init_texture_vec(i);
     this->init_sprite_vec(i);
@@ -93,23 +93,26 @@ void CharMenu::init_var(std::string &type, std::string &version)
 }
 
 void CharMenu::init_clock()
-{ // clock olusturuyoruz animasyonlar icin
+{ // sfml clock object for the animations
   clock = new sf::Clock();
 }
 
+// getter for open
 bool CharMenu::get_open()
-{ // getter fonksiyonu
+{ 
   return this->open;
 }
 
+//setter for open
 void CharMenu::set_open(bool open)
-{ // setter fonksiyonu
+{ 
   this->open = open;
 }
 
-// move fonksiyonlari baslangic
+// start of the menu move functions
 void CharMenu::MoveRight()
-{
+{ 
+  // changing selected elemtents indexes
   if (this->selectedItem + 1 < Max_Items)
   {
     this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/idle/idle_1.png");
@@ -117,7 +120,7 @@ void CharMenu::MoveRight()
     this->animate = this->selectedItem;
   }
   else
-  { // saga gidicek yer kalmadiysa basa donuyor
+  { // no space for right go beginning
     this->texture.at(Max_Items - 1)->loadFromFile("bin/image/" + chars[Max_Items - 1] + "/idle/idle_1.png");
     this->animate = 0;
     this->selectedItem = 0;
@@ -133,7 +136,7 @@ void CharMenu::MoveLeft()
     this->animate = this->selectedItem;
   }
   else
-  { // sola gidicek yer kalmadiysa sona donuyor
+  { // no space left for to go left and turn to the beginning
     this->texture.at(0)->loadFromFile("bin/image/" + chars[0] + "/idle/idle_1.png");
     this->animate = Max_Items - 1;
     this->selectedItem = Max_Items - 1;
@@ -149,7 +152,7 @@ void CharMenu::MoveUp()
     this->animate = this->selectedItem;
   }
   else
-  { // yukari gidicek 3 index yoksa asagi gidiyor
+  { // if there is not enough space to go 3 index up then go the next 3
     this->texture.at(this->selectedItem)->loadFromFile("bin/image/" + chars[this->selectedItem] + "/idle/idle_1.png");
     this->animate = this->selectedItem + 3;
     this->selectedItem = this->animate;
@@ -157,33 +160,35 @@ void CharMenu::MoveUp()
 }
 
 void CharMenu::MoveDown()
-{ // asagi yonde hareket icin if kosulları
+{ // conditions for down 
   if (this->selectedItem + 3 < Max_Items)
   {
     this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/idle/idle_1.png");
     this->selectedItem += 3;
     this->animate = this->selectedItem;
   }
-  else // eger asagi gicedek 3 tane index yoksa yukarı gidiyor
+  else // not enough space for down 3 then go up 3
   {
     this->texture.at(this->selectedItem)->loadFromFile("bin/image/" + chars[this->selectedItem] + "/idle/idle_1.png");
     this->animate = this->selectedItem - 3;
     this->selectedItem = this->animate;
   }
 }
-// move fonksiyonlari bitis
+// end of move functions
 
-// secilen karakteri olusturan fonksiyon
+// the function that creates selected hero
 void CharMenu::selectedHero(Hero *&hero)
 {
-  // secilen heroyu olusturma
+  // simple condition for selected index
   if (selectedItem == 0)
   {
     hero = new BladeKeeper();
   }
   else if (selectedItem == 1)
   {
+   // std::cout << "before" << std::endl;
     hero = new FireKnight();
+   // std::cout << "after" << std::endl;
   }
   else if (selectedItem == 2)
   {
@@ -203,7 +208,7 @@ void CharMenu::selectedHero(Hero *&hero)
   }
 }
 
-// karakter seciminde kullanilan tuslari okuyan fonksiyon
+// character menu key control function
 void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero)
 {
   if (event.type == sf::Event::KeyReleased)
@@ -211,31 +216,31 @@ void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero)
     if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D)
     {
       MoveRight();
-      // saga hareket
+      // call the move right
     }
     else if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A)
     {
       MoveLeft();
-      // sola hareket
+      // call the move left
     }
     else if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W)
     {
       MoveUp();
-      // yukari hareket
+      // call move up
     }
     else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
     {
       MoveDown();
-      // asagı hareket
+      // call mov edown
     }
     else if (event.key.code == sf::Keyboard::Escape)
     {
       this->open = false;
-      // karakter menusunu kapatma
+      // change the open variable to close char menu
     }
     else if (event.key.code == sf::Keyboard::Enter)
     {
-      // karakter secme
+      // selecting character
       this->open = false;
       this->selectedHero(hero);
     }
@@ -247,7 +252,7 @@ void CharMenu::Update()
 
   if (this->clock->getElapsedTime().asSeconds() > 0.1f)
   {
-    // animasyonları update etme classtakinden farkı yok
+    // updating animations
     if (this->que >= characterAtkNums[this->animate])
     {
       this->que = 1;
@@ -263,11 +268,11 @@ void CharMenu::Update()
 
 void CharMenu::Animated(sf::RenderTarget &target)
 {
-  // animasyonu secili olan (animate) karateri animasyona sokma
+  // selected index character animate and draw
   target.draw(*this->sprite.at(this->animate));
 
   if (que <= this->characterAtkNums[this->animate])
-  { // png sayısı buyuk olan karakterler oldugu icin dosya acilamadi hatasini engellemek icin konulan bir if kosulu
+  { // there are some characters that have lots of png than other to errong handling we use if condition here
     this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
   }
 }

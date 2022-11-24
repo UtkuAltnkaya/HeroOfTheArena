@@ -13,6 +13,9 @@ private:
   sf::Clock *clock;
 
   std::string path;
+  std::string type;
+  std::string ani;
+  std::string ani_name;
   size_t size;
   size_t que;
 
@@ -25,6 +28,7 @@ private:
 
 public:
   Animation(std::string, std::string, std::string, size_t, bool is_repeat);
+  //Animation(const Animation &animation);
   ~Animation();
   void render(sf::RenderTarget &);
   void update(bool &is_ani_over);
