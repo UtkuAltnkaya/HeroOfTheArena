@@ -23,9 +23,11 @@ private:
   void init_sprite();
   void init_clock();
   void init_var(std::string &, std::string &, std::string &, size_t &, bool &is_repeat);
+  void init_var(size_t &, bool &is_repeat);
 
 public:
   Animation(std::string, std::string, std::string, size_t, bool is_repeat);
+  Animation(Animation &);
   ~Animation();
   void render(sf::RenderTarget &);
   void update(bool &is_ani_over);
