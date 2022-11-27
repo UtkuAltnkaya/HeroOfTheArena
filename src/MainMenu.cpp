@@ -3,7 +3,16 @@
 MainMenu::MainMenu(float width, float height)
 {
   std::string menuText[3] = {"Play", "Options", "Quit"};
+  this->titleFont.loadFromFile("bin/Fonts/PixExtrusion.ttf");
+    title.setFont(titleFont);
+    title.setCharacterSize(80);
+    title.setColor(sf::Color::Blue);
+    title.setString("HERO OF THE ARENA");
+    title.setPosition(sf::Vector2f((width - 800) / 2,  50));
+
   this->open = true;
+
+  
   if (!font.loadFromFile("bin/Fonts/PixelHigh.ttf"))
   {
     // handle error
@@ -29,6 +38,8 @@ void MainMenu::render(sf::RenderWindow &window)
 {
   if (this->open)
   {
+    window.draw(title);
+
     for (int i{0}; i < MAX_NUMBER_OF_ITEMS; i++)
     {
       window.draw(menu[i]);
@@ -91,6 +102,10 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero)
       {
         this->open = false;
       }
+      else 
+      {
+        //todo
+      }
     }
   }
   else if (this->char_menu->get_open())
@@ -113,7 +128,7 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero)
 void MainMenu::init_char_menu()
 {
   this->char_menu = new CharMenu("bin", "image");
-};
+}
 
 void MainMenu::update()
 {

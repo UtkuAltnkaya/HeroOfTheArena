@@ -16,13 +16,15 @@ private:
   sf::Font font;
   sf::Text menu[MAX_NUMBER_OF_ITEMS];
 
+  sf::Font titleFont;
+  sf::Text title;
   CharMenu *char_menu;
 
   bool open;
   void init_char_menu();
   void MoveUp();
   void MoveDown();
-
+  
 public:
   MainMenu(float width, float height);
   ~MainMenu();
