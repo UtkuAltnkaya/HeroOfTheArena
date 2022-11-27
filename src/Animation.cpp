@@ -9,16 +9,17 @@ Animation::Animation(std::string type, std::string ani, std::string ani_name, si
   this->init_sprite();
   this->init_clock();
 }
- //copy constructor
+// copy constructor
 
- Animation::Animation(Animation &source){
+Animation::Animation(Animation &source)
+{
 
-   this->path = source.path;
-   this->init_var(source.size,source.is_repeat);
-   this->init_texture();
-   this->init_sprite();
-   this->init_clock();
- }
+  this->path = source.path;
+  this->init_var(source.size, source.is_repeat);
+  this->init_texture();
+  this->init_sprite();
+  this->init_clock();
+}
 // Destructor deallocates memory after sprites and textures being used.
 Animation::~Animation()
 {
@@ -78,7 +79,8 @@ void Animation::init_var(std::string &type, std::string &ani, std::string &ani_n
   this->is_repeat = is_repeat;
 }
 
-void Animation::init_var(size_t &size, bool &is_repeat){
+void Animation::init_var(size_t &size, bool &is_repeat)
+{
 
   this->clock = nullptr;
   this->size = size;
