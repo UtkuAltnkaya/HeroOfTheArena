@@ -98,6 +98,10 @@ void Hero::poll_events_loop(sf::Event &event)
   {
     if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::A)
     {
+      if (this->ani_name == "jump_up" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
+      {
+        return;
+      }
       this->ani_name = "idle";
     }
   }
@@ -105,38 +109,36 @@ void Hero::poll_events_loop(sf::Event &event)
 
 void Hero::move(sf::Keyboard::Key key)
 {
-  for (auto &&i : *this->animation->get_sprite())
+  sf::Sprite *sp = this->animation->get_sprite()->at(0);
+  sf::Vector2f pos = sp->getPosition();
+  if (pos.x < (1548 - 505))
   {
-    auto pos = i->getPosition();
-    if (pos.x < (1548 - 505))
+    if (key == sf::Keyboard::D)
     {
-      if (key == sf::Keyboard::D)
-      {
-        i->setPosition(pos.x + 5, pos.y);
-      }
+      sp->setPosition(pos.x + 5, pos.y);
     }
-    if (pos.x != -355)
+  }
+  if (pos.x != -355)
+  {
+    if (key == sf::Keyboard::A)
     {
-      if (key == sf::Keyboard::A)
-      {
-        i->setPosition(pos.x - 5, pos.y);
-      }
+      sp->setPosition(pos.x - 5, pos.y);
     }
-    if (key == sf::Keyboard::Space)
+  }
+  if (key == sf::Keyboard::Space)
+  {
+    if (this->ani_name == "jump_up" && pos.y > 250.f)
     {
-      if (this->ani_name == "jump_up" && pos.y > 250.f)
-      {
-        i->setPosition(pos.x, pos.y - 4);
-      }
-      else if (pos.y <= 343)
-      {
-        this->ani_name = "jump_down";
-        i->setPosition(pos.x, pos.y + 4);
-      }
-      else
-      {
-        this->ani_name = "idle";
-      }
+      sp->setPosition(pos.x, pos.y - 4);
+    }
+    else if (pos.y <= 343)
+    {
+      this->ani_name = "jump_down";
+      sp->setPosition(pos.x, pos.y + 4);
+    }
+    else
+    {
+      this->ani_name = "idle";
     }
   }
   this->set_all_animation_position(this->animation->get_sprite()->at(0)->getPosition());
