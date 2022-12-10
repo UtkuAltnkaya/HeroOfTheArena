@@ -3,7 +3,6 @@
 
 #include "HOTA/Animation.hpp"
 #include "HOTA/MainMenu.hpp"
-#include "HOTA/Background.hpp"
 
 class Game
 {
