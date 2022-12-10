@@ -1,19 +1,16 @@
 #ifndef HERO_HPP
 #define HERO_HPP
 
-#include <string>
 #include <SFML/Graphics.hpp>
-#include <map>
-#include "HOTA/Animation.hpp"
+#include "HOTA/AnimationCreator.hpp"
 
-class Hero
+class Hero : public AnimationCreator
 {
 protected:
-  std::string path;
   // std::string ani_name[10] = {"idle", "1_atk", "2_atk", "sp_atk", "run", "roll", "jump_full", "defend", "death", "take_hit"};
-  std::string ani_name;
 
   //
+  std::string ani_name;
   int health;
   int damage;
   int mana;
@@ -22,21 +19,9 @@ protected:
   bool is_ani_over;
 
   //
-  std::map<std::string, Animation *> hero_ani;
-
-  //
-  int idle_num;
-  int atk_one_num;
-  int atk_two_num;
-  int atk_sp_num;
-  int run_num;
-  int roll_num;
-  int jump_num;
-  int defend_num;
-  int death_num;
-  int take_dmg_num;
-
   void move(sf::Keyboard::Key key);
+  void atk_character();
+  void move_character();
 
 public:
   Hero();
@@ -44,8 +29,9 @@ public:
   ~Hero();
   virtual void skill() = 0;
   virtual void upgrade() = 0;
-  virtual void update() = 0;
-  virtual void render(sf::RenderTarget &target) = 0;
+
+  void update();
+  void render(sf::RenderTarget &target);
   void poll_events(sf::Event &event);
   void poll_events_loop(sf::Event &event);
 };

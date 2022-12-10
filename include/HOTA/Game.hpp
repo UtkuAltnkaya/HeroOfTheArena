@@ -1,26 +1,21 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "HOTA/Background.hpp"
+#include "HOTA/Animation.hpp"
 #include "HOTA/MainMenu.hpp"
+#include "HOTA/Background.hpp"
 
 class Game
 {
 private:
-  sf::RenderWindow *window;
+  Animation *background;
+  Hero *hero;
+  MainMenu *main_menu;
 
+  sf::RenderWindow *window;
   sf::VideoMode video_mode;
   sf::Event event;
 
-  Background *background;
-  Hero *hero;
-
-  MainMenu *main_menu;
-
-  std::string animation_name;
-  std::string bg_name;
-
-  int index;
   void init_var();
   void init_window();
   void init_background();

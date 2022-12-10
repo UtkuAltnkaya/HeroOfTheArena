@@ -7,16 +7,52 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f}
 }
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : path(pathVal), health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
+    : AnimationCreator{pathVal}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
-  this->ani_name = "idle";
 }
 
 Hero::~Hero()
 {
-  for (auto &i : this->hero_ani)
+}
+
+void Hero::update()
+{
+  this->animation->update(this->is_ani_over);
+  this->move_character();
+  this->atk_character();
+  this->select_animation(this->ani_name);
+}
+
+void Hero::render(sf::RenderTarget &target)
+{
+  this->animation->render(target);
+}
+
+void Hero::move_character()
+{
+  if (this->ani_name == "run")
   {
-    delete i.second;
+    this->move(sf::Keyboard::D);
+  }
+  else if (this->ani_name == "run_left")
+  {
+    this->move(sf::Keyboard::A);
+  }
+  if (this->ani_name == "jump_up" || this->ani_name == "jump_down")
+  {
+    this->move(sf::Keyboard::Space);
+  }
+}
+
+void Hero::atk_character()
+{
+  if (this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
+  {
+    if (this->is_ani_over)
+    {
+      this->ani_name = "idle";
+      this->is_ani_over = false;
+    }
   }
 }
 
@@ -69,47 +105,41 @@ void Hero::poll_events_loop(sf::Event &event)
 
 void Hero::move(sf::Keyboard::Key key)
 {
-  for (auto &i : this->hero_ani)
+  for (auto &&i : *this->animation->get_sprite())
   {
-    for (auto &j : *i.second->get_sprite())
+    auto pos = i->getPosition();
+    if (pos.x < (1548 - 505))
     {
-      auto pos = j->getPosition();
-
-      // std::cout << pos.y << std::endl;
-
-      if (pos.x < (1548 - 505))
+      if (key == sf::Keyboard::D)
       {
-        if (key == sf::Keyboard::D)
-        {
-          j->setPosition(pos.x + 5, pos.y);
-        }
+        i->setPosition(pos.x + 5, pos.y);
       }
-      if (pos.x != -355)
+    }
+    if (pos.x != -355)
+    {
+      if (key == sf::Keyboard::A)
       {
-        if (key == sf::Keyboard::A)
-        {
-          j->setPosition(pos.x - 5, pos.y);
-        }
+        i->setPosition(pos.x - 5, pos.y);
       }
-
-      if (key == sf::Keyboard::Space)
+    }
+    if (key == sf::Keyboard::Space)
+    {
+      if (this->ani_name == "jump_up" && pos.y > 250.f)
       {
-        if (this->ani_name == "jump_up" && pos.y > 250.f)
-        {
-          j->setPosition(pos.x, pos.y - 4);
-        }
-        else if (pos.y <= 343)
-        {
-          this->ani_name = "jump_down";
-          j->setPosition(pos.x, pos.y + 4);
-        }
-        else
-        {
-          this->ani_name = "idle";
-        }
+        i->setPosition(pos.x, pos.y - 4);
+      }
+      else if (pos.y <= 343)
+      {
+        this->ani_name = "jump_down";
+        i->setPosition(pos.x, pos.y + 4);
+      }
+      else
+      {
+        this->ani_name = "idle";
       }
     }
   }
+  this->set_all_animation_position(this->animation->get_sprite()->at(0)->getPosition());
 }
 /**
  *

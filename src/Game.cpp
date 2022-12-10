@@ -24,7 +24,6 @@ void Game::init_var()
   this->hero = nullptr;
   this->video_mode.width = 512 * 3;
   this->video_mode.height = 256 * 3;
-  this->animation_name = "idle";
 }
 
 void Game::init_window()
@@ -36,9 +35,7 @@ void Game::init_window()
 
 void Game::init_background()
 {
-  this->background = new Background("background", "Hills", "Hills Layer 0", 6);
-  // this->bg_ani.insert(std::pair<std::string, Background *>("lvl_1", new Background("background", "hills", "HillsLayer0", 6)));
-  // this->bg_ani.insert(std::pair<std::string, Background *>("lvl_2", new Background("background", "woods", "Layer", 4)));
+  this->background = new Animation{"image/background", "Hills", "Hills Layer 0", 6, true};
 }
 
 void Game::init_main_menu()
@@ -69,7 +66,7 @@ void Game::update()
 void Game::render()
 {
   this->window->clear();
-  this->background->render(*this->window);
+  this->background->render_background(*this->window);
   this->main_menu->render(*this->window);
   if (this->hero)
   {

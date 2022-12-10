@@ -13,7 +13,7 @@ LeafArcher::~LeafArcher()
 void LeafArcher::init_var()
 {
   this->init_ani_stats();
-  this->init_ani();
+  this->init_animations();
   this->init_stats();
 }
 
@@ -42,24 +42,6 @@ void LeafArcher::init_stats()
   this->crit_chance += 0.25;
 }
 
-void LeafArcher::init_ani()
-{
-  // auto ani_path = this->get_path();
-  this->hero_ani.insert(std::pair<std::string, Animation *>("idle", new Animation(this->path, "idle", "idle_", this->idle_num, true)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("run", new Animation(this->path, "run", "run_", this->run_num, true)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("roll", new Animation(this->path, "roll", "roll_", this->roll_num, true)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("roll_left", new Animation(this->path, "roll", "roll_", this->roll_num, true)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("run_left", new Animation(this->path, "run_left", "run_", this->run_num, true)));
-  // this->hero_ani.insert(std::pair<std::string, Animation *>("jump", new Animation(this->path, "jump_up", "jump_up_", 3, true)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("1_atk", new Animation(this->path, "1_atk", "atk_", this->atk_one_num, false)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("2_atk", new Animation(this->path, "2_atk", "atk_", this->atk_two_num, false)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("sp_atk", new Animation(this->path, "sp_atk", "sp_atk_", this->atk_sp_num, false)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("defend", new Animation(this->path, "defend", "defend_", this->defend_num, false)));
-  // this->hero_ani.insert(std::pair<std::string, Animation *>("jump", new Animation(this->path, "jump", "jump_", this->jump_num, false)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("jump_up", new Animation(this->path, "jump_up", "jump_up_", 3, false)));
-  this->hero_ani.insert(std::pair<std::string, Animation *>("jump_down", new Animation(this->path, "jump_down", "jump_down_", 3, false)));
-}
-
 void LeafArcher::skill()
 {
   // TODO
@@ -70,59 +52,6 @@ void LeafArcher::upgrade()
   // TODO
 }
 
-void LeafArcher::update()
-{
-  for (auto &i : this->hero_ani)
-  {
-    if (i.first == this->ani_name)
-    {
-      this->move_character();
-      this->hero_ani[this->ani_name]->update(this->is_ani_over);
-      this->atk_character();
-    }
-  }
-  // this->get_hero_ani()["idle"]->update();
-}
-
-void LeafArcher::render(sf::RenderTarget &target)
-{
-
-  for (auto &i : this->hero_ani)
-  {
-    if (i.first == this->ani_name)
-    {
-      this->hero_ani[this->ani_name]->render(target);
-    }
-  }
-}
-
-void LeafArcher::move_character()
-{
-  if (this->ani_name == "run")
-  {
-    this->move(sf::Keyboard::D);
-  }
-  else if (this->ani_name == "run_left")
-  {
-    this->move(sf::Keyboard::A);
-  }
-  if (this->ani_name == "jump_up" || this->ani_name == "jump_down")
-  {
-    this->move(sf::Keyboard::Space);
-  }
-}
-
-void LeafArcher::atk_character()
-{
-  if (this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
-  {
-    if (this->is_ani_over)
-    {
-      this->ani_name = "idle";
-      this->is_ani_over = false;
-    }
-  }
-}
 /*
   We had a problem the animation was working only when the button is pressed and it was continuously being called.
   We have added a attribute named is_ani_over to check whether the animation is over or not. And we passed the attribute to the animation update method with Pass by reference.

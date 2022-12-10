@@ -30,6 +30,8 @@ public:
   Animation(Animation &);
   ~Animation();
   void render(sf::RenderTarget &);
+  void render_background(sf::RenderTarget &);
+
   void update(bool &is_ani_over);
   std::vector<sf::Sprite *> *get_sprite();
 };

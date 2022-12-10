@@ -13,7 +13,6 @@ Animation::Animation(std::string type, std::string ani, std::string ani_name, si
 
 Animation::Animation(Animation &source)
 {
-
   this->path = source.path;
   this->init_var(source.size, source.is_repeat);
   this->init_texture();
@@ -58,6 +57,14 @@ void Animation::update(bool &is_ani_over)
   }
 }
 
+void Animation::render_background(sf::RenderTarget &target)
+{
+  for (auto &&i : *this->sprite)
+  {
+    target.draw(*i);
+  }
+}
+
 void Animation::render(sf::RenderTarget &target) // target is window here that comes from game.
 {
   target.draw(*this->sprite->at(this->que)); // window draws the sprite that is derived from texture (draws the png on the screen) according to que.
@@ -81,12 +88,12 @@ void Animation::init_var(std::string &type, std::string &ani, std::string &ani_n
 
 void Animation::init_var(size_t &size, bool &is_repeat)
 {
-
   this->clock = nullptr;
   this->size = size;
   this->que = 0;
   this->is_repeat = is_repeat;
 }
+
 void Animation::init_texture() // first we initialize textures and after this texture method sprite will be created.
 {
   this->texture = new std::vector<sf::Texture *>;
@@ -96,10 +103,11 @@ void Animation::init_texture() // first we initialize textures and after this te
     this->texture->push_back(tx);
     if (!this->texture->at(i)->loadFromFile(this->path + std::to_string(i + 1) + ".png"))
     {
-      std::cout << "ERROR:Background::INIT_TEXTURE_VEC::Could not load the texture" << i + 1 << std::endl;
+      std::cout << "ERROR:Animation::INIT_TEXTURE_VEC::Could not load the texture" << i + 1 << std::endl;
     }
   }
 }
+
 void Animation::init_sprite() // sprite is created by using textures. (pushed back to a sprite vector that is in animation class)
 {
   this->sprite = new std::vector<sf::Sprite *>;
@@ -107,7 +115,6 @@ void Animation::init_sprite() // sprite is created by using textures. (pushed ba
   {
     auto sp = new sf::Sprite(*this->texture->at(i));
     sp->setScale(3.f, 3.f);
-    sp->setPosition(-10, 256 * 3 - (this->texture->at(i)->getSize().y * 3) - 30);
     this->sprite->push_back(sp);
   }
 }

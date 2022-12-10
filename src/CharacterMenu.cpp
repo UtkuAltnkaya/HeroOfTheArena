@@ -186,9 +186,7 @@ void CharMenu::selectedHero(Hero *&hero)
   }
   else if (selectedItem == 1)
   {
-    // std::cout << "before" << std::endl;
     hero = new FireKnight();
-    // std::cout << "after" << std::endl;
   }
   else if (selectedItem == 2)
   {
