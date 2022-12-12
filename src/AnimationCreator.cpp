@@ -23,7 +23,6 @@ AnimationCreator::~AnimationCreator()
   delete this->defend_animation;
   delete this->run_animation;
   delete this->run_left_animation;
-  delete this->animation;
 }
 
 void AnimationCreator::init_animations()
@@ -35,9 +34,24 @@ void AnimationCreator::init_animations()
   this->defend_animation = new Animation{this->path, "defend", "defend_", this->defend_num, false};
   this->run_animation = new Animation{this->path, "run", "run_", this->run_num, true};
   this->run_left_animation = new Animation{this->path, "run_left", "run_", this->run_num, true};
-  // TODO jump
-
-  this->set_all_animation_position(sf::Vector2f{-10, (256 * 3) - (128 * 3) - 30}); // Set chars position
+  // std::cout << this->path << "   ";
+  //   TODO jump
+  std::cout << this->size << "   ";
+  if (this->size == 3)
+  {
+    // std::cout << "char";
+    this->set_all_animation_position(sf::Vector2f{-10, (256 * 3) - (128 * 3) - 30}); // Set chars position
+  }
+  else if (this->size == 4)
+  {
+    // std::cout << "char3";
+    this->set_all_animation_position(sf::Vector2f{1000, (256 * 3) - (128 * 3) + 22}); // Set chars position
+  }
+  else if (this->size == 5)
+  {
+    // std::cout << "char5";
+    this->set_all_animation_position(sf::Vector2f{900, (256 * 3) - (128 * 3) - 125}); // Set chars position
+  }
 }
 
 void AnimationCreator::select_animation(std::string animation_name)

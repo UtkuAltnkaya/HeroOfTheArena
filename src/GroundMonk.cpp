@@ -31,6 +31,7 @@ void GroundMonk::init_ani_stats()
     this->roll_num = 6;
     this->run_num = 8;
     this->take_dmg_num = 6;
+    this->size = 3;
 }
 
 void GroundMonk::init_stats()

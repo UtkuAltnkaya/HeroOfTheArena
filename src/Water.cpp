@@ -31,6 +31,7 @@ void Water::init_ani_stats()
     this->roll_num = 6; // TODO
     this->run_num = 8;
     this->take_dmg_num = 7;
+    this->size = 3;
 }
 
 void Water::init_stats()

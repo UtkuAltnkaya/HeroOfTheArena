@@ -5,6 +5,8 @@
 #include "HOTA/Water.hpp"
 #include "HOTA/BladeKeeper.hpp"
 #include "HOTA/GroundMonk.hpp"
+#include "HOTA/FrostGuardian.hpp"
+#include "HOTA/DemonSlime.hpp"
 #include <iostream>
 
 CharMenu::CharMenu(std::string type, std::string version)
@@ -177,7 +179,7 @@ void CharMenu::MoveDown()
 // end of move functions
 
 // the function that creates selected hero
-void CharMenu::selectedHero(Hero *&hero)
+void CharMenu::selectedHero(Hero *&hero, Boss *&boss)
 {
   // simple condition for selected index
   if (selectedItem == 0)
@@ -204,10 +206,11 @@ void CharMenu::selectedHero(Hero *&hero)
   {
     hero = new Wind();
   }
+  boss = new DemonSlime();
 }
 
 // character menu key control function
-void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero)
+void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss)
 {
   if (event.type == sf::Event::KeyReleased)
   {
@@ -240,7 +243,7 @@ void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero)
     {
       // selecting character
       this->open = false;
-      this->selectedHero(hero);
+      this->selectedHero(hero, boss);
     }
   }
 }

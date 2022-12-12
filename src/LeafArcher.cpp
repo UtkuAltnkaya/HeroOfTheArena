@@ -31,6 +31,7 @@ void LeafArcher::init_ani_stats()
   this->roll_num = 8;
   this->run_num = 10;
   this->take_dmg_num = 6;
+  this->size = 3;
 }
 
 void LeafArcher::init_stats()

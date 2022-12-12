@@ -32,6 +32,7 @@ protected:
   size_t defend_num;
   size_t death_num;
   size_t take_dmg_num;
+  float size;
 
   void init_animations();
   void select_animation(std::string animation_name);

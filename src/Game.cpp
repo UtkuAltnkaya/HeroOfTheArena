@@ -14,6 +14,7 @@ Game::~Game()
   delete this->window;
   delete this->background;
   delete this->main_menu;
+  delete this->boss;
 }
 
 // Private
@@ -22,6 +23,7 @@ void Game::init_var()
   this->window = nullptr;
   this->background = nullptr;
   this->hero = nullptr;
+  this->boss = nullptr;
   this->video_mode.width = 512 * 3;
   this->video_mode.height = 256 * 3;
 }
@@ -59,6 +61,7 @@ void Game::update()
   this->main_menu->update();
   if (this->hero)
   {
+    this->boss->update();
     this->hero->update();
   }
 }
@@ -70,6 +73,8 @@ void Game::render()
   this->main_menu->render(*this->window);
   if (this->hero)
   {
+
+    this->boss->render(*this->window);
     this->hero->render(*this->window);
   }
   this->window->display();
@@ -83,7 +88,7 @@ void Game::poll_events()
     {
       this->window->close();
     }
-    this->main_menu->MenuUpDown(this->event, this->hero);
+    this->main_menu->MenuUpDown(this->event, this->hero, this->boss);
     if (this->hero)
     {
       this->hero->poll_events_loop(event);
