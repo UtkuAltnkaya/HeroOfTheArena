@@ -73,7 +73,6 @@ void Game::render()
   this->main_menu->render(*this->window);
   if (this->hero)
   {
-
     this->boss->render(*this->window);
     this->hero->render(*this->window);
   }

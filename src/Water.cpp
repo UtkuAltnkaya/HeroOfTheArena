@@ -19,7 +19,6 @@ void Water::init_var()
 
 void Water::init_ani_stats()
 {
-
     this->path += "/Water";
     this->atk_one_num = 21;
     this->atk_two_num = 27;
@@ -31,7 +30,6 @@ void Water::init_ani_stats()
     this->roll_num = 6; // TODO
     this->run_num = 8;
     this->take_dmg_num = 7;
-    this->size = 3;
 }
 
 void Water::init_stats()

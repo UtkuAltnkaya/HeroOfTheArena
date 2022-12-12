@@ -19,7 +19,6 @@ void FrostGuardian::init_var()
 
 void FrostGuardian::init_ani_stats()
 {
-
     this->path += "/FrostGuardian";
     this->atk_one_num = 14;
     this->atk_two_num = 0;

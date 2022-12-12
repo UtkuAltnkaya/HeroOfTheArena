@@ -19,7 +19,6 @@ void GroundMonk::init_var()
 
 void GroundMonk::init_ani_stats()
 {
-
     this->path += "/Ground Monk";
     this->atk_one_num = 6;
     this->atk_two_num = 12;
@@ -31,7 +30,6 @@ void GroundMonk::init_ani_stats()
     this->roll_num = 6;
     this->run_num = 8;
     this->take_dmg_num = 6;
-    this->size = 3;
 }
 
 void GroundMonk::init_stats()

@@ -19,7 +19,6 @@ void FireKnight::init_var()
 
 void FireKnight::init_ani_stats()
 {
-
     this->path += "/Fire Knight";
     this->atk_one_num = 11;
     this->atk_two_num = 28;
@@ -31,7 +30,6 @@ void FireKnight::init_ani_stats()
     this->roll_num = 8;
     this->run_num = 8;
     this->take_dmg_num = 6;
-    this->size = 3;
 }
 
 void FireKnight::init_stats()

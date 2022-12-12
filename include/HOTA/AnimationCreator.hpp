@@ -41,7 +41,7 @@ protected:
 public:
   AnimationCreator();
   AnimationCreator(std::string path);
-  ~AnimationCreator();
+  virtual ~AnimationCreator();
 };
 
 #endif

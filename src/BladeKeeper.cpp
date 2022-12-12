@@ -19,7 +19,6 @@ void BladeKeeper::init_var()
 
 void BladeKeeper::init_ani_stats()
 {
-
     this->path += "/BladeKeeper";
     this->atk_one_num = 6;
     this->atk_two_num = 18;
@@ -31,7 +30,6 @@ void BladeKeeper::init_ani_stats()
     this->roll_num = 7;
     this->run_num = 8;
     this->take_dmg_num = 6;
-    this->size = 3;
 }
 
 void BladeKeeper::init_stats()

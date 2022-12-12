@@ -19,7 +19,6 @@ void DemonSlime::init_var()
 
 void DemonSlime::init_ani_stats()
 {
-
     this->path += "/DemonSlime";
     this->atk_one_num = 15;
     this->atk_two_num = 0;

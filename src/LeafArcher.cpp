@@ -19,7 +19,6 @@ void LeafArcher::init_var()
 
 void LeafArcher::init_ani_stats()
 {
-
   this->path += "/Leaf Archer";
   this->atk_one_num = 15;
   this->atk_two_num = 12;
@@ -31,7 +30,6 @@ void LeafArcher::init_ani_stats()
   this->roll_num = 8;
   this->run_num = 10;
   this->take_dmg_num = 6;
-  this->size = 3;
 }
 
 void LeafArcher::init_stats()
