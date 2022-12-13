@@ -6,13 +6,20 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f}
 }
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : AnimationCreator{pathVal}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
+    : Physics{pathVal}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
-  this->size = 3;
+  this->init_var();
 }
 
 Hero::~Hero()
 {
+}
+
+void Hero::init_var()
+{
+  this->character_width = 864;
+  this->character_height = 384;
+  this->initial_positions.x = -10;
 }
 
 void Hero::update()
@@ -32,16 +39,20 @@ void Hero::move_character()
 {
   if (this->ani_name == "run")
   {
-    this->move(sf::Keyboard::D);
+    this->move_left_right(sf::Keyboard::D);
   }
   else if (this->ani_name == "run_left")
   {
-    this->move(sf::Keyboard::A);
+    this->move_left_right(sf::Keyboard::A);
   }
   if (this->ani_name == "jump_up" || this->ani_name == "jump_down")
   {
-    this->move(sf::Keyboard::Space);
+    this->jump(this->ani_name);
   }
+  // if (this->ani_name == "jump_projectile")
+  // {
+  //   this->projectile_jump(sf::Keyboard::D, this->ani_name);
+  // }
 }
 
 void Hero::atk_character()
@@ -64,6 +75,10 @@ void Hero::poll_events(sf::Event &event)
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) // TODO
   {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+      // TODO
+    }
     this->ani_name = "run";
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -105,41 +120,4 @@ void Hero::poll_events_loop(sf::Event &event)
       this->ani_name = "idle";
     }
   }
-}
-
-void Hero::move(sf::Keyboard::Key key)
-{
-  sf::Sprite *sp = this->animation->get_sprite()->at(0);
-  sf::Vector2f pos = sp->getPosition();
-  if (pos.x < (1548 - 505))
-  {
-    if (key == sf::Keyboard::D)
-    {
-      sp->setPosition(pos.x + 5, pos.y);
-    }
-  }
-  if (pos.x != -355)
-  {
-    if (key == sf::Keyboard::A)
-    {
-      sp->setPosition(pos.x - 5, pos.y);
-    }
-  }
-  if (key == sf::Keyboard::Space)
-  {
-    if (this->ani_name == "jump_up" && pos.y > 250.f)
-    {
-      sp->setPosition(pos.x, pos.y - 4);
-    }
-    else if (pos.y <= 343)
-    {
-      this->ani_name = "jump_down";
-      sp->setPosition(pos.x, pos.y + 4);
-    }
-    else
-    {
-      this->ani_name = "idle";
-    }
-  }
-  this->set_all_animation_position(this->animation->get_sprite()->at(0)->getPosition());
 }

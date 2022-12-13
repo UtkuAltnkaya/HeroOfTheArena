@@ -17,7 +17,6 @@ Boss::~Boss()
 void Boss::update()
 {
   this->animation->update(this->is_ani_over);
-  this->move_boss();
   this->atk_boss();
   this->select_animation(this->ani_name);
 }
@@ -25,14 +24,6 @@ void Boss::update()
 void Boss::render(sf::RenderTarget &target)
 {
   this->animation->render(target);
-}
-
-void Boss::move_boss()
-{
-  if (this->ani_name == "run")
-  {
-    this->move(sf::Keyboard::D);
-  }
 }
 
 void Boss::atk_boss()
@@ -98,42 +89,4 @@ void Boss::poll_events_loop(sf::Event &event)
       this->ani_name = "idle";
     }
   }
-}
-
-void Boss::move(sf::Keyboard::Key key)
-{
-  // sf::Sprite *sp = this->animation->get_sprite()->at(0);
-  // sf::Vector2f pos = sp->getPosition();
-  /*if (pos.x < (1548 - 505))
-  {
-      if (key == sf::Keyboard::D)
-      {
-          sp->setPosition(pos.x + 5, pos.y);
-      }
-  }
-  if (pos.x != -355)
-  {
-      if (key == sf::Keyboard::A)
-      {
-          sp->setPosition(pos.x - 5, pos.y);
-      }
-  }
-  if (key == sf::Keyboard::Space)
-  {
-      if (this->ani_name == "jump_up" && pos.y > 250.f)
-      {
-          sp->setPosition(pos.x, pos.y - 4);
-      }
-      else if (pos.y <= 343)
-      {
-          this->ani_name = "jump_down";
-          sp->setPosition(pos.x, pos.y + 4);
-      }
-      else
-      {
-          this->ani_name = "idle";
-      }
-  }
-  */
-  this->set_all_animation_position(this->animation->get_sprite()->at(0)->getPosition());
 }

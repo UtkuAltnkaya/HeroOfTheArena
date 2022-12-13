@@ -29,8 +29,13 @@ void FrostGuardian::init_ani_stats()
     this->jump_num = 0;
     this->roll_num = 0;
     this->run_num = 10;
+    this->jump_down_num = 0;
+    this->jump_up_num = 0;
     this->take_dmg_num = 7;
-    this->size = 4;
+
+    this->initial_positions.x = 1000;
+    this->character_width = 576;
+    this->character_height = 384;
 }
 
 void FrostGuardian::init_stats()

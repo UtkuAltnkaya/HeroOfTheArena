@@ -30,7 +30,12 @@ void DemonSlime::init_ani_stats()
     this->roll_num = 0;
     this->run_num = 12;
     this->take_dmg_num = 5;
-    this->size = 5;
+    this->jump_down_num = 0;
+    this->jump_up_num = 0;
+
+    this->initial_positions.x = 900;
+    this->character_width = 864;
+    this->character_height = 480;
 }
 
 void DemonSlime::init_stats()
