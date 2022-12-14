@@ -31,6 +31,8 @@ void FireKnight::init_ani_stats()
     this->roll_num = 8;
     this->run_num = 8;
     this->take_dmg_num = 6;
+    this->jump_down_num = 3;
+    this->jump_up_num = 3;
 }
 
 void FireKnight::init_stats()

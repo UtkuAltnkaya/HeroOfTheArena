@@ -73,11 +73,11 @@ void AnimationCreator::select_animation(std::string animation_name)
   {
     this->animation = this->run_left_animation;
   }
-  else if (animation_name == "jump_up")
+  else if (animation_name == "jump_up" || animation_name == "jump_projectile_up")
   {
     this->animation = this->jump_up_animation;
   }
-  else if (animation_name == "jump_down")
+  else if (animation_name == "jump_down" || animation_name == "jump_projectile_down")
   {
     this->animation = this->jump_down_animation;
   }

@@ -2,6 +2,8 @@
 #define PHYSICS_HPP
 
 #include "HOTA/AnimationCreator.hpp"
+// #include "HOTA/Hero.hpp"
+// #include "HOTA/Boss.hpp"
 
 class Physics : public AnimationCreator
 {
@@ -15,8 +17,13 @@ private:
   int character_actual_width;
   int character_actual_height;
 
+  float top_point;
+  bool is_reach_to_top_point;
+
   void move_left();
   void move_right();
+  void jump_up(std::string &jump_ani_name);
+  void jump_down(std::string &jump_ani_name);
 
 protected:
   void init_position();
@@ -26,8 +33,9 @@ protected:
   void set_position(sf::Vector2f new_position);
 
 public:
-  Physics(std::string path);
+  Physics(std::string path, int character_actual_width, int character_actual_height);
   ~Physics();
+  bool is_collide(Physics *obj);
 };
 
 #endif

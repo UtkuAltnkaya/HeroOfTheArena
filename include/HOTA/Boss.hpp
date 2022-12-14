@@ -2,9 +2,9 @@
 #define BOSS_HPP
 
 #include <SFML/Graphics.hpp>
-#include "HOTA/AnimationCreator.hpp"
+#include "HOTA/Physics.hpp"
 
-class Boss : public AnimationCreator
+class Boss : public Physics
 {
 protected:
     std::string ani_name;

@@ -6,7 +6,7 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f}
 }
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : Physics{pathVal}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
+    : Physics{pathVal, 100, 100}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
   this->init_var();
 }
@@ -49,10 +49,10 @@ void Hero::move_character()
   {
     this->jump(this->ani_name);
   }
-  // if (this->ani_name == "jump_projectile")
-  // {
-  //   this->projectile_jump(sf::Keyboard::D, this->ani_name);
-  // }
+  if (this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down")
+  {
+    this->projectile_jump(sf::Keyboard::D, this->ani_name);
+  }
 }
 
 void Hero::atk_character()
@@ -69,7 +69,7 @@ void Hero::atk_character()
 
 void Hero::poll_events(sf::Event &event)
 {
-  if (this->ani_name == "jump_up" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
+  if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
   {
     return;
   }
@@ -77,7 +77,8 @@ void Hero::poll_events(sf::Event &event)
   {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-      // TODO
+      this->ani_name = "jump_projectile_up";
+      return;
     }
     this->ani_name = "run";
   }
@@ -113,7 +114,7 @@ void Hero::poll_events_loop(sf::Event &event)
   {
     if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::A)
     {
-      if (this->ani_name == "jump_up" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
+      if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
       {
         return;
       }

@@ -75,6 +75,7 @@ void Game::render()
   {
     this->boss->render(*this->window);
     this->hero->render(*this->window);
+    this->hero->is_collide(this->boss);
   }
   this->window->display();
 }
