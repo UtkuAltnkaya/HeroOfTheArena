@@ -1,12 +1,12 @@
 #include "HOTA/Hero.hpp"
 #include <iostream>
 // Delegation
-Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f}
+Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 {
 }
 
-Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : Physics{pathVal, 100, 100}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
+Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
+    : Physics{pathVal, actualWidth, actualHeight}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
   this->init_var();
 }
@@ -53,6 +53,10 @@ void Hero::move_character()
   {
     this->projectile_jump(sf::Keyboard::D, this->ani_name);
   }
+  if (this->ani_name == "jump_projectile_up_left" || this->ani_name == "jump_projectile_down_left")
+  {
+    this->projectile_jump(sf::Keyboard::A, this->ani_name);
+  }
 }
 
 void Hero::atk_character()
@@ -69,7 +73,7 @@ void Hero::atk_character()
 
 void Hero::poll_events(sf::Event &event)
 {
-  if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
+  if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend" || this->ani_name == "jump_projectile_up_left" || this->ani_name == "jump_projectile_down_left")
   {
     return;
   }
@@ -84,6 +88,12 @@ void Hero::poll_events(sf::Event &event)
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
   {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+      this->ani_name = "jump_projectile_up_left";
+      return;
+    }
+
     this->ani_name = "run_left";
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -114,7 +124,7 @@ void Hero::poll_events_loop(sf::Event &event)
   {
     if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::A)
     {
-      if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend")
+      if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend" || this->ani_name == "jump_projectile_up_left" || this->ani_name == "jump_projectile_down_left")
       {
         return;
       }

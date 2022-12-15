@@ -74,6 +74,11 @@ void Physics::jump_up(std::string &jump_ani_name)
     {
       jump_ani_name = "jump_projectile_down";
     }
+    else if (jump_ani_name == "jump_projectile_up_left")
+    {
+      jump_ani_name = "jump_projectile_down_left";
+    }
+
     else
     {
       jump_ani_name = "jump_down";

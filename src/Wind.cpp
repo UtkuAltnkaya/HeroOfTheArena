@@ -1,7 +1,7 @@
 #include "HOTA/Wind.hpp"
 #include <iostream>
 
-Wind::Wind() : Hero{"image", 5000, 200, 500, 250, 0.1f}
+Wind::Wind() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
     this->init_var();
 }

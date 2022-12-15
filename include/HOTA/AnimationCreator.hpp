@@ -17,6 +17,8 @@ private:
   Animation *defend_animation;
   Animation *jump_up_animation;
   Animation *jump_down_animation;
+  Animation *jump_up_left_animation;
+  Animation *jump_down_left_animation;
 
   void set_animation_position(Animation *animation, sf::Vector2f &last_postion);
   void calculate_inital_position();

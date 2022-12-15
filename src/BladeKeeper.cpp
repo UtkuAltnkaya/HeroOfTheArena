@@ -1,7 +1,7 @@
 #include "HOTA/BladeKeeper.hpp"
 #include <iostream>
 
-BladeKeeper::BladeKeeper() : Hero{"image", 5000, 200, 500, 250, 0.1f}
+BladeKeeper::BladeKeeper() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
     this->init_var();
 }

@@ -1,7 +1,7 @@
 #include "HOTA/FireKnight.hpp"
 #include <iostream>
 
-FireKnight::FireKnight() : Hero{"image", 5000, 200, 500, 250, 0.1f}
+FireKnight::FireKnight() : Hero{"image", 5000, 200, 500, 250, 0.1f, 150, 150}
 {
     this->init_var();
 }

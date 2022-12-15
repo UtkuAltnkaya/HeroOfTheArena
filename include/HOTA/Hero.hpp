@@ -22,7 +22,7 @@ protected:
 
 public:
   Hero();
-  Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal);
+  Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight);
   virtual ~Hero();
   virtual void skill() = 0;
   virtual void upgrade() = 0;
