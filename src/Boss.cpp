@@ -6,12 +6,34 @@ Boss::Boss() : Boss{"", 0, 0, 0, 0, 0.0f}
 }
 
 Boss::Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : Physics{pathVal, 150, 150}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
+    : Physics{pathVal, 150, 150}, ani_name{"idle"}, health(healthVal),
+      damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
 }
 
 Boss::~Boss()
 {
+}
+
+void Boss::init_all_animations()
+{
+  this->init_game_animation();
+  this->init_fight_animation();
+  this->set_and_calculate_position();
+}
+
+void Boss::init_game_animation()
+{
+  this->insert_new_animation("idle", "idle_", this->idle_num, true);
+  this->insert_new_animation("run", "run_", this->run_num, true);
+  this->insert_new_animation("run_left", "run_", this->run_num, true);
+  this->insert_new_animation("jump_up", "jump_up_", this->jump_up_num, false);
+}
+
+void Boss::init_fight_animation()
+{
+  this->insert_new_animation("1_atk", "atk_", this->atk_one_num, false);
+  this->insert_new_animation("defend", "defend_", this->defend_num, false);
 }
 
 void Boss::update()

@@ -6,7 +6,8 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 }
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
-    : Physics{pathVal, actualWidth, actualHeight}, ani_name{"idle"}, health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
+    : Physics{pathVal, actualWidth, actualHeight}, ani_name{"idle"}, health(healthVal),
+      damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
   this->init_var();
 }
@@ -20,6 +21,32 @@ void Hero::init_var()
   this->character_width = 864;
   this->character_height = 384;
   this->initial_positions.x = -10;
+}
+
+void Hero::init_all_animations()
+{
+  this->init_game_animations();
+  this->init_fight_animations();
+  this->set_and_calculate_position();
+}
+
+void Hero::init_game_animations()
+{
+  this->insert_new_animation("idle", "idle_", this->idle_num, true);
+  this->insert_new_animation("run", "run_", this->run_num, true);
+  this->insert_new_animation("run_left", "run_", this->run_num, true);
+  this->insert_new_animation("jump_up", "jump_up_", this->jump_up_num, false);
+  this->insert_new_animation("jump_down", "jump_down_", this->jump_down_num, false);
+  this->insert_new_animation("jump_up_left", "jump_up_", this->jump_up_num, false);
+  this->insert_new_animation("jump_down_left", "jump_down_", this->jump_down_num, false);
+}
+
+void Hero::init_fight_animations()
+{
+  this->insert_new_animation("1_atk", "atk_", this->atk_one_num, false);
+  this->insert_new_animation("2_atk", "atk_", this->atk_two_num, false);
+  this->insert_new_animation("sp_atk", "sp_atk_", this->atk_sp_num, false);
+  this->insert_new_animation("defend", "defend_", this->defend_num, false);
 }
 
 void Hero::update()
@@ -77,7 +104,7 @@ void Hero::poll_events(sf::Event &event)
   {
     return;
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) // TODO
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
   {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
@@ -93,7 +120,6 @@ void Hero::poll_events(sf::Event &event)
       this->ani_name = "jump_projectile_up_left";
       return;
     }
-
     this->ani_name = "run_left";
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))

@@ -16,6 +16,11 @@ protected:
     bool is_ani_over;
 
     void atk_boss();
+    void init_all_animations();
+
+private:
+    void init_fight_animation();
+    void init_game_animation();
 
 public:
     Boss();

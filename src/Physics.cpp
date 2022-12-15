@@ -18,7 +18,7 @@ void Physics::init_position()
   this->position = this->initial_positions;
 }
 
-void Physics::projectile_jump(sf::Keyboard::Key Key, std::string &jump_ani_name)
+void Physics::projectile_jump(const sf::Keyboard::Key &Key, std::string &jump_ani_name)
 {
   this->velocity_x = 4.f;
   this->jump(jump_ani_name);
@@ -26,7 +26,7 @@ void Physics::projectile_jump(sf::Keyboard::Key Key, std::string &jump_ani_name)
   this->velocity_x = 5.f;
 }
 
-void Physics::move_left_right(sf::Keyboard::Key Key)
+void Physics::move_left_right(const sf::Keyboard::Key &Key)
 {
   if (Key == sf::Keyboard::D) // Right
   {
@@ -78,7 +78,6 @@ void Physics::jump_up(std::string &jump_ani_name)
     {
       jump_ani_name = "jump_projectile_down_left";
     }
-
     else
     {
       jump_ani_name = "jump_down";
@@ -103,13 +102,13 @@ void Physics::jump_down(std::string &jump_ani_name)
   this->set_position(sf::Vector2f{this->position.x, this->position.y + this->velocity_y});
 }
 
-void Physics::set_position(sf::Vector2f new_position)
+void Physics::set_position(const sf::Vector2f new_position)
 {
   this->position = new_position;
   this->set_all_animation_position(this->position);
 }
 
-bool Physics::is_collide(Physics *obj)
+bool Physics::is_collide(const Physics *obj)
 {
   if (this->position.x > (obj->position.x - (obj->character_actual_width + this->character_actual_width)))
   {

@@ -93,8 +93,6 @@ void CharMenu::init_var(std::string &type, std::string &version)
     this->init_sprite_vec(i);
     this->init_clock();
   }
-  std::cout << this->path << std::endl;
-  std::cout << type << std::endl;
 }
 
 void CharMenu::init_clock()

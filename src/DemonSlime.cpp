@@ -13,7 +13,7 @@ DemonSlime::~DemonSlime()
 void DemonSlime::init_var()
 {
     this->init_ani_stats();
-    this->init_animations();
+    this->init_all_animations();
     this->init_stats();
     this->init_position();
 }

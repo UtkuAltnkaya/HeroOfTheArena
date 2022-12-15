@@ -19,6 +19,11 @@ protected:
   void init_var();
   void atk_character();
   void move_character();
+  void init_all_animations();
+
+private:
+  void init_fight_animations();
+  void init_game_animations();
 
 public:
   Hero();

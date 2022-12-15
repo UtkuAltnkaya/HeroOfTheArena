@@ -2,6 +2,7 @@
 #include <iostream>
 
 // Constructor that initializes variables texture, sprite and clock.
+
 Animation::Animation(std::string type, std::string ani, std::string ani_name, size_t size, bool is_repeat)
 {
   this->init_var(type, ani, ani_name, size, is_repeat);
@@ -9,8 +10,8 @@ Animation::Animation(std::string type, std::string ani, std::string ani_name, si
   this->init_sprite();
   this->init_clock();
 }
-// copy constructor
 
+// copy constructor
 Animation::Animation(Animation &source)
 {
   this->path = source.path;
