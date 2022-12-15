@@ -22,7 +22,7 @@ void GroundMonk::init_ani_stats()
 {
     this->path += "/Ground Monk";
     this->atk_one_num = 6;
-    this->atk_two_num = 12;
+    this->atk_two_num = 23;
     this->atk_sp_num = 25;
     this->death_num = 18;
     this->defend_num = 13;

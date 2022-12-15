@@ -34,7 +34,7 @@ void CharMenu::render(sf::RenderTarget &target)
   this->Animated(target);
   // cerceveyi olustuyoruz
   sf::Texture border;
-  border.loadFromFile("bin/image/MenuCard/Cards.png");
+  border.loadFromFile("image/MenuCard/Cards.png");
   sf::Sprite borderDraw(border, sf::IntRect(125, 281, 92, 130));
   // cerceve sonu
 
@@ -87,11 +87,14 @@ void CharMenu::init_var(std::string &type, std::string &version)
 {
   for (int i = 0; i < charSize; i++)
   { // initilazing paths
-    this->path = type + "/" + version + "/" + chars[i] + "/" + "idle/idle";
+
+    this->path = type + "" + version + "/" + chars[i] + "/" + "idle/idle";
     this->init_texture_vec(i);
     this->init_sprite_vec(i);
     this->init_clock();
   }
+  std::cout << this->path << std::endl;
+  std::cout << type << std::endl;
 }
 
 void CharMenu::init_clock()
@@ -117,13 +120,13 @@ void CharMenu::MoveRight()
   // changing selected elemtents indexes
   if (this->selectedItem + 1 < Max_Items)
   {
-    this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/idle/idle_1.png");
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_1.png");
     this->selectedItem += 1;
     this->animate = this->selectedItem;
   }
   else
   { // no space for right go beginning
-    this->texture.at(Max_Items - 1)->loadFromFile("bin/image/" + chars[Max_Items - 1] + "/idle/idle_1.png");
+    this->texture.at(Max_Items - 1)->loadFromFile("image/" + chars[Max_Items - 1] + "/idle/idle_1.png");
     this->animate = 0;
     this->selectedItem = 0;
   }
@@ -133,13 +136,13 @@ void CharMenu::MoveLeft()
 {
   if (this->selectedItem - 1 >= 0)
   {
-    this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/idle/idle_1.png");
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_1.png");
     this->selectedItem -= 1;
     this->animate = this->selectedItem;
   }
   else
   { // no space left for to go left and turn to the beginning
-    this->texture.at(0)->loadFromFile("bin/image/" + chars[0] + "/idle/idle_1.png");
+    this->texture.at(0)->loadFromFile("image/" + chars[0] + "/idle/idle_1.png");
     this->animate = Max_Items - 1;
     this->selectedItem = Max_Items - 1;
   }
@@ -149,13 +152,13 @@ void CharMenu::MoveUp()
 {
   if (this->selectedItem - 3 >= 0)
   {
-    this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/idle/idle_1.png");
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_1.png");
     this->selectedItem -= 3;
     this->animate = this->selectedItem;
   }
   else
   { // if there is not enough space to go 3 index up then go the next 3
-    this->texture.at(this->selectedItem)->loadFromFile("bin/image/" + chars[this->selectedItem] + "/idle/idle_1.png");
+    this->texture.at(this->selectedItem)->loadFromFile("image/" + chars[this->selectedItem] + "/idle/idle_1.png");
     this->animate = this->selectedItem + 3;
     this->selectedItem = this->animate;
   }
@@ -165,13 +168,13 @@ void CharMenu::MoveDown()
 { // conditions for down
   if (this->selectedItem + 3 < Max_Items)
   {
-    this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/idle/idle_1.png");
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_1.png");
     this->selectedItem += 3;
     this->animate = this->selectedItem;
   }
   else // not enough space for down 3 then go up 3
   {
-    this->texture.at(this->selectedItem)->loadFromFile("bin/image/" + chars[this->selectedItem] + "/idle/idle_1.png");
+    this->texture.at(this->selectedItem)->loadFromFile("image/" + chars[this->selectedItem] + "/idle/idle_1.png");
     this->animate = this->selectedItem - 3;
     this->selectedItem = this->animate;
   }
@@ -274,6 +277,6 @@ void CharMenu::Animated(sf::RenderTarget &target)
 
   if (que <= this->characterAtkNums[this->animate])
   { // there are some characters that have lots of png than other to errong handling we use if condition here
-    this->texture.at(this->animate)->loadFromFile("bin/image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
   }
 }

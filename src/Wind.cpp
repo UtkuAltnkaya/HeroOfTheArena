@@ -22,7 +22,7 @@ void Wind::init_ani_stats()
 {
     this->path += "/Wind";
     this->atk_one_num = 8;
-    this->atk_two_num = 18;
+    this->atk_two_num = 26;
     this->atk_sp_num = 30;
     this->death_num = 19;
     this->defend_num = 8;

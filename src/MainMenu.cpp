@@ -3,7 +3,7 @@
 MainMenu::MainMenu(float width, float height)
 {
   std::string menuText[3] = {"Play", "Options", "Quit"};
-  this->titleFont.loadFromFile("bin/Fonts/PixExtrusion.ttf");
+  this->titleFont.loadFromFile("Fonts/PixExtrusion.ttf");
   title.setFont(titleFont);
   title.setCharacterSize(80);
 
@@ -13,7 +13,7 @@ MainMenu::MainMenu(float width, float height)
 
   this->open = true;
 
-  if (!font.loadFromFile("bin/Fonts/PixelHigh.ttf"))
+  if (!font.loadFromFile("Fonts/PixelHigh.ttf"))
   {
     // handle error
   }
@@ -127,7 +127,7 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss)
 
 void MainMenu::init_char_menu()
 {
-  this->char_menu = new CharMenu("bin", "image");
+  this->char_menu = new CharMenu("", "image");
 }
 
 void MainMenu::update()
