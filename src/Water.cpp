@@ -1,7 +1,7 @@
 #include "HOTA/Water.hpp"
 #include <iostream>
 
-Water::Water() : Hero{"bin/image", 5000, 200, 500, 250, 0.1f, 100, 100}
+Water::Water() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
     this->init_var();
 }

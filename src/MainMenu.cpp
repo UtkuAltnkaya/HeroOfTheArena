@@ -84,7 +84,7 @@ void MainMenu::MoveDown()
   }
 }
 
-void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss)
+void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
 {
   if (this->open)
   {
@@ -111,7 +111,7 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss)
   else if (this->char_menu->get_open())
   {
 
-    this->char_menu->MoveLeftRight(event, hero, boss);
+    this->char_menu->MoveLeftRight(event, hero, boss, npc);
   }
 }
 

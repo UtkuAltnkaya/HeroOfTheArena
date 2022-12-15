@@ -3,6 +3,7 @@
 
 #include "HOTA/Animation.hpp"
 #include "HOTA/MainMenu.hpp"
+#include "HOTA/Npc.hpp"
 // #include "Boss.hpp"
 
 class Game
@@ -12,6 +13,7 @@ private:
   Hero *hero;
   MainMenu *main_menu;
   Boss *boss;
+  Npc *npc;
 
   sf::RenderWindow *window;
   sf::VideoMode video_mode;

@@ -24,6 +24,7 @@ void Game::init_var()
   this->background = nullptr;
   this->hero = nullptr;
   this->boss = nullptr;
+  this->npc = nullptr;
   this->video_mode.width = 512 * 3;
   this->video_mode.height = 256 * 3;
 }
@@ -63,6 +64,15 @@ void Game::update()
   {
     this->boss->update();
     this->hero->update();
+    this->npc->update();
+    if (this->hero->is_collide(this->npc))
+    {
+      this->npc->animate_greeting();
+    }
+    else
+    {
+      this->npc->animate_idle();
+    }
   }
 }
 
@@ -75,7 +85,7 @@ void Game::render()
   {
     this->boss->render(*this->window);
     this->hero->render(*this->window);
-    this->hero->is_collide(this->boss);
+    this->npc->render(*this->window);
   }
   this->window->display();
 }
@@ -88,7 +98,7 @@ void Game::poll_events()
     {
       this->window->close();
     }
-    this->main_menu->MenuUpDown(this->event, this->hero, this->boss);
+    this->main_menu->MenuUpDown(this->event, this->hero, this->boss, this->npc);
     if (this->hero)
     {
       this->hero->poll_events_loop(event);

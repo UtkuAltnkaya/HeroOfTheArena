@@ -7,6 +7,18 @@ AnimationCreator::AnimationCreator() : AnimationCreator{""}
 
 AnimationCreator::AnimationCreator(std::string path) : path{path}, animation{nullptr}, window_width{1536}, window_height{768}
 {
+  this->idle_num = 0;
+  this->atk_one_num = 0;
+  this->atk_two_num = 0;
+  this->atk_sp_num = 0;
+  this->run_num = 0;
+  this->roll_num = 0;
+  this->jump_num = 0;
+  this->defend_num = 0;
+  this->death_num = 0;
+  this->take_dmg_num = 0;
+  this->jump_up_num = 0;
+  this->jump_down_num = 0;
 }
 
 AnimationCreator::~AnimationCreator()

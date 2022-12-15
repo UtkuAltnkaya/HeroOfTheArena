@@ -4,8 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <HOTA/CharacterMenu.hpp>
-#include <HOTA/Boss.hpp>
+#include "HOTA/CharacterMenu.hpp"
 
 #define MAX_NUMBER_OF_ITEMS 3
 using namespace std;
@@ -32,7 +31,7 @@ public:
 
   void render(sf::RenderWindow &window);
   void update();
-  void MenuUpDown(sf::Event &, Hero *&hero, Boss *&boss);
+  void MenuUpDown(sf::Event &, Hero *&hero, Boss *&boss, Npc *&npc);
 
   bool GetOpen();
   void SetOpen(bool changeOpen);

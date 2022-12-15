@@ -1,30 +1,30 @@
-// #ifndef NPC_HPP
-// #define NPC_HPP
-// #include "HOTA/Animation.hpp"
+#ifndef NPC_HPP
 
-// class NPC
-// {
-// private:
-//     Animation *greeting_animation;
-//     Animation *idle_animation;
-//     Animation *work_one_animation;
-//     Animation *work_two_animation;
-//     Animation *animation;
+#define NPC_HPP
 
-//     std::string type;
-//     std::string char_name;
-//     std::string path;
+#include "HOTA/Physics.hpp"
 
-//     void set_position(Animation *animation, sf::Vector2f last_position);
-//     void set_all_position();
-//     void init_animation();
-//     void init_position();
+class Npc : public Physics
+{
+protected:
+  size_t greeting_num;
+  size_t work_one_num;
+  size_t work_two_num;
 
-//     sf::Vector2f position;
+  void init_all_animations();
 
-// public:
-//     NPC(/* args */);
-//     ~NPC();
-// };
+private:
+  bool is_ani_over;
+  std::string ani_name;
 
-// #endif
+public:
+  Npc();
+  Npc(std::string path);
+  ~Npc();
+  void update();
+  void render(sf::RenderTarget &target);
+  void animate_greeting();
+  void animate_idle();
+};
+
+#endif

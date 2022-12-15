@@ -7,6 +7,7 @@
 #include "HOTA/Hero.hpp"
 #include "HOTA/LeafArcher.hpp"
 #include "HOTA/Boss.hpp"
+#include "HOTA/Npc.hpp"
 
 #define Max_Items 6
 class CharMenu
@@ -36,7 +37,7 @@ private:
     void MoveLeft();
     void MoveUp();
     void MoveDown();
-    void selectedHero(Hero *&hero, Boss *&boss);
+    void selectedHero(Hero *&hero, Boss *&boss, Npc *&npc);
 
 public:
     CharMenu(std::string, std::string);
@@ -46,7 +47,7 @@ public:
     void set_open(bool open);
     bool get_open();
 
-    void MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss);
+    void MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc);
     void Animated(sf::RenderTarget &);
     void Update();
 };
