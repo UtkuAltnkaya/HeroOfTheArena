@@ -69,8 +69,10 @@ void Game::update()
     this->music.set_menuOpen(false);
     this->music.set_charMenuOpen(false);
     this->music.stopMusic();
+
     // this->music.set_music();
     // this->music.play();
+
     this->boss->update();
     this->hero->update();
     this->npc->update();

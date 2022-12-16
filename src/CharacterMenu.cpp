@@ -198,10 +198,10 @@ void CharMenu::selectedHero(Hero *&hero, Boss *&boss, Npc *&npc) // the function
 
 void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc, bool &menuOpen) // character menu key control function
 {
+
   if (event.type == sf::Event::KeyReleased)
   {
     this->stop = false;
-    this->que = 1;
     if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D)
     {
       MoveRight(); // call the move right

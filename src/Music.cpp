@@ -60,7 +60,7 @@ void Musics::set_music()
 {
     this->playingMusic = this->musics[charMenuOpen + menuOpen + gameOpen - 1];
     playingMusic->setLoop(true);
-    playingMusic->setVolume(50);
+    playingMusic->setVolume(5);
 }
 
 void Musics::play()

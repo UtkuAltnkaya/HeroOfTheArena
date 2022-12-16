@@ -15,7 +15,7 @@ class CharMenu
 private:
     std::vector<std::string> chars = {"BladeKeeper", "Fire Knight", "Ground Monk", "Leaf Archer", "Water", "Wind"}; // TODO
     std::vector<int> characterIdleNums = {8, 8, 6, 9, 8, 8};
-    std::vector<int> characterAtkNums = {6, 11, 6, 10, 7, 8};
+    std::vector<int> characterAtkNums = {6, 11, 6, 15, 21, 8};
     std::vector<sf::Texture *> texture;
     std::vector<sf::Sprite *> sprite;
     std::vector<sf::RectangleShape> Border;
