@@ -75,15 +75,7 @@ void Game::update()
 
     this->boss->update();
     this->hero->update();
-    this->npc->update();
-    if (this->hero->is_collide(this->npc))
-    {
-      this->npc->animate_greeting();
-    }
-    else
-    {
-      this->npc->animate_idle();
-    }
+    this->npc->update(this->hero->is_collide(this->npc));
   }
 }
 

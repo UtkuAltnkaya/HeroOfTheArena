@@ -110,10 +110,13 @@ void Physics::set_position(const sf::Vector2f new_position)
 
 bool Physics::is_collide(const Physics *obj)
 {
-  if (this->position.x > (obj->position.x - (obj->character_actual_width + this->character_actual_width)))
+  float char_start_pos{this->position.x + (this->character_width + this->character_actual_width) * 0.5f}; // Character start postion
+  float char_end_pos{this->position.x + (this->character_width - this->character_actual_width) * 0.5f};   // Character end position
+  float obj_start_pos{obj->position.x + (obj->character_width - obj->character_actual_width) * 0.5f};     // Obj start position
+  float obj_end_pos{obj->position.x + (obj->character_width + obj->character_actual_width) * 0.5f + 20};  // Obj end position,20 is used for equalize start and end position
+  if (char_start_pos > obj_start_pos && char_end_pos < obj_end_pos)
   {
     return true;
   }
-
   return false;
 }

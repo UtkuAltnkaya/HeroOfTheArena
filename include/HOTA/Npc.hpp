@@ -17,14 +17,14 @@ private:
   bool is_ani_over;
   std::string ani_name;
 
+  void select_npc_animation(const bool &is_collide);
+
 public:
   Npc();
   Npc(std::string path);
   ~Npc();
-  void update();
+  void update(const bool &is_collide);
   void render(sf::RenderTarget &target);
-  void animate_greeting();
-  void animate_idle();
 };
 
 #endif

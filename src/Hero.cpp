@@ -20,7 +20,7 @@ void Hero::init_var()
 {
   this->character_width = 864;
   this->character_height = 384;
-  this->initial_positions.x = -10;
+  this->initial_positions.x = -200;
 }
 
 void Hero::init_all_animations()

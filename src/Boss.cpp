@@ -6,7 +6,7 @@ Boss::Boss() : Boss{"", 0, 0, 0, 0, 0.0f}
 }
 
 Boss::Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : Physics{pathVal, 150, 150}, ani_name{"idle"}, health(healthVal),
+    : Physics{pathVal, 400, 400}, ani_name{"idle"}, health(healthVal),
       damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
 {
 }
