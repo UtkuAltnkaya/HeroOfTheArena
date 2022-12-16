@@ -257,6 +257,7 @@ void CharMenu::Animated(sf::RenderTarget &target)
   }
   else
   {
+    this->que=1;
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_" + std::to_string(this->que) + ".png");
   }
 }
