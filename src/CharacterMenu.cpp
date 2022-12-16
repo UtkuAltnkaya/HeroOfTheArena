@@ -196,10 +196,12 @@ void CharMenu::selectedHero(Hero *&hero, Boss *&boss, Npc *&npc) // the function
   npc = new BlackSmith();
 }
 
-void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc) // character menu key control function
+void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc, bool &menuOpen) // character menu key control function
 {
   if (event.type == sf::Event::KeyReleased)
   {
+    this->stop = false;
+    this->que = 1;
     if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D)
     {
       MoveRight(); // call the move right
@@ -218,7 +220,7 @@ void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&n
     }
     else if (event.key.code == sf::Keyboard::Escape)
     {
-      this->open = false; // change the open variable to close char menu
+      menuOpen = true;
     }
     else if (event.key.code == sf::Keyboard::Enter)
     {
@@ -230,11 +232,12 @@ void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&n
 
 void CharMenu::Update() // Updating animations
 {
-  if (this->clock->getElapsedTime().asSeconds() > 0.1f)
+  if (this->clock->getElapsedTime().asSeconds() > 0.1f && !stop)
   {
     if (this->que >= characterAtkNums[this->animate])
     {
       this->que = 1;
+      this->stop = true;
     }
     else
     {
@@ -247,9 +250,13 @@ void CharMenu::Update() // Updating animations
 
 void CharMenu::Animated(sf::RenderTarget &target)
 {
-  target.draw(*this->sprite.at(this->animate));     // selected index character animate and draw
-  if (que <= this->characterAtkNums[this->animate]) // there are some characters that have lots of png than other to errong handling we use if condition here
+  target.draw(*this->sprite.at(this->animate));              // selected index character animate and draw
+  if (que <= this->characterAtkNums[this->animate] && !stop) // there are some characters that have lots of png than other to errong handling we use if condition here
   {
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
+  }
+  else
+  {
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_" + std::to_string(this->que) + ".png");
   }
 }

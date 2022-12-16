@@ -26,6 +26,7 @@ MainMenu::MainMenu(float width, float height)
     menu[i].setPosition(sf::Vector2f((width - menu[i].getString().getSize() * 10) / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * i + 250));
   }
   menu[0].setColor(sf::Color::Red);
+  this->selectedItemIndex = 0;
   this->init_char_menu();
 }
 
@@ -34,7 +35,7 @@ MainMenu::~MainMenu()
   delete this->char_menu;
 }
 
-void MainMenu::render(sf::RenderWindow &window)
+void MainMenu::render(sf::RenderWindow &window, Hero *&hero)
 {
   if (this->open)
   {
@@ -44,11 +45,15 @@ void MainMenu::render(sf::RenderWindow &window)
     {
       window.draw(menu[i]);
     }
+    return;
   }
   else if (this->char_menu->get_open())
   {
     this->char_menu->render(window);
+    return;
   }
+  if (!hero)
+    window.close();
 }
 
 void MainMenu::MoveUp()
@@ -98,9 +103,24 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
       {
         MoveDown();
       }
-      else if (event.key.code == sf::Keyboard::Enter && this->selectedItemIndex == 0)
+      else if (event.key.code == sf::Keyboard::Enter)
       {
-        this->open = false;
+        if (this->selectedItemIndex == 0)
+        {
+          this->open = false;
+        }
+        else if (this->selectedItemIndex == 1)
+        {
+          // todo
+        }
+        else if (this->selectedItemIndex == 2)
+        {
+          this->open = false;
+          this->char_menu->set_open(false);
+        }
+        else
+        {
+        }
       }
       else
       {
@@ -111,7 +131,7 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
   else if (this->char_menu->get_open())
   {
 
-    this->char_menu->MoveLeftRight(event, hero, boss, npc);
+    this->char_menu->MoveLeftRight(event, hero, boss, npc, this->open);
   }
 }
 
@@ -134,11 +154,10 @@ void MainMenu::update()
 {
   if (this->open)
   {
-    //
   }
   else if (this->char_menu->get_open())
   {
-    /* code */
+
     this->char_menu->Update();
   }
 }

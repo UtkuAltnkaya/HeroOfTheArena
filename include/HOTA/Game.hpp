@@ -3,6 +3,7 @@
 
 #include "HOTA/Animation.hpp"
 #include "HOTA/MainMenu.hpp"
+#include "HOTA/Music.hpp"
 #include "HOTA/Npc.hpp"
 // #include "Boss.hpp"
 
@@ -14,6 +15,7 @@ private:
   MainMenu *main_menu;
   Boss *boss;
   Npc *npc;
+  Musics music;
 
   sf::RenderWindow *window;
   sf::VideoMode video_mode;

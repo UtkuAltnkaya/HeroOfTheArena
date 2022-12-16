@@ -10,7 +10,7 @@ BIN=$(BINDIR)/main
 
 SRCS=$(wildcard $(SRCDIR)/*.cpp)
 OBJS=$(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCS))
-LIBS=$(LIBDIR) -l sfml-graphics -l sfml-window -l sfml-system
+LIBS=$(LIBDIR) -l sfml-graphics -l sfml-window -l sfml-system -l sfml-audio
 
 all:$(BIN)
 

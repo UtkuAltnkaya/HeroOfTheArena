@@ -25,6 +25,7 @@ private:
     int selectedItem = 0;
     int charSize = chars.size();
     bool open;
+    bool stop;
     sf::Clock *clock;
 
     std::vector<Hero *(*)()> characters;
@@ -50,7 +51,7 @@ public:
     void set_open(bool open);
     bool get_open();
 
-    void MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc);
+    void MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc, bool &menuOpen);
     void Animated(sf::RenderTarget &);
     void Update();
 };

@@ -27,6 +27,9 @@ void Game::init_var()
   this->npc = nullptr;
   this->video_mode.width = 512 * 3;
   this->video_mode.height = 256 * 3;
+
+  this->music.set_music();
+  this->music.play();
 }
 
 void Game::init_window()
@@ -51,6 +54,7 @@ void Game::run()
 {
   while (this->window->isOpen())
   {
+
     this->update();
     this->render();
   }
@@ -62,6 +66,11 @@ void Game::update()
   this->main_menu->update();
   if (this->hero)
   {
+    this->music.set_menuOpen(false);
+    this->music.set_charMenuOpen(false);
+    this->music.stopMusic();
+    // this->music.set_music();
+    // this->music.play();
     this->boss->update();
     this->hero->update();
     this->npc->update();
@@ -80,7 +89,7 @@ void Game::render()
 {
   this->window->clear();
   this->background->render_background(*this->window);
-  this->main_menu->render(*this->window);
+  this->main_menu->render(*this->window, this->hero);
   if (this->hero)
   {
     this->boss->render(*this->window);

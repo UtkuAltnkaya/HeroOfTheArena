@@ -6,7 +6,8 @@ bin/main.exe
 
 bin/image
 bin/Fonts
-
+bin/music
 
 image
 Fonts
+music
