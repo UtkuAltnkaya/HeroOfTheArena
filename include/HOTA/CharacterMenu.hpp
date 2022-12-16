@@ -23,15 +23,18 @@ private:
     int que = 1;
     int animate = 0;
     int selectedItem = 0;
-
     int charSize = chars.size();
     bool open;
     sf::Clock *clock;
+
+    std::vector<Hero *(*)()> characters;
 
     void init_texture_vec(int);
     void init_sprite_vec(int);
     void init_var(std::string &, std::string &);
     void init_clock();
+
+    void init_characters_vector();
 
     void MoveRight();
     void MoveLeft();

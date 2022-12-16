@@ -15,9 +15,9 @@ CharMenu::CharMenu(std::string type, std::string version)
   this->open = true;
   this->init_var(type, version);
 }
-CharMenu::~CharMenu()
-{ // heapteki bellekleri teslim ediyoruz
 
+CharMenu::~CharMenu() // heap teki bellekleri teslim ediyoruz
+{
   for (auto i : this->texture)
   {
     delete i;
@@ -31,24 +31,22 @@ CharMenu::~CharMenu()
 
 void CharMenu::render(sf::RenderTarget &target)
 {
-  // animasyonu cagiriyoruz
-  this->Animated(target);
-  // cerceveyi olustuyoruz
-  sf::Texture border;
+  this->Animated(target); // animasyonu cagiriyoruz
+
+  sf::Texture border; // cerceveyi olustuyoruz
   border.loadFromFile("image/MenuCard/Cards.png");
-  sf::Sprite borderDraw(border, sf::IntRect(125, 281, 92, 130));
-  // cerceve sonu
+  sf::Sprite borderDraw(border, sf::IntRect(125, 281, 92, 130)); // cerceve sonu
 
   borderDraw.setScale(3.f, 2.f); // cerceveyi cizdiriyoruz
   for (int i = 0; i < charSize; i++)
   {
-    if (i < 3)
-    { // karakterleri cizdiyoruz ve cerceve konumunu duzeltiyoruz
+    if (i < 3) // karakterleri cizdiyoruz ve cerceve konumunu duzeltiyoruz
+    {
       borderDraw.setPosition(i * 300 + 320, 50);
       target.draw(borderDraw);
     }
-    else
-    { // indexe uyarli cerceve konumu
+    else // indexe uyarli cerceve konumu
+    {
       borderDraw.setPosition((i - 3) * 300 + 320, 350);
       target.draw(borderDraw);
     }
@@ -56,9 +54,8 @@ void CharMenu::render(sf::RenderTarget &target)
   }
 }
 
-void CharMenu::init_texture_vec(int i)
+void CharMenu::init_texture_vec(int i) // karakterleri filedan okuyoruz
 {
-  // karakterleri filedan okuyoruz
   auto tx = new sf::Texture();
   this->texture.push_back(tx);
   if (!this->texture.at(i)->loadFromFile(this->path + "_1.png"))
@@ -67,9 +64,8 @@ void CharMenu::init_texture_vec(int i)
   }
 }
 
-void CharMenu::init_sprite_vec(int i)
+void CharMenu::init_sprite_vec(int i) // We are creating characters and their positions for the menu
 {
-  // we are creating characters and their positions for the menu
   auto sp = new sf::Sprite(*this->texture.at(i), sf::IntRect(0, 0, 288, 128));
   if (i < 3)
   {
@@ -83,32 +79,46 @@ void CharMenu::init_sprite_vec(int i)
   this->sprite.push_back(sp);
   this->sprite.at(i)->setScale(2.5f, 2.5f);
 }
-// initilazing variables
-void CharMenu::init_var(std::string &type, std::string &version)
+
+void CharMenu::init_var(std::string &type, std::string &version) // Initialling variables
 {
   for (int i = 0; i < charSize; i++)
-  { // initilazing paths
-
-    this->path = type + "" + version + "/" + chars[i] + "/" + "idle/idle";
+  {
+    this->path = type + "" + version + "/" + chars[i] + "/" + "idle/idle"; // Initialling paths
     this->init_texture_vec(i);
     this->init_sprite_vec(i);
     this->init_clock();
   }
+  this->init_characters_vector();
 }
 
 void CharMenu::init_clock()
-{ // sfml clock object for the animations
-  clock = new sf::Clock();
+{
+  clock = new sf::Clock(); // sfml clock object for the animations
 }
 
-// getter for open
-bool CharMenu::get_open()
+void CharMenu::init_characters_vector() // Store func addresses in vector
+{
+  this->characters.push_back([]() -> Hero *
+                             { return new BladeKeeper{}; });
+  this->characters.push_back([]() -> Hero *
+                             { return new FireKnight{}; });
+  this->characters.push_back([]() -> Hero *
+                             { return new GroundMonk{}; });
+  this->characters.push_back([]() -> Hero *
+                             { return new LeafArcher{}; });
+  this->characters.push_back([]() -> Hero *
+                             { return new Water{}; });
+  this->characters.push_back([]() -> Hero *
+                             { return new Wind{}; });
+}
+
+bool CharMenu::get_open() // getter for open
 {
   return this->open;
 }
 
-// setter for open
-void CharMenu::set_open(bool open)
+void CharMenu::set_open(bool open) // setter for open
 {
   this->open = open;
 }
@@ -116,15 +126,14 @@ void CharMenu::set_open(bool open)
 // start of the menu move functions
 void CharMenu::MoveRight()
 {
-  // changing selected elemtents indexes
-  if (this->selectedItem + 1 < Max_Items)
+  if (this->selectedItem + 1 < Max_Items) // changing selected elements indexes
   {
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_1.png");
     this->selectedItem += 1;
     this->animate = this->selectedItem;
   }
-  else
-  { // no space for right go beginning
+  else // no space for right go beginning
+  {
     this->texture.at(Max_Items - 1)->loadFromFile("image/" + chars[Max_Items - 1] + "/idle/idle_1.png");
     this->animate = 0;
     this->selectedItem = 0;
@@ -139,8 +148,8 @@ void CharMenu::MoveLeft()
     this->selectedItem -= 1;
     this->animate = this->selectedItem;
   }
-  else
-  { // no space left for to go left and turn to the beginning
+  else // no space left for to go left and turn to the beginning
+  {
     this->texture.at(0)->loadFromFile("image/" + chars[0] + "/idle/idle_1.png");
     this->animate = Max_Items - 1;
     this->selectedItem = Max_Items - 1;
@@ -155,8 +164,8 @@ void CharMenu::MoveUp()
     this->selectedItem -= 3;
     this->animate = this->selectedItem;
   }
-  else
-  { // if there is not enough space to go 3 index up then go the next 3
+  else // if there is not enough space to go 3 index up then go the next 3
+  {
     this->texture.at(this->selectedItem)->loadFromFile("image/" + chars[this->selectedItem] + "/idle/idle_1.png");
     this->animate = this->selectedItem + 3;
     this->selectedItem = this->animate;
@@ -164,8 +173,8 @@ void CharMenu::MoveUp()
 }
 
 void CharMenu::MoveDown()
-{ // conditions for down
-  if (this->selectedItem + 3 < Max_Items)
+{
+  if (this->selectedItem + 3 < Max_Items) // Conditions for down
   {
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_1.png");
     this->selectedItem += 3;
@@ -180,83 +189,49 @@ void CharMenu::MoveDown()
 }
 // end of move functions
 
-// the function that creates selected hero
-void CharMenu::selectedHero(Hero *&hero, Boss *&boss, Npc *&npc)
+void CharMenu::selectedHero(Hero *&hero, Boss *&boss, Npc *&npc) // the function that creates selected hero
 {
-  // simple condition for selected index
-  if (selectedItem == 0)
-  {
-    hero = new BladeKeeper();
-  }
-  else if (selectedItem == 1)
-  {
-    hero = new FireKnight();
-  }
-  else if (selectedItem == 2)
-  {
-    hero = new GroundMonk();
-  }
-  else if (selectedItem == 3)
-  {
-    hero = new LeafArcher();
-  }
-  else if (selectedItem == 4)
-  {
-    hero = new Water();
-  }
-  else if (selectedItem == 5)
-  {
-    hero = new Wind();
-  }
+  hero = this->characters[this->selectedItem]();
   boss = new DemonSlime();
   npc = new BlackSmith();
 }
 
-// character menu key control function
-void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
+void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc) // character menu key control function
 {
   if (event.type == sf::Event::KeyReleased)
   {
     if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D)
     {
-      MoveRight();
-      // call the move right
+      MoveRight(); // call the move right
     }
     else if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A)
     {
-      MoveLeft();
-      // call the move left
+      MoveLeft(); // call the move left
     }
     else if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W)
     {
-      MoveUp();
-      // call move up
+      MoveUp(); // call move up
     }
     else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
     {
-      MoveDown();
-      // call mov edown
+      MoveDown(); // call move down
     }
     else if (event.key.code == sf::Keyboard::Escape)
     {
-      this->open = false;
-      // change the open variable to close char menu
+      this->open = false; // change the open variable to close char menu
     }
     else if (event.key.code == sf::Keyboard::Enter)
     {
-      // selecting character
       this->open = false;
-      this->selectedHero(hero, boss, npc);
+      this->selectedHero(hero, boss, npc); // selecting character
     }
   }
 }
 
-void CharMenu::Update()
+void CharMenu::Update() // Updating animations
 {
-
   if (this->clock->getElapsedTime().asSeconds() > 0.1f)
   {
-    // updating animations
     if (this->que >= characterAtkNums[this->animate])
     {
       this->que = 1;
@@ -272,11 +247,9 @@ void CharMenu::Update()
 
 void CharMenu::Animated(sf::RenderTarget &target)
 {
-  // selected index character animate and draw
-  target.draw(*this->sprite.at(this->animate));
-
-  if (que <= this->characterAtkNums[this->animate])
-  { // there are some characters that have lots of png than other to errong handling we use if condition here
+  target.draw(*this->sprite.at(this->animate));     // selected index character animate and draw
+  if (que <= this->characterAtkNums[this->animate]) // there are some characters that have lots of png than other to errong handling we use if condition here
+  {
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
   }
 }
