@@ -11,7 +11,9 @@ private:
     Hero *hero;
     Boss *boss;
 
+    bool is_stop;
     bool is_key_pressed;
+    sf::Keyboard::Key key;
 
     void hero_attack();
     void boss_attack();
@@ -19,10 +21,10 @@ private:
 public:
     Fight(Hero *hero, Boss *boss);
     ~Fight();
-    void skill_collide(sf::Keyboard::Key key);
-    void control_collide(sf::Keyboard::Key key);
-
+    void skill_collide();
+    void control_collide();
     void poll_events(sf::Event &event);
+    void skill_perform();
 };
 
 #endif

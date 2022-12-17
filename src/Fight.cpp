@@ -2,7 +2,7 @@
 #include "HOTA/Hero.hpp"
 #include <iostream>
 
-Fight::Fight(Hero *hero, Boss *boss) : hero{hero}, boss{boss}, is_key_pressed{false}
+Fight::Fight(Hero *hero, Boss *boss) : hero{hero}, boss{boss}, is_stop{false}, is_key_pressed{false}
 {
     this->hero->fight_start();
 }
@@ -19,29 +19,34 @@ void Fight::poll_events(sf::Event &event)
 
 void Fight::hero_attack()
 {
-    sf::Keyboard::Key key;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
-        key = sf::Keyboard::Q;
+        this->key = sf::Keyboard::Q;
         this->is_key_pressed = true;
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        key = sf::Keyboard::W;
+        this->key = sf::Keyboard::W;
         this->is_key_pressed = true;
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
     {
-        key = sf::Keyboard::R;
+        this->key = sf::Keyboard::R;
         this->is_key_pressed = true;
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
     {
-        // this->is_key_pressed = false;
-        this->hero->ani_name = "defend";
+        this->key = sf::Keyboard::E;
+        this->is_key_pressed = true;
     }
-    control_collide(key);
+
+    control_collide(); // it's being called repeatedly to get closer to the boss so hero can perform the attack animation
+
+    if (this->is_stop == true && this->is_key_pressed == false) // if hero is stopped now hero can perform his skill.
+    {
+        skill_perform();
+    }
 
     //  else if (this->hero->is_collide(this->boss))
     //  {
@@ -52,35 +57,45 @@ void Fight::boss_attack()
 {
 }
 
-void Fight::control_collide(sf::Keyboard::Key key)
+void Fight::control_collide()
 {
 
-    if (this->is_key_pressed && !this->hero->is_collide(this->boss))
+    if (this->is_key_pressed && !this->hero->is_collide(this->boss)) // if key is pressed, and boss and hero is not collided, call skill_collide
     {
-        skill_collide(key);
+        skill_collide();
     }
     else
     {
-        is_key_pressed = false;
+        this->is_key_pressed = false;
         this->hero->ani_name = "idle";
+        this->is_stop = true;
     }
 }
 
-void Fight::skill_collide(sf::Keyboard::Key key)
+void Fight::skill_collide()
 {
     this->hero->ani_name = "run";
-    this->hero->move_left_right(sf::Keyboard::D, 8.f);
+    this->hero->move_left_right(sf::Keyboard::D, 8.f); // go right with animation "run" & (velocity 8.f)
+    this->is_stop = false;
+}
 
-    // if (key == sf::Keyboard::Q)
-    // {
-    //     this->hero->ani_name = "1_atk";
-    // }
-    // else if (key == sf::Keyboard::W)
-    // {
-    //     this->hero->ani_name = "2_atk";
-    // }
-    // else if (key == sf::Keyboard::R)
-    // {
-    //     this->hero->ani_name = "sp_atk";
-    // }
+void Fight::skill_perform()
+{
+    if (this->key == sf::Keyboard::Q)
+    {
+        this->hero->ani_name = "1_atk";
+    }
+    else if (this->key == sf::Keyboard::W)
+    {
+        this->hero->ani_name = "2_atk";
+    }
+    else if (this->key == sf::Keyboard::R)
+    {
+        this->hero->ani_name = "sp_atk";
+    }
+    else if (this->key == sf::Keyboard::E)
+    {
+        this->hero->ani_name = "defend";
+    }
+    // std::cout << this->is_stop << std::endl;
 }
