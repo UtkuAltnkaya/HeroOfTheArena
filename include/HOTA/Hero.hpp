@@ -25,7 +25,6 @@ protected:
 private:
   void init_fight_animations();
   void init_game_animations();
-  void fight_events(Boss *boss);
   void game_events();
 
 public:
@@ -40,6 +39,7 @@ public:
   void render(sf::RenderTarget &target);
   void poll_events(sf::Event &event, Boss *boss);
   void poll_events_loop(sf::Event &event);
+  void fight_events();
   void fight_start();
   bool is_ani_over; // TODO
 };

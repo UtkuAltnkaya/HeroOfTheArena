@@ -11,7 +11,6 @@ private:
     Hero *hero;
     Boss *boss;
 
-    bool is_stop;
     bool is_key_pressed;
     sf::Keyboard::Key key;
 

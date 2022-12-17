@@ -2,7 +2,7 @@
 #include "HOTA/Hero.hpp"
 #include <iostream>
 
-Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_stop{false}, is_key_pressed{false}
+Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}
 {
     this->hero->fight_start();
 }
@@ -60,9 +60,7 @@ void Fight::boss_attack()
 
 void Fight::control_collide()
 {
-
     bool check{this->hero->is_collide(this->boss)};
-
     if (this->is_key_pressed && !check) // if key is pressed, and boss and hero is not collided, call skill_collide
     {
         this->skill_collide();
@@ -71,12 +69,10 @@ void Fight::control_collide()
     {
         this->skill_perform();
     }
-
     else
     {
         this->is_key_pressed = false;
         this->hero->ani_name = "idle";
-        // this->is_stop = true;
     }
 }
 
@@ -84,7 +80,6 @@ void Fight::skill_collide()
 {
     this->hero->ani_name = "run";
     this->hero->move_left_right(sf::Keyboard::D, 8.f); // go right with animation "run" & (velocity 8.f)
-    this->is_stop = false;
 }
 
 void Fight::skill_perform()

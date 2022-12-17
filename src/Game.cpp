@@ -129,7 +129,6 @@ void Game::poll_events()
   {
     this->hero->poll_events(this->event, this->boss);
   }
-
   if (this->fight)
   {
     this->fight->poll_events();

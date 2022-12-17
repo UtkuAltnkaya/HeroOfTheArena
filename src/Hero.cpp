@@ -8,9 +8,10 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
     : Physics{pathVal, actualWidth, actualHeight}, health(healthVal),
       damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
-      is_fight_start{false}, ani_name{"idle"}
+      is_fight_start{false}, ani_name{"idle"}, is_ani_over{false}
 {
   this->init_var();
+  std::cout << this->is_ani_over << std::endl;
 }
 
 Hero::~Hero()
@@ -22,7 +23,6 @@ void Hero::init_var()
   this->character_width = 864;
   this->character_height = 384;
   this->initial_positions.x = -200;
-  this->is_ani_over = false;
 }
 
 void Hero::init_all_animations()
@@ -53,9 +53,11 @@ void Hero::init_fight_animations()
 void Hero::update()
 {
   this->animation->update(this->is_ani_over);
+
   if (this->is_fight_start)
   {
     this->atk_character();
+    std::cout << this->is_ani_over << std::endl;
   }
   else
   {
@@ -74,23 +76,23 @@ void Hero::move_character()
 {
   if (this->ani_name == "run")
   {
-    this->move_left_right(sf::Keyboard::D);
+    return this->move_left_right(sf::Keyboard::D);
   }
-  else if (this->ani_name == "run_left")
+  if (this->ani_name == "run_left")
   {
-    this->move_left_right(sf::Keyboard::A);
+    return this->move_left_right(sf::Keyboard::A);
   }
   if (this->ani_name == "jump_up" || this->ani_name == "jump_down")
   {
-    this->jump(this->ani_name);
+    return this->jump(this->ani_name);
   }
   if (this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down")
   {
-    this->projectile_jump(sf::Keyboard::D, this->ani_name);
+    return this->projectile_jump(sf::Keyboard::D, this->ani_name);
   }
   if (this->ani_name == "jump_projectile_up_left" || this->ani_name == "jump_projectile_down_left")
   {
-    this->projectile_jump(sf::Keyboard::A, this->ani_name);
+    return this->projectile_jump(sf::Keyboard::A, this->ani_name);
   }
 }
 
@@ -101,7 +103,6 @@ void Hero::atk_character()
     if (this->is_ani_over)
     {
       this->ani_name = "idle";
-      // this->is_ani_over = false;
     }
   }
 }
@@ -159,7 +160,7 @@ void Hero::game_events()
   }
 }
 
-void Hero::fight_events(Boss *boss)
+void Hero::fight_events()
 {
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -168,7 +169,6 @@ void Hero::fight_events(Boss *boss)
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
   {
-
     this->ani_name = "2_atk";
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
@@ -184,6 +184,7 @@ void Hero::fight_events(Boss *boss)
 void Hero::fight_start()
 {
   this->is_fight_start = true;
+  this->is_ani_over = false;
   this->init_fight_animations();
   this->set_position(this->initial_positions);
 }
