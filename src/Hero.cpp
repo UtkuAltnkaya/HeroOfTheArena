@@ -6,9 +6,9 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 }
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
-    : Physics{pathVal, actualWidth, actualHeight}, ani_name{"idle"}, health(healthVal),
+    : Physics{pathVal, actualWidth, actualHeight}, health(healthVal),
       damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
-      is_fight_start{false}
+      is_fight_start{false}, ani_name{"idle"}
 {
   this->init_var();
 }
@@ -109,7 +109,10 @@ void Hero::poll_events(sf::Event &event, Boss *boss)
   {
     return;
   }
-  this->game_events();
+  if (!this->is_fight_start)
+  {
+    this->game_events();
+  }
 };
 
 void Hero::poll_events_loop(sf::Event &event)

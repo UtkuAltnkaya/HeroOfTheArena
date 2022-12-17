@@ -19,6 +19,8 @@ private:
 public:
     Fight(Hero *hero, Boss *boss);
     ~Fight();
+    void skill_collide(sf::Keyboard::Key key);
+    void control_collide(sf::Keyboard::Key key);
 
     void poll_events(sf::Event &event);
 };

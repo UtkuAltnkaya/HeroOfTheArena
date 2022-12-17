@@ -9,7 +9,6 @@
 class Hero : public Physics
 {
 protected:
-  std::string ani_name;
   int health;
   int damage;
   int mana;
@@ -35,6 +34,7 @@ public:
   virtual ~Hero();
   virtual void skill() = 0;
   virtual void upgrade() = 0;
+  std::string ani_name; // TODO
 
   void update();
   void render(sf::RenderTarget &target);
