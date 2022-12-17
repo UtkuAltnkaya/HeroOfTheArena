@@ -8,10 +8,9 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
     : Physics{pathVal, actualWidth, actualHeight}, health(healthVal),
       damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
-      is_fight_start{false}, ani_name{"idle"}, is_ani_over{false}
+      is_fight_start{false}, is_ani_over{false}, ani_name{"idle"}
 {
   this->init_var();
-  std::cout << this->is_ani_over << std::endl;
 }
 
 Hero::~Hero()
@@ -57,7 +56,6 @@ void Hero::update()
   if (this->is_fight_start)
   {
     this->atk_character();
-    std::cout << this->is_ani_over << std::endl;
   }
   else
   {
@@ -160,7 +158,7 @@ void Hero::game_events()
   }
 }
 
-void Hero::fight_events()
+void Hero::fight_events() // TODO: delete
 {
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
@@ -187,4 +185,19 @@ void Hero::fight_start()
   this->is_ani_over = false;
   this->init_fight_animations();
   this->set_position(this->initial_positions);
+}
+
+bool Hero::get_is_ani_over()
+{
+  return this->is_ani_over;
+}
+
+void Hero::set_is_ani_over(const bool &is_ani_over)
+{
+  this->is_ani_over = is_ani_over;
+}
+
+void Hero::set_ani_name(const std::string &ani_name)
+{
+  this->ani_name = ani_name;
 }

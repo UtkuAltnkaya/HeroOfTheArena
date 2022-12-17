@@ -16,6 +16,8 @@ protected:
   float crit_chance;
 
   bool is_fight_start;
+  bool is_ani_over;
+  std::string ani_name;
 
   void init_var();
   void atk_character();
@@ -33,7 +35,6 @@ public:
   virtual ~Hero();
   virtual void skill() = 0;
   virtual void upgrade() = 0;
-  std::string ani_name; // TODO
 
   void update();
   void render(sf::RenderTarget &target);
@@ -41,7 +42,10 @@ public:
   void poll_events_loop(sf::Event &event);
   void fight_events();
   void fight_start();
-  bool is_ani_over; // TODO
+
+  bool get_is_ani_over();
+  void set_is_ani_over(const bool &is_ani_over);
+  void set_ani_name(const std::string &ani_name);
 };
 
 #endif
