@@ -23,9 +23,8 @@ public:
     ~Fight();
     void skill_collide();
     void control_collide();
-    void poll_events(sf::Event &event);
+    void poll_events();
     void skill_perform();
-    void isSkillOver();
 };
 
 #endif

@@ -132,6 +132,6 @@ void Game::poll_events()
 
   if (this->fight)
   {
-    this->fight->poll_events(this->event);
+    this->fight->poll_events();
   }
 }

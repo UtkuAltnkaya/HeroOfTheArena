@@ -11,7 +11,7 @@ Fight::~Fight()
 {
 }
 
-void Fight::poll_events(sf::Event &event)
+void Fight::poll_events()
 {
     this->hero_attack();
     this->boss_attack();
@@ -43,10 +43,11 @@ void Fight::hero_attack()
 
     control_collide(); // it's being called repeatedly to get closer to the boss so hero can perform the attack animation
 
-    if (this->is_stop == true && this->is_key_pressed == false && !this->hero->get_stopVar()) // if hero is stopped now hero can perform his skill.
-    {
-        skill_perform();
-    }
+    // if (this->is_stop == true && this->is_key_pressed == false) // if hero is stopped now hero can perform his skill.
+    // {
+    //     std::cout << "INSIDE IF CONDITION" << std::endl;
+    //     skill_perform();
+    // }
 
     //  else if (this->hero->is_collide(this->boss))
     //  {
@@ -60,15 +61,22 @@ void Fight::boss_attack()
 void Fight::control_collide()
 {
 
-    if (this->is_key_pressed && !this->hero->is_collide(this->boss)) // if key is pressed, and boss and hero is not collided, call skill_collide
+    bool check{this->hero->is_collide(this->boss)};
+
+    if (this->is_key_pressed && !check) // if key is pressed, and boss and hero is not collided, call skill_collide
     {
-        skill_collide();
+        this->skill_collide();
     }
+    else if (check && !this->hero->is_ani_over)
+    {
+        this->skill_perform();
+    }
+
     else
     {
         this->is_key_pressed = false;
         this->hero->ani_name = "idle";
-        this->is_stop = true;
+        // this->is_stop = true;
     }
 }
 
@@ -81,9 +89,6 @@ void Fight::skill_collide()
 
 void Fight::skill_perform()
 {
-    if (this->hero->get_stopVar())
-        return;
-
     if (this->key == sf::Keyboard::Q)
     {
         this->hero->ani_name = "1_atk";
@@ -100,6 +105,4 @@ void Fight::skill_perform()
     {
         this->hero->ani_name = "defend";
     }
-
-    // std::cout << this->is_stop << std::endl;
 }

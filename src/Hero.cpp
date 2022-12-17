@@ -22,7 +22,6 @@ void Hero::init_var()
   this->character_width = 864;
   this->character_height = 384;
   this->initial_positions.x = -200;
-  this->stopVar = false;
   this->is_ani_over = false;
 }
 
@@ -102,8 +101,7 @@ void Hero::atk_character()
     if (this->is_ani_over)
     {
       this->ani_name = "idle";
-      this->is_ani_over = false;
-      this->stopVar = true;
+      // this->is_ani_over = false;
     }
   }
 }
@@ -188,14 +186,4 @@ void Hero::fight_start()
   this->is_fight_start = true;
   this->init_fight_animations();
   this->set_position(this->initial_positions);
-}
-
-bool Hero::get_stopVar()
-{
-  return this->stopVar;
-}
-
-void Hero::set_stopVar(bool cond)
-{
-  this->stopVar = cond;
 }
