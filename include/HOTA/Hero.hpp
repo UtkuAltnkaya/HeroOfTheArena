@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "HOTA/AnimationCreator.hpp"
 #include "HOTA/Physics.hpp"
+#include "HOTA/Boss.hpp"
 
 class Hero : public Physics
 {
@@ -15,6 +16,7 @@ protected:
   int defense;
   float crit_chance;
   bool is_ani_over;
+  bool is_fight_start;
 
   void init_var();
   void atk_character();
@@ -24,6 +26,8 @@ protected:
 private:
   void init_fight_animations();
   void init_game_animations();
+  void fight_events(Boss *boss);
+  void game_events();
 
 public:
   Hero();
@@ -34,8 +38,9 @@ public:
 
   void update();
   void render(sf::RenderTarget &target);
-  void poll_events(sf::Event &event);
+  void poll_events(sf::Event &event, Boss *boss);
   void poll_events_loop(sf::Event &event);
+  void fight_start();
 };
 
 #endif

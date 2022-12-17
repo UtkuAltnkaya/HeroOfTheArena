@@ -7,7 +7,8 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
     : Physics{pathVal, actualWidth, actualHeight}, ani_name{"idle"}, health(healthVal),
-      damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal)
+      damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
+      is_fight_start{false}
 {
   this->init_var();
 }
@@ -26,7 +27,6 @@ void Hero::init_var()
 void Hero::init_all_animations()
 {
   this->init_game_animations();
-  // this->init_fight_animations();
   this->set_and_calculate_position();
 }
 
@@ -53,7 +53,12 @@ void Hero::update()
 {
   this->animation->update(this->is_ani_over);
   this->move_character();
-  this->atk_character();
+  if (this->is_fight_start)
+  {
+
+    this->atk_character();
+  }
+
   this->select_animation(this->ani_name);
 }
 
@@ -98,12 +103,32 @@ void Hero::atk_character()
   }
 }
 
-void Hero::poll_events(sf::Event &event)
+void Hero::poll_events(sf::Event &event, Boss *boss)
 {
   if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend" || this->ani_name == "jump_projectile_up_left" || this->ani_name == "jump_projectile_down_left")
   {
     return;
   }
+  this->game_events();
+};
+
+void Hero::poll_events_loop(sf::Event &event)
+{
+  if (event.type == sf::Event::KeyReleased)
+  {
+    if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::A)
+    {
+      if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend" || this->ani_name == "jump_projectile_up_left" || this->ani_name == "jump_projectile_down_left")
+      {
+        return;
+      }
+      this->ani_name = "idle";
+    }
+  }
+}
+
+void Hero::game_events()
+{
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
   {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -122,39 +147,37 @@ void Hero::poll_events(sf::Event &event)
     }
     this->ani_name = "run_left";
   }
-  // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-  // {
-  //   this->ani_name = "1_atk";
-  // }
-  // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-  // {
-  //   this->ani_name = "2_atk";
-  // }
-  // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-  // {
-  //   this->ani_name = "defend";
-  // }
-  // else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-  // {
-  //   this->ani_name = "sp_atk";
-  // }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
   {
     this->ani_name = "jump_up";
   }
-};
+}
 
-void Hero::poll_events_loop(sf::Event &event)
+void Hero::fight_events(Boss *boss)
 {
-  if (event.type == sf::Event::KeyReleased)
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
   {
-    if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::A)
-    {
-      if (this->ani_name == "jump_up" || this->ani_name == "jump_projectile_up" || this->ani_name == "jump_projectile_down" || this->ani_name == "jump_down" || this->ani_name == "1_atk" || this->ani_name == "2_atk" || this->ani_name == "sp_atk" || this->ani_name == "defend" || this->ani_name == "jump_projectile_up_left" || this->ani_name == "jump_projectile_down_left")
-      {
-        return;
-      }
-      this->ani_name = "idle";
-    }
+    this->ani_name = "1_atk";
   }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  {
+
+    this->ani_name = "2_atk";
+  }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+  {
+    this->ani_name = "defend";
+  }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+  {
+    this->ani_name = "sp_atk";
+  }
+}
+
+void Hero::fight_start()
+{
+  this->is_fight_start = true;
+  this->init_fight_animations();
+  this->set_position(this->initial_positions);
 }

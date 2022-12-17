@@ -26,8 +26,9 @@ void Physics::projectile_jump(const sf::Keyboard::Key &Key, std::string &jump_an
   this->velocity_x = 5.f;
 }
 
-void Physics::move_left_right(const sf::Keyboard::Key &Key)
+void Physics::move_left_right(const sf::Keyboard::Key &Key, float velocity_x)
 {
+  this->velocity_x = velocity_x;
   if (Key == sf::Keyboard::D) // Right
   {
     return this->move_right();

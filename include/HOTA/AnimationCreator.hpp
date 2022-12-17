@@ -32,6 +32,8 @@ protected:
   size_t jump_up_num;
   size_t jump_down_num;
 
+  sf::Vector2f initial_positions; // TODO
+
   int character_width;
   int character_height;
 
@@ -42,11 +44,9 @@ protected:
   void insert_new_animation(const std::string &&animation_name, const std::string &&png_name, const size_t &animation_len, const bool &&is_repeat);
   void select_animation(const std::string &animation_name);
   void set_and_calculate_position();
-  void set_all_animation_position(const sf::Vector2f &last_postion); // TODO
+  void set_all_animation_position(const sf::Vector2f &last_postion);
 
 public:
-  sf::Vector2f initial_positions; // TODO
-
   AnimationCreator();
   AnimationCreator(std::string path);
   ~AnimationCreator();

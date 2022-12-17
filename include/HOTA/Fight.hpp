@@ -11,9 +11,16 @@ private:
     Hero *hero;
     Boss *boss;
 
+    bool is_key_pressed;
+
+    void hero_attack();
+    void boss_attack();
+
 public:
     Fight(Hero *hero, Boss *boss);
     ~Fight();
+
+    void poll_events(sf::Event &event);
 };
 
 #endif

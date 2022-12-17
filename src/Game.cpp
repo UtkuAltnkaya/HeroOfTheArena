@@ -82,7 +82,7 @@ void Game::update()
       this->npc->update(this->hero->is_collide(this->npc));
     }
 
-    if (this->hero->is_collide(this->boss))
+    if (this->hero->is_collide(this->boss) && !this->fight)
     {
       // TODO
       this->fight = new Fight{this->hero, this->boss};
@@ -127,6 +127,11 @@ void Game::poll_events()
 
   if (this->hero)
   {
-    this->hero->poll_events(this->event);
+    this->hero->poll_events(this->event, this->boss);
+  }
+
+  if (this->fight)
+  {
+    this->fight->poll_events(this->event);
   }
 }
