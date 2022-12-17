@@ -52,11 +52,13 @@ void Hero::init_fight_animations()
 void Hero::update()
 {
   this->animation->update(this->is_ani_over);
-  this->move_character();
   if (this->is_fight_start)
   {
-
     this->atk_character();
+  }
+  else
+  {
+    this->move_character();
   }
 
   this->select_animation(this->ani_name);

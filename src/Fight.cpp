@@ -25,25 +25,23 @@ void Fight::hero_attack()
     {
         key = sf::Keyboard::Q;
         this->is_key_pressed = true;
-        control_collide(key);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         key = sf::Keyboard::W;
         this->is_key_pressed = true;
-        control_collide(key);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
     {
         key = sf::Keyboard::R;
         this->is_key_pressed = true;
-        control_collide(key);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
     {
         // this->is_key_pressed = false;
         this->hero->ani_name = "defend";
     }
+    control_collide(key);
 
     //  else if (this->hero->is_collide(this->boss))
     //  {
@@ -56,6 +54,7 @@ void Fight::boss_attack()
 
 void Fight::control_collide(sf::Keyboard::Key key)
 {
+
     if (this->is_key_pressed && !this->hero->is_collide(this->boss))
     {
         skill_collide(key);
@@ -69,11 +68,8 @@ void Fight::control_collide(sf::Keyboard::Key key)
 
 void Fight::skill_collide(sf::Keyboard::Key key)
 {
-
-    // this->hero->ani_name = "run";
+    this->hero->ani_name = "run";
     this->hero->move_left_right(sf::Keyboard::D, 8.f);
-
-    std::cout << "Dont stop" << std::endl;
 
     // if (key == sf::Keyboard::Q)
     // {
