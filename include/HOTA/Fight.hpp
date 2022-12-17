@@ -19,12 +19,13 @@ private:
     void boss_attack();
 
 public:
-    Fight(Hero *hero, Boss *boss);
+    Fight(Hero *&hero, Boss *&boss);
     ~Fight();
     void skill_collide();
     void control_collide();
     void poll_events(sf::Event &event);
     void skill_perform();
+    void isSkillOver();
 };
 
 #endif

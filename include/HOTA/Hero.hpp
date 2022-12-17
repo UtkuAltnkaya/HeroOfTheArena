@@ -16,6 +16,7 @@ protected:
   float crit_chance;
   bool is_ani_over;
   bool is_fight_start;
+  bool stopVar;
 
   void init_var();
   void atk_character();
@@ -41,6 +42,8 @@ public:
   void poll_events(sf::Event &event, Boss *boss);
   void poll_events_loop(sf::Event &event);
   void fight_start();
+  bool get_stopVar();
+  void set_stopVar(bool);
 };
 
 #endif

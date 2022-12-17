@@ -2,7 +2,7 @@
 #include "HOTA/Hero.hpp"
 #include <iostream>
 
-Fight::Fight(Hero *hero, Boss *boss) : hero{hero}, boss{boss}, is_stop{false}, is_key_pressed{false}
+Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_stop{false}, is_key_pressed{false}
 {
     this->hero->fight_start();
 }
@@ -43,9 +43,8 @@ void Fight::hero_attack()
 
     control_collide(); // it's being called repeatedly to get closer to the boss so hero can perform the attack animation
 
-    if (this->is_stop == true && this->is_key_pressed == false) // if hero is stopped now hero can perform his skill.
+    if (this->is_stop == true && this->is_key_pressed == false && !this->hero->get_stopVar()) // if hero is stopped now hero can perform his skill.
     {
-        std::cout << "INSIDE IF CONDITION" << std::endl;
         skill_perform();
     }
 
@@ -82,6 +81,9 @@ void Fight::skill_collide()
 
 void Fight::skill_perform()
 {
+    if (this->hero->get_stopVar())
+        return;
+
     if (this->key == sf::Keyboard::Q)
     {
         this->hero->ani_name = "1_atk";
@@ -98,5 +100,6 @@ void Fight::skill_perform()
     {
         this->hero->ani_name = "defend";
     }
+
     // std::cout << this->is_stop << std::endl;
 }
