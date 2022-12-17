@@ -45,6 +45,7 @@ void Fight::hero_attack()
 
     if (this->is_stop == true && this->is_key_pressed == false) // if hero is stopped now hero can perform his skill.
     {
+        std::cout << "INSIDE IF CONDITION" << std::endl;
         skill_perform();
     }
 

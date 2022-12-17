@@ -80,11 +80,11 @@ void CharMenu::init_sprite_vec(int i) // We are creating characters and their po
   this->sprite.at(i)->setScale(2.5f, 2.5f);
 }
 
-void CharMenu::init_var(std::string &type, std::string &version) // Initialling variables
+void CharMenu::init_var(std::string &type, std::string &version) // Initialising variables
 {
   for (int i = 0; i < charSize; i++)
   {
-    this->path = type + "" + version + "/" + chars[i] + "/" + "idle/idle"; // Initialling paths
+    this->path = type + "" + version + "/" + chars[i] + "/" + "idle/idle"; // Initialising paths
     this->init_texture_vec(i);
     this->init_sprite_vec(i);
     this->init_clock();
@@ -255,7 +255,7 @@ void CharMenu::Update() // Updating animations
 void CharMenu::Animated(sf::RenderTarget &target)
 {
   target.draw(*this->sprite.at(this->animate));              // selected index character animate and draw
-  if (que <= this->characterAtkNums[this->animate] && !stop) // there are some characters that have lots of png than other to errong handling we use if condition here
+  if (que <= this->characterAtkNums[this->animate] && !stop) // there are some characters that have lots of png than other to error handling we use if condition here
   {
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
   }
