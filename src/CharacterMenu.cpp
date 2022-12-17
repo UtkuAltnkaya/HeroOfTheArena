@@ -204,18 +204,22 @@ void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&n
     this->stop = false;
     if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D)
     {
+      this->que = 1;
       MoveRight(); // call the move right
     }
     else if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A)
     {
+      this->que = 1;
       MoveLeft(); // call the move left
     }
     else if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W)
     {
+      this->que = 1;
       MoveUp(); // call move up
     }
     else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
     {
+      this->que = 1;
       MoveDown(); // call move down
     }
     else if (event.key.code == sf::Keyboard::Escape)
@@ -257,7 +261,7 @@ void CharMenu::Animated(sf::RenderTarget &target)
   }
   else
   {
-    this->que=1;
+    this->que = 1;
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_" + std::to_string(this->que) + ".png");
   }
 }
