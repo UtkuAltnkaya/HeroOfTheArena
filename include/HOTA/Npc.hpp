@@ -22,7 +22,7 @@ private:
 public:
   Npc();
   Npc(std::string path);
-  ~Npc();
+  virtual ~Npc();
   void update(const bool &is_collide);
   void render(sf::RenderTarget &target);
 };

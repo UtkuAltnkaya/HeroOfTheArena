@@ -20,6 +20,7 @@ Game::~Game()
 // Private
 void Game::init_var()
 {
+  this->fight = nullptr;
   this->window = nullptr;
   this->background = nullptr;
   this->hero = nullptr;
@@ -75,7 +76,19 @@ void Game::update()
 
     this->boss->update();
     this->hero->update();
-    this->npc->update(this->hero->is_collide(this->npc));
+
+    if (!this->fight)
+    {
+      this->npc->update(this->hero->is_collide(this->npc));
+    }
+
+    if (this->hero->is_collide(this->boss))
+    {
+      // TODO
+      this->fight = new Fight{this->hero, this->boss};
+      delete this->npc;
+      this->npc = nullptr;
+    }
   }
 }
 
@@ -88,7 +101,11 @@ void Game::render()
   {
     this->boss->render(*this->window);
     this->hero->render(*this->window);
-    this->npc->render(*this->window);
+
+    if (!(this->fight))
+    {
+      this->npc->render(*this->window);
+    }
   }
   this->window->display();
 }

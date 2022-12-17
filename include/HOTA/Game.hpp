@@ -5,7 +5,7 @@
 #include "HOTA/MainMenu.hpp"
 #include "HOTA/Music.hpp"
 #include "HOTA/Npc.hpp"
-// #include "Boss.hpp"
+#include "HOTA/Fight.hpp"
 
 class Game
 {
@@ -16,6 +16,7 @@ private:
   Boss *boss;
   Npc *npc;
   Musics music;
+  Fight *fight;
 
   sf::RenderWindow *window;
   sf::VideoMode video_mode;
