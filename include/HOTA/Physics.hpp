@@ -29,9 +29,10 @@ protected:
   void init_position();
   void projectile_jump(const sf::Keyboard::Key &Key, std::string &jump_ani_name);
   void jump(std::string &jump_ani_name);
-  void set_position(const sf::Vector2f new_position);
+  void set_position(sf::Vector2f new_position);
 
 public:
+  float get_position_x();
   Physics(std::string path, int character_actual_width, int character_actual_height);
   ~Physics();
   bool is_collide(const Physics *obj);

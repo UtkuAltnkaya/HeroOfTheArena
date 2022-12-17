@@ -103,7 +103,7 @@ void Physics::jump_down(std::string &jump_ani_name)
   this->set_position(sf::Vector2f{this->position.x, this->position.y + this->velocity_y});
 }
 
-void Physics::set_position(const sf::Vector2f new_position)
+void Physics::set_position(sf::Vector2f new_position)
 {
   this->position = new_position;
   this->set_all_animation_position(this->position);
@@ -120,4 +120,9 @@ bool Physics::is_collide(const Physics *obj)
     return true;
   }
   return false;
+}
+
+float Physics::get_position_x()
+{
+  return this->position.x;
 }
