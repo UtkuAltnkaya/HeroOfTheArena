@@ -118,14 +118,14 @@ void MainMenu::move_it(sf::Event &event)
   }
   else if (event.key.code == sf::Keyboard::Enter)
   {
-    this->seletected_option();
+    this->selected_option();
   }
   else
   {
     // todo
   }
 }
-void MainMenu::seletected_option()
+void MainMenu::selected_option()
 {
   if (this->selectedItemIndex == 0)
   {

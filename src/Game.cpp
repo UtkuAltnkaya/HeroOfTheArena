@@ -13,10 +13,12 @@ Game::~Game()
 {
   delete this->window;
   delete this->background;
-  if (this->main_menu)
-    delete this->main_menu;
   delete this->boss;
   delete this->music;
+  if (this->main_menu)
+  {
+    delete this->main_menu;
+  }
 }
 
 // Private
@@ -104,7 +106,7 @@ void Game::render()
   }
   if (this->hero)
   {
-    delete_main_menu();
+    this->delete_main_menu();
     this->boss->render(*this->window);
     this->hero->render(*this->window);
 
@@ -147,8 +149,10 @@ void Game::poll_events()
 void Game::delete_main_menu()
 {
   if (this->main_menu)
+  {
     delete this->main_menu;
-  this->main_menu = nullptr;
+    this->main_menu = nullptr;
+  }
 }
 
 void Game::play_music()

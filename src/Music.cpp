@@ -3,13 +3,13 @@
 #include <iostream>
 Musics::Musics()
 {
-    init_var();
+    this->init_var();
 }
 
 Musics::Musics(std::string path)
 {
     this->path = "music/" + path;
-    init_var();
+    this->init_var();
 }
 Musics::~Musics()
 {
@@ -28,13 +28,13 @@ void Musics::init_musics()
 }
 void Musics::set_music()
 {
-    playingMusic->setLoop(true);
-    playingMusic->setVolume(5);
+    this->playingMusic->setLoop(true);
+    this->playingMusic->setVolume(5);
 }
 
 void Musics::play()
 {
-    playingMusic->play();
+    this->playingMusic->play();
 }
 void Musics::stopMusic()
 {
