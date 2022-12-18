@@ -17,6 +17,7 @@ private:
   Npc *npc;
   Musics music;
   Fight *fight;
+  bool music_playing;
 
   sf::RenderWindow *window;
   sf::VideoMode video_mode;
@@ -26,6 +27,8 @@ private:
   void init_window();
   void init_background();
   void init_main_menu();
+  void delete_main_menu();
+  void play_music();
 
 public:
   Game();

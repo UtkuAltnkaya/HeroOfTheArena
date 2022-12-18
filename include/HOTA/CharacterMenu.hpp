@@ -42,6 +42,7 @@ private:
     void MoveUp();
     void MoveDown();
     void selectedHero(Hero *&hero, Boss *&boss, Npc *&npc);
+    void is_leaf_archer();
 
 public:
     CharMenu(std::string, std::string);

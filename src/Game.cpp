@@ -13,7 +13,8 @@ Game::~Game()
 {
   delete this->window;
   delete this->background;
-  delete this->main_menu;
+  if (this->main_menu)
+    delete this->main_menu;
   delete this->boss;
 }
 
@@ -29,8 +30,12 @@ void Game::init_var()
   this->video_mode.width = 512 * 3;
   this->video_mode.height = 256 * 3;
 
+  this->music_playing = false;
+  this->music.set_charMenuOpen(0);
+  this->music.set_menuOpen(0);
   this->music.set_music();
-  this->music.play();
+
+  //  this->music.stopMusic();
 }
 
 void Game::init_window()
@@ -64,16 +69,13 @@ void Game::run()
 void Game::update()
 {
   this->poll_events();
-  this->main_menu->update();
+  if (this->main_menu)
+  {
+    this->main_menu->update();
+  }
   if (this->hero)
   {
-    this->music.set_menuOpen(false);
-    this->music.set_charMenuOpen(false);
-    this->music.stopMusic();
-
-    // this->music.set_music();
-    // this->music.play();
-
+    this->play_music();
     this->boss->update();
     this->hero->update();
 
@@ -96,9 +98,13 @@ void Game::render()
 {
   this->window->clear();
   this->background->render_background(*this->window);
-  this->main_menu->render(*this->window, this->hero);
+  if (this->main_menu)
+  {
+    this->main_menu->render(*this->window, this->hero);
+  }
   if (this->hero)
   {
+    delete_main_menu();
     this->boss->render(*this->window);
     this->hero->render(*this->window);
 
@@ -118,7 +124,10 @@ void Game::poll_events()
     {
       this->window->close();
     }
-    this->main_menu->MenuUpDown(this->event, this->hero, this->boss, this->npc);
+    if (this->main_menu)
+    {
+      this->main_menu->MenuUpDown(this->event, this->hero, this->boss, this->npc);
+    }
     if (this->hero)
     {
       this->hero->poll_events_loop(event);
@@ -132,5 +141,21 @@ void Game::poll_events()
   if (this->fight)
   {
     this->fight->poll_events();
+  }
+}
+
+void Game::delete_main_menu()
+{
+  if (this->main_menu)
+    delete this->main_menu;
+  this->main_menu = nullptr;
+}
+
+void Game::play_music()
+{
+  if (!this->music_playing)
+  {
+    this->music.play();
+    this->music_playing = true;
   }
 }

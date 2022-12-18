@@ -58,7 +58,7 @@ void Fight::control_collide()
     if (this->is_key_pressed && !check) // if key is pressed, and boss and hero is not collided, call skill_collide
     {
         this->move_position("run", sf::Keyboard::D);
-        std::cout << "RUN" << std::endl;
+        // std::cout << "RUN" << std::endl;
     }
     else if (check && !this->hero->get_is_ani_over())
     {
@@ -108,7 +108,7 @@ void Fight::move_initial_position()
 {
     if (hero->get_position_x() != -200.)
     {
-        std::cout << "RUN-LEFT" << std::endl;
+        // std::cout << "RUN-LEFT" << std::endl;
         this->move_position("run_left", sf::Keyboard::A);
         this->is_key_pressed = false;
     }

@@ -257,11 +257,23 @@ void CharMenu::Animated(sf::RenderTarget &target)
   target.draw(*this->sprite.at(this->animate));              // selected index character animate and draw
   if (que <= this->characterAtkNums[this->animate] && !stop) // there are some characters that have lots of png than other to error handling we use if condition here
   {
-    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
+    is_leaf_archer();
   }
   else
   {
     this->que = 1;
     this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/idle/idle_" + std::to_string(this->que) + ".png");
+  }
+}
+
+void CharMenu::is_leaf_archer()
+{
+  if (this->animate != 3)
+  {
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/1_atk/atk_" + std::to_string(this->que) + ".png");
+  }
+  else
+  {
+    this->texture.at(this->animate)->loadFromFile("image/" + chars[this->animate] + "/defend/defend_" + std::to_string(this->que) + ".png");
   }
 }

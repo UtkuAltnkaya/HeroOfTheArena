@@ -33,6 +33,7 @@ MainMenu::MainMenu(float width, float height)
 MainMenu::~MainMenu()
 {
   delete this->char_menu;
+  // delete this->music;
 }
 
 void MainMenu::render(sf::RenderWindow &window, Hero *&hero)
@@ -95,37 +96,7 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
   {
     if (event.type == sf::Event::KeyReleased)
     {
-      if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W)
-      {
-        MoveUp();
-      }
-      else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
-      {
-        MoveDown();
-      }
-      else if (event.key.code == sf::Keyboard::Enter)
-      {
-        if (this->selectedItemIndex == 0)
-        {
-          this->open = false;
-        }
-        else if (this->selectedItemIndex == 1)
-        {
-          // todo
-        }
-        else if (this->selectedItemIndex == 2)
-        {
-          this->open = false;
-          this->char_menu->set_open(false);
-        }
-        else
-        {
-        }
-      }
-      else
-      {
-        // todo
-      }
+      this->move_it(event);
     }
   }
   else if (this->char_menu->get_open())
@@ -135,19 +106,47 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
   }
 }
 
-// bool MainMenu::GetOpen()
-// {
-//   return this->open;
-// }
-
-// void MainMenu::SetOpen(bool changeOpen)
-// {
-//   this->open = changeOpen;
-// }
+void MainMenu::move_it(sf::Event &event)
+{
+  if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W)
+  {
+    MoveUp();
+  }
+  else if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S)
+  {
+    MoveDown();
+  }
+  else if (event.key.code == sf::Keyboard::Enter)
+  {
+    this->seletected_option();
+  }
+  else
+  {
+    // todo
+  }
+}
+void MainMenu::seletected_option()
+{
+  if (this->selectedItemIndex == 0)
+  {
+    this->open = false;
+  }
+  else if (this->selectedItemIndex == 1)
+  {
+    // todo
+  }
+  else if (this->selectedItemIndex == 2)
+  {
+    this->open = false;
+    this->char_menu->set_open(false);
+  }
+}
 
 void MainMenu::init_char_menu()
 {
   this->char_menu = new CharMenu("", "image");
+  this->music.set_music();
+  this->music.play();
 }
 
 void MainMenu::update()

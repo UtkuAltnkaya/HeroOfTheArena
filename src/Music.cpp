@@ -18,7 +18,6 @@ void Musics::init_var()
     this->charMenuOpen = true;
     this->gameOpen = true;
     this->init_musics();
-    this->set_music();
 }
 
 void Musics::init_musics()
@@ -35,29 +34,10 @@ void Musics::init_musics()
     tempMusic2 = new sf::Music;
     tempMusic2->openFromFile("music/moonlight.ogg");
     this->musics.push_back(tempMusic2);
-    /*
-    this->musics.push_back([]() -> sf::Music *
-                           {
-        sf::Music *music;
-        music = new sf::Music{};
-        music->openFromFile("music/Battle Encounter.ogg");
-        return new sf::Music; });
-    this->musics.push_back([]() -> sf::Music *
-                           {
-        sf::Music *music;
-        music = new sf::Music;
-        music->openFromFile("music/moonlight.ogg");
-        return music; });
-    this->musics.push_back([]() -> sf::Music *
-                           {
-        sf::Music *music;
-        music = new sf::Music;
-        music->openFromFile("music/moonlight.ogg");
-        return music; });
-        */
 }
 void Musics::set_music()
 {
+
     this->playingMusic = this->musics[charMenuOpen + menuOpen + gameOpen - 1];
     playingMusic->setLoop(true);
     playingMusic->setVolume(5);

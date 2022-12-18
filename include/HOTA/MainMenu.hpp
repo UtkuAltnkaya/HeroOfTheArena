@@ -25,6 +25,8 @@ private:
   void init_char_menu();
   void MoveUp();
   void MoveDown();
+  void seletected_option();
+  void move_it(sf::Event &event);
 
 public:
   MainMenu(float width, float height);
