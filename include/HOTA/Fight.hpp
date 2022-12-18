@@ -20,11 +20,11 @@ private:
 public:
     Fight(Hero *&hero, Boss *&boss);
     ~Fight();
-    void move_position(const std::string &ani_name, const sf::Keyboard::Key &move);
-    void control_collide();
+    void move_position(const std::string &ani_name, const sf::Keyboard::Key &move, std::string type);
+    void control_collide(std::string type);
     void poll_events();
-    void skill_perform();
-    void move_initial_position();
+    void skill_perform(std::string type);
+    void move_initial_position(std::string type);
 };
 
 #endif

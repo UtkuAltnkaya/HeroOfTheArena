@@ -40,7 +40,7 @@ public:
   void render(sf::RenderTarget &target);
   void poll_events(sf::Event &event, Boss *boss);
   void poll_events_loop(sf::Event &event);
-  void fight_events();
+
   void fight_start();
 
   bool get_is_ani_over();

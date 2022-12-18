@@ -47,6 +47,7 @@ void Hero::init_fight_animations()
   this->insert_new_animation("2_atk", "atk_", this->atk_two_num, false);
   this->insert_new_animation("sp_atk", "sp_atk_", this->atk_sp_num, false);
   this->insert_new_animation("defend", "defend_", this->defend_num, false);
+  this->insert_new_animation("death", "death_", this->death_num, false);
 }
 
 void Hero::update()
@@ -155,27 +156,6 @@ void Hero::game_events()
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
   {
     this->ani_name = "jump_up";
-  }
-}
-
-void Hero::fight_events() // TODO: delete
-{
-
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-  {
-    this->ani_name = "1_atk";
-  }
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-  {
-    this->ani_name = "2_atk";
-  }
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-  {
-    this->ani_name = "defend";
-  }
-  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-  {
-    this->ani_name = "sp_atk";
   }
 }
 

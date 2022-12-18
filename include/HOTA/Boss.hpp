@@ -13,14 +13,16 @@ protected:
     int mana;
     int defense;
     float crit_chance;
+
+    bool is_fight_start;
     bool is_ani_over;
 
     void atk_boss();
     void init_all_animations();
 
 private:
-    void init_fight_animation();
-    void init_game_animation();
+    void init_fight_animations();
+    void init_game_animations();
 
 public:
     Boss();
@@ -33,6 +35,12 @@ public:
     void render(sf::RenderTarget &target);
     void poll_events(sf::Event &event);
     void poll_events_loop(sf::Event &event);
+
+    void fight_start();
+
+    bool get_is_ani_over();
+    void set_is_ani_over(const bool &is_ani_over);
+    void set_ani_name(const std::string &ani_name);
 };
 
 #endif
