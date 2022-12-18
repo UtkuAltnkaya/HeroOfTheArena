@@ -6,8 +6,9 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 }
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
-    : Physics{pathVal, actualWidth, actualHeight}, health(healthVal),
-      damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
+    : Physics{pathVal, actualWidth, actualHeight},
+      ui{new Ui{"", ""}},
+      health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
       is_fight_start{false}, is_ani_over{false}, ani_name{"idle"}
 {
   this->init_var();
@@ -15,6 +16,7 @@ Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int d
 
 Hero::~Hero()
 {
+  delete ui;
 }
 
 void Hero::init_var()
@@ -70,6 +72,7 @@ void Hero::update()
 void Hero::render(sf::RenderTarget &target)
 {
   this->animation->render(target);
+  this->ui->render(target);
 }
 
 void Hero::move_character()

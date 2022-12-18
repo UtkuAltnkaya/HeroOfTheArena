@@ -1,7 +1,7 @@
 #include "HOTA/FireKnight.hpp"
 #include <iostream>
 
-FireKnight::FireKnight() : Hero{"image", 5000, 200, 500, 250, 0.1f, 150, 150}
+FireKnight::FireKnight() : Hero{"image/Fire Knight", 5000, 200, 500, 250, 0.1f, 150, 150}
 {
     this->init_var();
 }
@@ -16,11 +16,12 @@ void FireKnight::init_var()
     this->init_all_animations();
     this->init_stats();
     this->init_position();
+    this->ui->init_character_photo(this->path, "fire_knight");
+    this->ui->init_health(this->health);
 }
 
 void FireKnight::init_ani_stats()
 {
-    this->path += "/Fire Knight";
     this->atk_one_num = 11;
     this->atk_two_num = 28;
     this->atk_sp_num = 18;
@@ -37,7 +38,7 @@ void FireKnight::init_ani_stats()
 
 void FireKnight::init_stats()
 {
-    this->health -= 1800;
+    this->health -= 1000;
     this->damage += 100;
     this->mana += 200;
     this->defense -= 50;

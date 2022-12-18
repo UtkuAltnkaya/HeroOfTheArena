@@ -1,7 +1,7 @@
 #include "HOTA/Water.hpp"
 #include <iostream>
 
-Water::Water() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
+Water::Water() : Hero{"image/Water", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
     this->init_var();
 }
@@ -16,11 +16,12 @@ void Water::init_var()
     this->init_all_animations();
     this->init_stats();
     this->init_position();
+    this->ui->init_character_photo(this->path, "water");
+    this->ui->init_health(this->health);
 }
 
 void Water::init_ani_stats()
 {
-    this->path += "/Water";
     this->atk_one_num = 21;
     this->atk_two_num = 27;
     this->atk_sp_num = 32;

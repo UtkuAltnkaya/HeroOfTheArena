@@ -1,7 +1,7 @@
 #include "HOTA/Wind.hpp"
 #include <iostream>
 
-Wind::Wind() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
+Wind::Wind() : Hero{"image/Wind", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
     this->init_var();
 }
@@ -16,11 +16,12 @@ void Wind::init_var()
     this->init_all_animations();
     this->init_stats();
     this->init_position();
+    this->ui->init_character_photo(this->path, "wind");
+    this->ui->init_health(this->health);
 }
 
 void Wind::init_ani_stats()
 {
-    this->path += "/Wind";
     this->atk_one_num = 8;
     this->atk_two_num = 26;
     this->atk_sp_num = 30;

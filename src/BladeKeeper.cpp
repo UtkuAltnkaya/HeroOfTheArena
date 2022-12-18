@@ -1,7 +1,7 @@
 #include "HOTA/BladeKeeper.hpp"
 #include <iostream>
 
-BladeKeeper::BladeKeeper() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
+BladeKeeper::BladeKeeper() : Hero{"image/BladeKeeper", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
     this->init_var();
 }
@@ -16,11 +16,12 @@ void BladeKeeper::init_var()
     this->init_all_animations();
     this->init_stats();
     this->init_position();
+    this->ui->init_character_photo(this->path, "blade_keeper");
+    this->ui->init_health(this->health);
 }
 
 void BladeKeeper::init_ani_stats()
 {
-    this->path += "/BladeKeeper";
     this->atk_one_num = 6;
     this->atk_two_num = 18;
     this->atk_sp_num = 11;

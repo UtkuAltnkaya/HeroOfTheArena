@@ -1,7 +1,7 @@
 #include "HOTA/LeafArcher.hpp"
 #include <iostream>
 
-LeafArcher::LeafArcher() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
+LeafArcher::LeafArcher() : Hero{"image/Leaf Archer", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
   this->init_var();
 }
@@ -16,11 +16,12 @@ void LeafArcher::init_var()
   this->init_all_animations();
   this->init_stats();
   this->init_position();
+  this->ui->init_character_photo(this->path, "leaf_archer");
+  this->ui->init_health(this->health);
 }
 
 void LeafArcher::init_ani_stats()
 {
-  this->path += "/Leaf Archer";
   this->atk_one_num = 15;
   this->atk_two_num = 20;
   this->atk_sp_num = 17;

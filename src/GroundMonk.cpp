@@ -1,7 +1,7 @@
 #include "HOTA/GroundMonk.hpp"
 #include <iostream>
 
-GroundMonk::GroundMonk() : Hero{"image", 5000, 200, 500, 250, 0.1f, 10, 100}
+GroundMonk::GroundMonk() : Hero{"image/Ground Monk", 5000, 200, 500, 250, 0.1f, 10, 100}
 {
     this->init_var();
 }
@@ -16,11 +16,12 @@ void GroundMonk::init_var()
     this->init_all_animations();
     this->init_stats();
     this->init_position();
+    this->ui->init_character_photo(this->path, "ground_monk");
+    this->ui->init_health(this->health);
 }
 
 void GroundMonk::init_ani_stats()
 {
-    this->path += "/Ground Monk";
     this->atk_one_num = 6;
     this->atk_two_num = 23;
     this->atk_sp_num = 25;

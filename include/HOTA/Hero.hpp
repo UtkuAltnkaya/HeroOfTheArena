@@ -5,10 +5,13 @@
 #include "HOTA/AnimationCreator.hpp"
 #include "HOTA/Physics.hpp"
 #include "HOTA/Boss.hpp"
+#include "HOTA/Ui.hpp"
 
 class Hero : public Physics
 {
 protected:
+  Ui *ui;
+
   int health;
   int damage;
   int mana;
