@@ -1,7 +1,7 @@
 #include "HOTA/GroundMonk.hpp"
 #include <iostream>
 
-GroundMonk::GroundMonk() : Hero{"image", 5000, 200, 500, 250, 0.1f, 100, 100}
+GroundMonk::GroundMonk() : Hero{"image", 5000, 200, 500, 250, 0.1f, 10, 100}
 {
     this->init_var();
 }

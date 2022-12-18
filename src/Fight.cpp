@@ -2,9 +2,6 @@
 #include "HOTA/Hero.hpp"
 #include <iostream>
 
-std::string BOSS{"boss"};
-std::string HERO{"hero"};
-
 Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}
 {
     this->hero->fight_start();
@@ -45,96 +42,71 @@ void Fight::hero_attack()
         this->is_key_pressed = true;
     }
 
-    this->control_collide(HERO); // it's being called repeatedly to get closer to the boss so hero can perform the attack animation
+    this->hero_control_collide(); // it's being called repeatedly to get closer to the boss so hero can perform the attack animation
 }
 void Fight::boss_attack()
 {
-    this->control_collide(BOSS);
+    // TODO:boss
 }
 
-void Fight::control_collide(std::string type)
+void Fight::hero_control_collide()
 {
-    if (type == "hero")
+    bool check{this->hero->is_collide(this->boss)};
+    this->boss->set_is_ani_over(false);
+    if (this->is_key_pressed && !check) // if key is pressed, and boss and hero is not collided, call skill_collide
     {
-        bool check{this->hero->is_collide(this->boss)};
-
-        if (this->is_key_pressed && !check) // if key is pressed, and boss and hero is not collided, call skill_collide
-        {
-            this->move_position("run", sf::Keyboard::D, HERO);
-            // std::cout << "RUN" << std::endl;
-        }
-        else if (check && !this->hero->get_is_ani_over())
-        {
-            this->skill_perform(HERO); // hero performs his/her skill.
-            this->boss->set_ani_name("take_hit");
-
-            // if (!this->boss->get_is_ani_over())
-            // {
-            //     this->boss->set_ani_name("take_hit");
-            // }
-        }
-        // else if (!this->boss->get_is_ani_over() && this->hero->get_is_ani_over())
-        // {
-        //     this->boss->set_ani_name("take_hit");
-        // }
-
-        else
-        {
-            this->move_initial_position(HERO); // hero returns back to initial position.
-        }
+        this->hero_move_position("run", sf::Keyboard::D);
     }
-    if (type == "boss")
+    else if (check && !this->hero->get_is_ani_over() && !this->boss->get_is_ani_over()) // TODO
     {
+        this->hero_skill_perform();           // hero performs his/her skill.
+        this->boss->set_ani_name("take_hit"); // Boss performs his/her skill.
+    }
+    else if (this->hero->get_is_ani_over())
+    {
+        std::cout << "A" << std::endl;
+        this->hero_move_initial_position(); // hero returns back to initial position.
     }
 }
 
-void Fight::move_position(const std::string &ani_name, const sf::Keyboard::Key &move, std::string type)
+void Fight::hero_move_position(const std::string &ani_name, const sf::Keyboard::Key &move)
 {
-    if (type == "hero")
+    this->hero->set_ani_name(ani_name);
+    this->hero->move_left_right(move, 8.f); // go right with animation "run" & (velocity 8.f)
+}
+
+void Fight::hero_skill_perform()
+{
+    if (this->key == sf::Keyboard::Q)
     {
-        this->hero->set_ani_name(ani_name);
-        this->hero->move_left_right(move, 8.f); // go right with animation "run" & (velocity 8.f)
+        this->hero->set_ani_name("1_atk");
+    }
+    else if (this->key == sf::Keyboard::W)
+    {
+        this->hero->set_ani_name("2_atk");
+    }
+    else if (this->key == sf::Keyboard::R)
+    {
+        this->hero->set_ani_name("sp_atk");
+    }
+    else if (this->key == sf::Keyboard::E)
+    {
+        this->hero->set_ani_name("defend");
     }
 }
 
-void Fight::skill_perform(std::string type)
+void Fight::hero_move_initial_position()
 {
-    if (type == "hero")
+    if (this->hero->get_position_x() != -200.f)
     {
-        if (this->key == sf::Keyboard::Q)
-        {
-            this->hero->set_ani_name("1_atk");
-        }
-        else if (this->key == sf::Keyboard::W)
-        {
-            this->hero->set_ani_name("2_atk");
-        }
-        else if (this->key == sf::Keyboard::R)
-        {
-            this->hero->set_ani_name("sp_atk");
-        }
-        else if (this->key == sf::Keyboard::E)
-        {
-            this->hero->set_ani_name("defend");
-        }
+        this->hero_move_position("run_left", sf::Keyboard::A);
+        this->is_key_pressed = false;
     }
-}
-
-void Fight::move_initial_position(std::string type)
-{
-    if (type == "hero")
+    else
     {
-        if (hero->get_position_x() != -200.)
-        {
-            // std::cout << "RUN-LEFT" << std::endl;
-            this->move_position("run_left", sf::Keyboard::A, HERO);
-            this->is_key_pressed = false;
-        }
-        else
-        {
-            this->hero->set_is_ani_over(false);
-            this->hero->set_ani_name("idle");
-            this->boss->set_is_ani_over(false);
-        }
+        std::cout << "B" << std::endl; // called once
+        // Start position
+        this->hero->set_is_ani_over(false);
+        this->hero->set_ani_name("idle");
     }
 }
