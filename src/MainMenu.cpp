@@ -33,7 +33,7 @@ MainMenu::MainMenu(float width, float height)
 MainMenu::~MainMenu()
 {
   delete this->char_menu;
-  // delete this->music;
+  delete this->music;
 }
 
 void MainMenu::render(sf::RenderWindow &window, Hero *&hero)
@@ -145,8 +145,9 @@ void MainMenu::seletected_option()
 void MainMenu::init_char_menu()
 {
   this->char_menu = new CharMenu("", "image");
-  this->music.set_music();
-  this->music.play();
+  this->music = new Musics("Battle Encounter.ogg");
+  this->music->set_music();
+  this->music->play();
 }
 
 void MainMenu::update()

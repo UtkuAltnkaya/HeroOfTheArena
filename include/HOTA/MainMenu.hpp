@@ -18,7 +18,7 @@ private:
 
   sf::Font titleFont;
   sf::Text title;
-  Musics music;
+  Musics *music;
   CharMenu *char_menu;
 
   bool open;

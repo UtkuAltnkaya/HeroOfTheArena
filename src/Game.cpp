@@ -16,6 +16,7 @@ Game::~Game()
   if (this->main_menu)
     delete this->main_menu;
   delete this->boss;
+  delete this->music;
 }
 
 // Private
@@ -31,9 +32,8 @@ void Game::init_var()
   this->video_mode.height = 256 * 3;
 
   this->music_playing = false;
-  this->music.set_charMenuOpen(0);
-  this->music.set_menuOpen(0);
-  this->music.set_music();
+  this->music = new Musics("moonlight.ogg");
+  this->music->set_music();
 
   //  this->music.stopMusic();
 }
@@ -155,7 +155,7 @@ void Game::play_music()
 {
   if (!this->music_playing)
   {
-    this->music.play();
+    this->music->play();
     this->music_playing = true;
   }
 }

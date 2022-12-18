@@ -15,7 +15,7 @@ private:
   MainMenu *main_menu;
   Boss *boss;
   Npc *npc;
-  Musics music;
+  Musics *music;
   Fight *fight;
   bool music_playing;
 
