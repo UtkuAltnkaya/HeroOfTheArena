@@ -5,12 +5,6 @@
 #include "HOTA/Hero.hpp"
 #include "HOTA/Boss.hpp"
 
-enum class TYPE
-{
-    HERO,
-    BOSS
-};
-
 class Fight
 {
 private:
@@ -18,9 +12,9 @@ private:
     Boss *boss;
 
     bool is_key_pressed;
+    bool is_turn_hero;
+    bool is_boss_attack;
     sf::Keyboard::Key key;
-
-    TYPE type;
 
     void hero_attack();
     void hero_control_collide();
@@ -29,6 +23,13 @@ private:
     void hero_move_initial_position();
 
     void boss_attack();
+    void boss_skill_perform();
+    void boss_move_position(const std::string &boss_ani_name, const sf::Keyboard::Key &move);
+    void boss_move_initial_position();
+    void boss_control_collide();
+
+    void hero_decrease_health();
+    void boss_decrease_health();
 
 public:
     Fight(Hero *&hero, Boss *&boss);

@@ -12,8 +12,8 @@ protected:
   int health;
   int damage;
   int mana;
-  int defense;
-  float crit_chance;
+  int defense;       // TODO change name to defend_chance
+  float crit_chance; // TODO change type to integer
 
   bool is_fight_start;
   bool is_ani_over;
@@ -44,6 +44,10 @@ public:
   void fight_start();
 
   bool get_is_ani_over();
+  int get_health();
+  int get_damage();
+
+  void set_health(const int &health);
   void set_is_ani_over(const bool &is_ani_over);
   void set_ani_name(const std::string &ani_name);
 };

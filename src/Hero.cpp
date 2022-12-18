@@ -48,6 +48,7 @@ void Hero::init_fight_animations()
   this->insert_new_animation("sp_atk", "sp_atk_", this->atk_sp_num, false);
   this->insert_new_animation("defend", "defend_", this->defend_num, false);
   this->insert_new_animation("death", "death_", this->death_num, false);
+  this->insert_new_animation("take_hit", "take_hit_", this->take_dmg_num, false);
 }
 
 void Hero::update()
@@ -172,6 +173,16 @@ bool Hero::get_is_ani_over()
   return this->is_ani_over;
 }
 
+int Hero::get_health()
+{
+  return this->health;
+}
+
+int Hero::get_damage()
+{
+  return this->damage;
+}
+
 void Hero::set_is_ani_over(const bool &is_ani_over)
 {
   this->is_ani_over = is_ani_over;
@@ -180,4 +191,9 @@ void Hero::set_is_ani_over(const bool &is_ani_over)
 void Hero::set_ani_name(const std::string &ani_name)
 {
   this->ani_name = ani_name;
+}
+
+void Hero::set_health(const int &health)
+{
+  this->health = health;
 }
