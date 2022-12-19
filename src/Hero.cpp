@@ -50,7 +50,7 @@ void Hero::init_fight_animations()
   this->insert_new_animation("sp_atk", "sp_atk_", this->atk_sp_num, false);
   this->insert_new_animation("defend", "defend_", this->defend_num, false);
   this->insert_new_animation("death", "death_", this->death_num, false);
-  this->insert_new_animation("take_hit", "take_hit_", this->take_dmg_num, false);
+  this->insert_new_animation("take_hit", "take_hit_", this->take_dmg_num, true);
 }
 
 void Hero::update()

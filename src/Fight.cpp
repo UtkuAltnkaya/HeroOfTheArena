@@ -57,8 +57,7 @@ void Fight::hero_control_collide()
     bool is_hero_hit{this->hero->get_is_ani_over()};
     bool check{this->hero->is_collide(this->boss)};
 
-    std::cout << this->hero->get_ani_name() << std::endl;
-    std::cout << is_hero_hit << std::endl;
+    // std::cout << check << " " << is_hero_hit << " " << this->is_turn_hero << " " << this->hero->get_ani_name() << std::endl;
 
     this->boss->set_is_ani_over(false);
     if (this->is_key_pressed && !check) // if key is pressed, and boss and hero is not collided, call hero_move_position
@@ -112,9 +111,11 @@ void Fight::hero_move_initial_position()
     }
     else
     {
+        // std::cout << "bura mi?" << std::endl;
         this->is_turn_hero = false;
         this->hero->set_is_ani_over(false);
         this->hero->set_ani_name("idle");
+        this->is_boss_attack = true;
     }
 }
 
@@ -139,6 +140,7 @@ void Fight::boss_move_initial_position()
 {
     if (this->boss->get_position_x() != 800.f) // Until Boss goes back to his initial position , move his position with "run" animation
     {
+        this->hero->set_ani_name("idle");
         this->is_boss_attack = false;
         this->boss_move_position("run", sf::Keyboard::D);
     }
@@ -155,7 +157,7 @@ void Fight::boss_control_collide()
 {
     bool check{this->boss->is_collide(this->hero)};
     bool is_boss_hit{this->boss->get_is_ani_over()};
-
+    // std::cout << check << " " << is_boss_hit << " " << this->hero->get_is_ani_over() << std::endl;
     if (!check && this->is_boss_attack)
     {
         boss_move_position("run_left", sf::Keyboard::A);
