@@ -4,42 +4,28 @@
 #include <string>
 #include <vector>
 #include <SFML/Graphics.hpp>
-
-struct TextureAndSprite
-{
-  sf::Sprite *sprite;
-  sf::Texture *texture;
-};
-
-struct TextureAndSpriteAndRectangle
-{
-  sf::Sprite *sprite;
-  sf::Texture *texture;
-  sf::IntRect rectangle;
-};
+#include "UiHeart.hpp"
 
 class Ui
 {
 private:
-  std::string folder;
-  std::string png;
-  TextureAndSprite *character_photo;
-  TextureAndSpriteAndRectangle *mana_bar;
+  std::vector<UiHeart *> health_bar;
+  struct
+  {
+    sf::Sprite *sprite;
+    sf::Texture *texture;
+  } character_photo;
 
-  std::vector<TextureAndSpriteAndRectangle *> *health_bar;
-
-  sf::Texture *init_texture(const std::string &path);
-  sf::Sprite *init_sprite(const sf::Texture *texture, const sf::Vector2f &scale, const sf::Vector2f &position);
-
-  void init_heart(const int &size, const sf::Vector2f &scale, sf::Vector2f &position, const float &multiplier);
+  void init_heart(const int &size, const float &multiplier, const sf::IntRect &rect, sf::Vector2f &position);
 
 public:
-  Ui(const std::string &folder, const std::string &png);
+  Ui();
   ~Ui();
 
-  void init_character_photo(const std::string &folder, const std::string &png);
+  void init_character_photo(const std::string &folder, const std::string &png, const sf::Vector2f &position = sf::Vector2f{40.f, 40.f});
   void init_health(const int &health);
-  void update();
+
+  void reduce_health(const int &atk_power);
   void render(sf::RenderTarget &target);
 };
 

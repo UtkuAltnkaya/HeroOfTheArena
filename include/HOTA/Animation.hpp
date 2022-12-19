@@ -22,11 +22,11 @@ private:
   void init_texture();
   void init_sprite();
   void init_clock();
-  void init_var(std::string &, std::string &, std::string &, size_t &, bool &is_repeat);
+  void init_var(const std::string &type, const std::string &ani, const std::string &ani_name, const size_t &size, const bool &is_repeat);
   void init_var(size_t &, bool &is_repeat);
 
 public:
-  Animation(std::string, std::string, std::string, size_t, bool is_repeat);
+  Animation(const std::string &type, const std::string &ani, const std::string &ani_name, const size_t &size, const bool &is_repeat);
   Animation(Animation &);
   ~Animation();
   void render(sf::RenderTarget &);

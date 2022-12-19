@@ -4,7 +4,7 @@ Npc::Npc() : Npc{""}
 {
 }
 
-Npc::Npc(std::string path) : Physics{path, 200, 200}, ani_name{"idle"}
+Npc::Npc(const std::string &path) : Physics{path, 200, 200}, ani_name{"idle"}
 {
 }
 

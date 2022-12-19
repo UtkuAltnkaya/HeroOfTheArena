@@ -1,7 +1,7 @@
 #include "HOTA/Physics.hpp"
 #include <iostream>
 
-Physics::Physics(std::string path, int character_actual_width, int character_actual_height)
+Physics::Physics(const std::string &path, const int &character_actual_width, const int &character_actual_height)
     : AnimationCreator{path},
       velocity_x{5.f}, velocity_y{7.5f}, gravity{10.f},
       character_actual_width{character_actual_width}, character_actual_height{character_actual_height},
@@ -103,7 +103,7 @@ void Physics::jump_down(std::string &jump_ani_name)
   this->set_position(sf::Vector2f{this->position.x, this->position.y + this->velocity_y});
 }
 
-void Physics::set_position(sf::Vector2f new_position)
+void Physics::set_position(const sf::Vector2f &new_position)
 {
   this->position = new_position;
   this->set_all_animation_position(this->position);
@@ -122,7 +122,7 @@ bool Physics::is_collide(const Physics *obj) // Boss IS a Physics
   return false;
 }
 
-float Physics::get_position_x()
+const float &Physics::get_position_x()
 {
   return this->position.x;
 }

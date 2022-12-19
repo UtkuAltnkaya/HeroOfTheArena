@@ -41,14 +41,14 @@ protected:
   int window_height;
 
   virtual void init_all_animations() = 0;
-  void insert_new_animation(const std::string &&animation_name, const std::string &&png_name, const size_t &animation_len, const bool &&is_repeat);
+  void insert_new_animation(const std::string &animation_name, const std::string &png_name, const size_t &animation_len, const bool &is_repeat);
   void select_animation(const std::string &animation_name);
   void set_and_calculate_position();
   void set_all_animation_position(const sf::Vector2f &last_postion);
 
 public:
   AnimationCreator();
-  AnimationCreator(std::string path);
+  AnimationCreator(const std::string &path);
   ~AnimationCreator();
 };
 

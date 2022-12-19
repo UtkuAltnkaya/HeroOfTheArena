@@ -7,9 +7,10 @@ Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 
 Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
     : Physics{pathVal, actualWidth, actualHeight},
-      ui{new Ui{"", ""}},
+      ui{new Ui{}},
       health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
       is_fight_start{false}, is_ani_over{false}, ani_name{"idle"}
+
 {
   this->init_var();
 }
@@ -56,7 +57,6 @@ void Hero::init_fight_animations()
 void Hero::update()
 {
   this->animation->update(this->is_ani_over);
-
   if (this->is_fight_start)
   {
     this->atk_character();
@@ -65,7 +65,6 @@ void Hero::update()
   {
     this->move_character();
   }
-
   this->select_animation(this->ani_name);
 }
 
@@ -170,6 +169,11 @@ void Hero::fight_start()
   this->ani_name = "idle";
   this->init_fight_animations();
   this->set_position(this->initial_positions);
+}
+
+void Hero::decrease_heath(const int &number)
+{
+  this->ui->reduce_health(number);
 }
 
 bool Hero::get_is_ani_over()

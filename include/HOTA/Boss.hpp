@@ -41,6 +41,8 @@ public:
     bool get_is_ani_over();
     void set_is_ani_over(const bool &is_ani_over);
     void set_ani_name(const std::string &ani_name);
+
+    const int &get_damage();
 };
 
 #endif

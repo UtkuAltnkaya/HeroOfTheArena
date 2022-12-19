@@ -5,7 +5,7 @@ AnimationCreator::AnimationCreator() : AnimationCreator{""}
 {
 }
 
-AnimationCreator::AnimationCreator(std::string path) : path{path}, animation{nullptr}, window_width{1536}, window_height{768}
+AnimationCreator::AnimationCreator(const std::string &path) : path{path}, animation{nullptr}, window_width{1536}, window_height{768}
 {
   this->idle_num = 0;
   this->atk_one_num = 0;
@@ -29,7 +29,7 @@ AnimationCreator::~AnimationCreator()
   }
 }
 
-void AnimationCreator::insert_new_animation(const std::string &&animation_name, const std::string &&png_name, const size_t &animation_len, const bool &&is_repeat)
+void AnimationCreator::insert_new_animation(const std::string &animation_name, const std::string &png_name, const size_t &animation_len, const bool &is_repeat)
 {
   this->all_animations.insert(std::pair<std::string, Animation *>(animation_name, new Animation{this->path, animation_name, png_name, animation_len, is_repeat}));
 }

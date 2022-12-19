@@ -45,6 +45,7 @@ public:
   void poll_events_loop(sf::Event &event);
 
   void fight_start();
+  void decrease_heath(const int &number);
 
   bool get_is_ani_over();
   int get_health();

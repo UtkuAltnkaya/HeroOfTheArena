@@ -42,7 +42,7 @@ void DemonSlime::init_ani_stats()
 void DemonSlime::init_stats()
 {
     this->health -= 2800;
-    this->damage += 50;
+    this->damage += 200;
     this->mana += 200;
     this->defense -= 50;
     this->crit_chance += 0.25;

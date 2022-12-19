@@ -27,7 +27,6 @@ void Boss::init_game_animations()
   this->insert_new_animation("idle", "idle_", this->idle_num, true);
   this->insert_new_animation("run", "run_", this->run_num, true);
   this->insert_new_animation("run_left", "run_", this->run_num, true);
-  // this->insert_new_animation("jump_up", "jump_up_", this->jump_up_num, false);
 }
 
 void Boss::init_fight_animations()
@@ -104,4 +103,9 @@ void Boss::set_is_ani_over(const bool &is_ani_over)
 void Boss::set_ani_name(const std::string &ani_name)
 {
   this->ani_name = ani_name;
+}
+
+const int &Boss::get_damage()
+{
+  return this->damage;
 }

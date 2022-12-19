@@ -3,7 +3,7 @@
 
 // Constructor that initializes variables texture, sprite and clock.
 
-Animation::Animation(std::string type, std::string ani, std::string ani_name, size_t size, bool is_repeat)
+Animation::Animation(const std::string &type, const std::string &ani, const std::string &ani_name, const size_t &size, const bool &is_repeat)
 {
   this->init_var(type, ani, ani_name, size, is_repeat);
   this->init_texture();
@@ -78,7 +78,7 @@ std::vector<sf::Sprite *> *Animation::get_sprite()
 
 // Private
 // TODO
-void Animation::init_var(std::string &type, std::string &ani, std::string &ani_name, size_t &size, bool &is_repeat)
+void Animation::init_var(const std::string &type, const std::string &ani, const std::string &ani_name, const size_t &size, const bool &is_repeat)
 {
   this->path = type + "/" + ani + "/" + ani_name;
   this->clock = nullptr;
