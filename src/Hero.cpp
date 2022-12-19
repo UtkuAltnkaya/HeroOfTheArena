@@ -167,6 +167,7 @@ void Hero::fight_start()
 {
   this->is_fight_start = true;
   this->is_ani_over = false;
+  this->ani_name = "idle";
   this->init_fight_animations();
   this->set_position(this->initial_positions);
 }
@@ -199,4 +200,9 @@ void Hero::set_ani_name(const std::string &ani_name)
 void Hero::set_health(const int &health)
 {
   this->health = health;
+}
+
+const std::string &Hero::get_ani_name()
+{
+  return this->ani_name;
 }

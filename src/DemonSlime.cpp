@@ -34,7 +34,7 @@ void DemonSlime::init_ani_stats()
     this->jump_down_num = 0;
     this->jump_up_num = 0;
 
-    this->initial_positions.x = 900;
+    this->initial_positions.x = 800;
     this->character_width = 864;
     this->character_height = 480;
 }

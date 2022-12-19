@@ -53,6 +53,7 @@ public:
   void set_health(const int &health);
   void set_is_ani_over(const bool &is_ani_over);
   void set_ani_name(const std::string &ani_name);
+  const std::string &get_ani_name();
 };
 
 #endif
