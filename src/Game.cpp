@@ -35,7 +35,6 @@ void Game::init_var()
 
   this->music_playing = false;
   this->music = new Musics("moonlight.ogg");
-  this->music->set_music();
 
   //  this->music.stopMusic();
 }
@@ -152,6 +151,7 @@ void Game::delete_main_menu()
   {
     delete this->main_menu;
     this->main_menu = nullptr;
+    this->music->set_volume(this->music->get_volume());
   }
 }
 

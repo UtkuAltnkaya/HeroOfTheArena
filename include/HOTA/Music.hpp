@@ -9,9 +9,9 @@ class Musics
 private:
     std::string path;
     sf::Music *playingMusic;
-
-    void init_var();
+    static float volume;
     void init_musics();
+    bool is_music_playing;
 
 public:
     Musics();
@@ -19,8 +19,9 @@ public:
     ~Musics();
     void stopMusic();
     void play();
-
-    void set_music();
+    void set_volume(float);
+    float get_volume();
+    bool get_is_music_playing();
 };
 
 #endif

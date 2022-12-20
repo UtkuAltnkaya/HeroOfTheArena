@@ -47,7 +47,7 @@ void Ui::reduce_health(const int &atk_power)
   size_t size{static_cast<size_t>(atk_power * 0.005)};
   for (size_t i{0}; i < size; i++)
   {
-    for (size_t j{this->health_bar.size() - 1}; j >= 0; j--)
+    for (int j{(int)this->health_bar.size() - 1}; j >= 0; j--)
     {
       if (!this->health_bar.at(j)->get_is_heart_over())
       {

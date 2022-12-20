@@ -27,6 +27,8 @@ MainMenu::MainMenu(float width, float height)
   }
   menu[0].setColor(sf::Color::Red);
   this->selectedItemIndex = 0;
+
+  this->options = new Options(font);
   this->init_char_menu();
 }
 
@@ -34,6 +36,7 @@ MainMenu::~MainMenu()
 {
   delete this->char_menu;
   delete this->music;
+  delete this->options;
 }
 
 void MainMenu::render(sf::RenderWindow &window, Hero *&hero)
@@ -46,6 +49,11 @@ void MainMenu::render(sf::RenderWindow &window, Hero *&hero)
     {
       window.draw(menu[i]);
     }
+    return;
+  }
+  else if (this->options->get_is_open())
+  {
+    this->options->render(window);
     return;
   }
   else if (this->char_menu->get_open())
@@ -99,6 +107,10 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
       this->move_it(event);
     }
   }
+  else if (this->options->get_is_open())
+  {
+    this->options->move_left_right(event, this->music, this->open);
+  }
   else if (this->char_menu->get_open())
   {
 
@@ -130,14 +142,17 @@ void MainMenu::selected_option()
   if (this->selectedItemIndex == 0)
   {
     this->open = false;
+    this->options->set_is_open(false);
   }
   else if (this->selectedItemIndex == 1)
   {
-    // todo
+    this->open = false;
+    this->options->set_is_open(true);
   }
   else if (this->selectedItemIndex == 2)
   {
     this->open = false;
+    this->options->set_is_open(false);
     this->char_menu->set_open(false);
   }
 }
@@ -146,7 +161,6 @@ void MainMenu::init_char_menu()
 {
   this->char_menu = new CharMenu("", "image");
   this->music = new Musics("Battle Encounter.ogg");
-  this->music->set_music();
   this->music->play();
 }
 

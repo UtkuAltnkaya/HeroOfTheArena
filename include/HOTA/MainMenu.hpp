@@ -6,6 +6,7 @@
 #include <iostream>
 #include "HOTA/CharacterMenu.hpp"
 #include "HOTA/Music.hpp"
+#include "HOTA/Options.hpp"
 #define MAX_NUMBER_OF_ITEMS 3
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
   sf::Text title;
   Musics *music;
   CharMenu *char_menu;
+  Options *options;
 
   bool open;
   void init_char_menu();
