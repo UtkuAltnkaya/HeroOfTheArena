@@ -17,7 +17,7 @@ Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int d
 
 Hero::~Hero()
 {
-  delete ui;
+  delete this->ui;
 }
 
 void Hero::init_var()
@@ -173,7 +173,7 @@ void Hero::fight_start()
 
 void Hero::decrease_heath(const int &number)
 {
-  this->ui->reduce_health(number);
+  this->ui->reduce_health(number, true);
 }
 
 bool Hero::get_is_ani_over()

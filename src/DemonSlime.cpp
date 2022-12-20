@@ -1,7 +1,7 @@
 #include "HOTA/DemonSlime.hpp"
 #include <iostream>
 
-DemonSlime::DemonSlime() : Boss{"image", 5000, 200, 500, 250, 0.1f}
+DemonSlime::DemonSlime() : Boss{"image/DemonSlime", 5000, 200, 500, 250, 0.1f}
 {
     this->init_var();
 }
@@ -20,7 +20,6 @@ void DemonSlime::init_var()
 
 void DemonSlime::init_ani_stats()
 {
-    this->path += "/DemonSlime";
     this->atk_one_num = 15;
     this->atk_two_num = 0;
     this->atk_sp_num = 0;
@@ -41,7 +40,7 @@ void DemonSlime::init_ani_stats()
 
 void DemonSlime::init_stats()
 {
-    this->health -= 2800;
+    this->health += 1000;
     this->damage += 200;
     this->mana += 200;
     this->defense -= 50;

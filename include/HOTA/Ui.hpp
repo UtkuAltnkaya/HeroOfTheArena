@@ -17,15 +17,18 @@ private:
   } character_photo;
 
   void init_heart(const int &size, const float &multiplier, const sf::IntRect &rect, sf::Vector2f &position);
+  void reduce_hero_health();
+  void reduce_boss_health();
 
 public:
   Ui();
   ~Ui();
 
   void init_character_photo(const std::string &folder, const std::string &png, const sf::Vector2f &position = sf::Vector2f{40.f, 40.f});
-  void init_health(const int &health);
+  void init_health(const int &health, sf::Vector2f &&position = sf::Vector2f{150.f, 45.f});
 
-  void reduce_health(const int &atk_power);
+  void reduce_health(const int &atk_power, const bool &is_hero);
+  void rotate_health();
   void render(sf::RenderTarget &target);
 };
 

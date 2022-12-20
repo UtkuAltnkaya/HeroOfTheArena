@@ -25,10 +25,9 @@ void Ui::init_character_photo(const std::string &folder, const std::string &png,
   this->character_photo.sprite->setPosition(position);
 }
 
-void Ui::init_health(const int &number)
+void Ui::init_health(const int &number, sf::Vector2f &&position)
 {
   int heart_number{number / 400}, remainder{heart_number % 3}, size{(heart_number - remainder) / 3};
-  sf::Vector2f position{150.f, 45.f};
   this->init_heart(size, 115.5f, sf::IntRect{0, 0, 33, 11}, position);
   this->init_heart(remainder, 38.5f, sf::IntRect{0, 44, 11, 11}, position);
 }
@@ -42,19 +41,52 @@ void Ui::init_heart(const int &size, const float &multiplier, const sf::IntRect 
   }
 }
 
-void Ui::reduce_health(const int &atk_power)
+void Ui::reduce_health(const int &atk_power, const bool &is_hero)
 {
   size_t size{static_cast<size_t>(atk_power * 0.005)};
   for (size_t i{0}; i < size; i++)
   {
-    for (int j{(int)this->health_bar.size() - 1}; j >= 0; j--)
+    if (is_hero)
     {
-      if (!this->health_bar.at(j)->get_is_heart_over())
-      {
-        this->health_bar.at(j)->decrease_heart();
-        break;
-      }
+      this->reduce_hero_health();
     }
+    else
+    {
+      this->reduce_boss_health();
+    }
+  }
+}
+
+void Ui::reduce_hero_health()
+{
+  for (int i{static_cast<int>(this->health_bar.size()) - 1}; i >= 0; i--)
+  {
+    if (!this->health_bar.at(i)->get_is_heart_over())
+    {
+      this->health_bar.at(i)->decrease_heart();
+      return;
+    }
+  }
+}
+
+void Ui::reduce_boss_health()
+{
+  size_t size{this->health_bar.size()};
+  for (size_t i{0}; i < size; i++)
+  {
+    if (!this->health_bar.at(i)->get_is_heart_over())
+    {
+      this->health_bar.at(i)->decrease_heart();
+      return;
+    }
+  }
+}
+
+void Ui::rotate_health()
+{
+  for (auto &&i : this->health_bar)
+  {
+    i->rotate_heart();
   }
 }
 

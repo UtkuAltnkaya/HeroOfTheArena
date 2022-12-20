@@ -111,7 +111,7 @@ void Fight::hero_move_initial_position()
     }
     else
     {
-        // std::cout << "bura mi?" << std::endl;
+        this->boss_decrease_health();
         this->is_turn_hero = false;
         this->hero->set_is_ani_over(false);
         this->hero->set_ani_name("idle");
@@ -181,4 +181,5 @@ void Fight::hero_decrease_health()
 
 void Fight::boss_decrease_health()
 {
+    this->boss->decrease_heath(this->hero->get_damage());
 }

@@ -25,6 +25,7 @@ public:
 
   void decrease_heart();
   void set_full_heart();
+  void rotate_heart();
   const bool &get_is_heart_over();
 
   void render(sf::RenderTarget &target);

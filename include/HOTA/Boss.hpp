@@ -3,10 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include "HOTA/Physics.hpp"
+#include "HOTA/Ui.hpp"
 
 class Boss : public Physics
 {
 protected:
+    Ui *ui;
+
     std::string ani_name;
     int health;
     int damage;
@@ -37,6 +40,7 @@ public:
     void poll_events_loop(sf::Event &event);
 
     void fight_start();
+    void decrease_heath(const int &number);
 
     bool get_is_ani_over();
     void set_is_ani_over(const bool &is_ani_over);

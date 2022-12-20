@@ -6,13 +6,15 @@ Boss::Boss() : Boss{"", 0, 0, 0, 0, 0.0f}
 }
 
 Boss::Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
-    : Physics{pathVal, 300, 300}, ani_name{"idle"}, health(healthVal),
+    : Physics{pathVal, 300, 300}, ui{nullptr},
+      ani_name{"idle"}, health(healthVal),
       damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal), is_fight_start{false}, is_ani_over{false}
 {
 }
 
 Boss::~Boss()
 {
+  delete this->ui;
 }
 
 void Boss::init_all_animations()
@@ -47,6 +49,10 @@ void Boss::update()
 void Boss::render(sf::RenderTarget &target)
 {
   this->animation->render(target);
+  if (this->ui)
+  {
+    this->ui->render(target);
+  }
 }
 
 void Boss::atk_boss()
@@ -88,6 +94,16 @@ void Boss::fight_start()
   this->is_fight_start = true;
   this->is_ani_over = false;
   this->init_fight_animations();
+
+  this->ui = new Ui{};
+  this->ui->init_character_photo(this->path, "demon_slime", sf::Vector2f{this->window_width - 140.f, 40.f});
+  this->ui->init_health(this->health, sf::Vector2f{this->window_width - 625.f, 45.f});
+  this->ui->rotate_health();
+}
+
+void Boss::decrease_heath(const int &number)
+{
+  this->ui->reduce_health(number, false);
 }
 
 bool Boss::get_is_ani_over()

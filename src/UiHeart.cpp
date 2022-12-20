@@ -37,6 +37,10 @@ void UiHeart::decrease_heart()
     return;
   }
 }
+void UiHeart::rotate_heart()
+{
+  this->sprite->setScale(-3.5f, 3.5f);
+}
 
 void UiHeart::set_full_heart()
 {
