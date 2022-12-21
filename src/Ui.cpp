@@ -32,6 +32,13 @@ void Ui::init_health(const int &number, sf::Vector2f &&position)
   this->init_heart(remainder, 38.5f, sf::IntRect{0, 44, 11, 11}, position);
 }
 
+// void Ui::init_mana_bar(const int &number, sf::Vector2f &&position)
+// {
+//   int mana_number{number / 100}, remainder{mana_number % 2}, size{(mana_number - remainder) / 2};
+
+//   this->init_mana(mana_number, 66.f, sf::IntRect{23, 24, 23, 23}, position);
+// }
+
 void Ui::init_heart(const int &size, const float &multiplier, const sf::IntRect &rect, sf::Vector2f &position)
 {
   for (int i{0}; i < size; i++)
@@ -40,6 +47,10 @@ void Ui::init_heart(const int &size, const float &multiplier, const sf::IntRect 
     position.x += multiplier;
   }
 }
+
+// void Ui::init_mana(const int &size, const float &multiplier, const sf::IntRect &rect, sf::Vector2f &position)
+// {
+// }
 
 void Ui::reduce_health(const int &atk_power, const bool &is_hero)
 {

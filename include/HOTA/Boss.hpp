@@ -10,7 +10,7 @@ class Boss : public Physics
 protected:
     Ui *ui;
 
-    std::string ani_name;
+    AnimationNames ani_name;
     int health;
     int damage;
     int mana;
@@ -44,8 +44,7 @@ public:
 
     bool get_is_ani_over();
     void set_is_ani_over(const bool &is_ani_over);
-    void set_ani_name(const std::string &ani_name);
-
+    void set_ani_name(const AnimationNames &ani_name);
     const int &get_damage();
 };
 

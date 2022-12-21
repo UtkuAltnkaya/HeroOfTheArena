@@ -3,15 +3,16 @@
 
 #include <string>
 #include "HOTA/Animation.hpp"
+#include "HOTA/AnimationNames.hpp"
 #include <map>
 
 class AnimationCreator
 {
 
 private:
-  std::map<std::string, Animation *> all_animations;
+  std::map<AnimationNames, Animation *> all_animations;
 
-  bool select_jump_animation(const std::string &animation_name);
+  bool select_jump_animation(const AnimationNames &animation_name);
   void set_animation_position(Animation *animation, const sf::Vector2f &last_postion);
   void calculate_inital_position();
 
@@ -41,8 +42,8 @@ protected:
   int window_height;
 
   virtual void init_all_animations() = 0;
-  void insert_new_animation(const std::string &animation_name, const std::string &png_name, const size_t &animation_len, const bool &is_repeat);
-  void select_animation(const std::string &animation_name);
+  void insert_new_animation(const AnimationNames &animation_name, const std::string &type, const std::string &png_name, const size_t &animation_len, const bool &is_repeat);
+  void select_animation(const AnimationNames &animation_name);
   void set_and_calculate_position();
   void set_all_animation_position(const sf::Vector2f &last_postion);
 

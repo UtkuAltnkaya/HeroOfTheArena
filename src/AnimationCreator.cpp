@@ -29,19 +29,19 @@ AnimationCreator::~AnimationCreator()
   }
 }
 
-void AnimationCreator::insert_new_animation(const std::string &animation_name, const std::string &png_name, const size_t &animation_len, const bool &is_repeat)
+void AnimationCreator::insert_new_animation(const AnimationNames &animation_name, const std::string &type, const std::string &png_name, const size_t &animation_len, const bool &is_repeat)
 {
-  this->all_animations.insert(std::pair<std::string, Animation *>(animation_name, new Animation{this->path, animation_name, png_name, animation_len, is_repeat}));
+  this->all_animations.insert(std::pair<AnimationNames, Animation *>(animation_name, new Animation{this->path, type, png_name, animation_len, is_repeat}));
 }
 
 void AnimationCreator::set_and_calculate_position()
 {
-  this->animation = this->all_animations["idle"];
+  this->animation = this->all_animations[AnimationNames::IDLE];
   this->calculate_inital_position();
   this->set_all_animation_position(this->initial_positions);
 }
 
-void AnimationCreator::select_animation(const std::string &animation_name)
+void AnimationCreator::select_animation(const AnimationNames &animation_name)
 {
   if (this->select_jump_animation(animation_name))
   {
@@ -55,29 +55,29 @@ void AnimationCreator::select_animation(const std::string &animation_name)
       return;
     }
   }
-  this->animation = this->all_animations["idle"];
+  this->animation = this->all_animations[AnimationNames::IDLE];
 }
 
-bool AnimationCreator::select_jump_animation(const std::string &animation_name)
+bool AnimationCreator::select_jump_animation(const AnimationNames &animation_name)
 {
-  if (animation_name == "jump_projectile_up")
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_UP)
   {
-    this->animation = this->all_animations["jump_up"];
+    this->animation = this->all_animations[AnimationNames::JUMP_UP];
     return true;
   }
-  if (animation_name == "jump_projectile_down")
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_DOWN)
   {
-    this->animation = this->all_animations["jump_down"];
+    this->animation = this->all_animations[AnimationNames::JUMP_DOWN];
     return true;
   }
-  if (animation_name == "jump_projectile_up_left")
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_UP_LEFT)
   {
-    this->animation = this->all_animations["jump_up_left"];
+    this->animation = this->all_animations[AnimationNames::JUMP_UP_LEFT];
     return true;
   }
-  if (animation_name == "jump_projectile_down_left")
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_DOWN_LEFT)
   {
-    this->animation = this->all_animations["jump_down_left"];
+    this->animation = this->all_animations[AnimationNames::JUMP_DOWN_LEFT];
     return true;
   }
   return false;

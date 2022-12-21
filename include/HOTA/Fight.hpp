@@ -18,13 +18,13 @@ private:
 
     void hero_attack();
     void hero_control_collide();
-    void hero_move_position(const std::string &ani_name, const sf::Keyboard::Key &move);
+    void hero_move_position(const AnimationNames &ani_name, const sf::Keyboard::Key &move);
     void hero_skill_perform();
     void hero_move_initial_position();
 
     void boss_attack();
     void boss_skill_perform();
-    void boss_move_position(const std::string &boss_ani_name, const sf::Keyboard::Key &move);
+    void boss_move_position(const AnimationNames &boss_ani_name, const sf::Keyboard::Key &move);
     void boss_move_initial_position();
     void boss_control_collide();
 

@@ -19,6 +19,18 @@ Game::~Game()
   {
     delete this->main_menu;
   }
+  if (this->npc)
+  {
+    delete this->npc;
+  }
+  if (this->fight)
+  {
+    delete fight;
+  }
+  if (this->hero)
+  {
+    delete hero;
+  }
 }
 
 // Private

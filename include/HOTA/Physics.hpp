@@ -20,13 +20,13 @@ private:
 
   void move_left();
   void move_right();
-  void jump_up(std::string &jump_ani_name);
-  void jump_down(std::string &jump_ani_name);
+  void jump_up(AnimationNames &jump_ani_name);
+  void jump_down(AnimationNames &jump_ani_name);
 
 protected:
   void init_position();
-  void projectile_jump(const sf::Keyboard::Key &Key, std::string &jump_ani_name);
-  void jump(std::string &jump_ani_name);
+  void projectile_jump(const sf::Keyboard::Key &Key, AnimationNames &jump_ani_name);
+  void jump(AnimationNames &jump_ani_name);
   void set_position(const sf::Vector2f &new_position);
 
 public:

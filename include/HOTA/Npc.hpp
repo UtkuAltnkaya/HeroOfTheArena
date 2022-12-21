@@ -15,7 +15,7 @@ protected:
 
 private:
   bool is_ani_over;
-  std::string ani_name;
+  AnimationNames ani_name;
 
   void select_npc_animation(const bool &is_collide);
 

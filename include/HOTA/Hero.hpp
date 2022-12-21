@@ -20,12 +20,14 @@ protected:
 
   bool is_fight_start;
   bool is_ani_over;
-  std::string ani_name;
+
+  AnimationNames ani_name;
 
   void init_var();
   void atk_character();
   void move_character();
   void init_all_animations();
+  const bool animation_guard();
 
 private:
   void init_fight_animations();
@@ -53,8 +55,8 @@ public:
 
   void set_health(const int &health);
   void set_is_ani_over(const bool &is_ani_over);
-  void set_ani_name(const std::string &ani_name);
-  const std::string &get_ani_name();
+  void set_ani_name(const AnimationNames &ani_name);
+  const AnimationNames &get_ani_name();
 };
 
 #endif

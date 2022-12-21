@@ -18,7 +18,7 @@ void Physics::init_position()
   this->position = this->initial_positions;
 }
 
-void Physics::projectile_jump(const sf::Keyboard::Key &Key, std::string &jump_ani_name)
+void Physics::projectile_jump(const sf::Keyboard::Key &Key, AnimationNames &jump_ani_name)
 {
   this->velocity_x = 4.f;
   this->jump(jump_ani_name);
@@ -55,13 +55,13 @@ void Physics::move_left()
   }
 }
 
-void Physics::jump(std::string &jump_ani_name)
+void Physics::jump(AnimationNames &jump_ani_name)
 {
   this->jump_up(jump_ani_name);
   this->jump_down(jump_ani_name);
 }
 
-void Physics::jump_up(std::string &jump_ani_name)
+void Physics::jump_up(AnimationNames &jump_ani_name)
 {
   if (this->is_reach_to_top_point)
   {
@@ -71,23 +71,23 @@ void Physics::jump_up(std::string &jump_ani_name)
   if (this->position.y < this->top_point) // reach top point
   {
     this->is_reach_to_top_point = true;
-    if (jump_ani_name == "jump_projectile_up")
+    if (jump_ani_name == AnimationNames::JUMP_PROJECTILE_UP)
     {
-      jump_ani_name = "jump_projectile_down";
+      jump_ani_name = AnimationNames::JUMP_PROJECTILE_DOWN;
     }
-    else if (jump_ani_name == "jump_projectile_up_left")
+    else if (jump_ani_name == AnimationNames::JUMP_PROJECTILE_UP_LEFT)
     {
-      jump_ani_name = "jump_projectile_down_left";
+      jump_ani_name = AnimationNames::JUMP_PROJECTILE_DOWN_LEFT;
     }
     else
     {
-      jump_ani_name = "jump_down";
+      jump_ani_name = AnimationNames::JUMP_DOWN;
     }
   }
   this->set_position(sf::Vector2f{this->position.x, this->position.y - this->velocity_y});
 }
 
-void Physics::jump_down(std::string &jump_ani_name)
+void Physics::jump_down(AnimationNames &jump_ani_name)
 {
   if (!this->is_reach_to_top_point)
   {
@@ -97,7 +97,7 @@ void Physics::jump_down(std::string &jump_ani_name)
   if (this->position.y > this->initial_positions.y - 10) // came back to ground
   {
     this->is_reach_to_top_point = false;
-    jump_ani_name = "idle";
+    jump_ani_name = AnimationNames::IDLE;
     this->velocity_y = 7.5f;
   }
   this->set_position(sf::Vector2f{this->position.x, this->position.y + this->velocity_y});
