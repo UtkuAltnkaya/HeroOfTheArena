@@ -99,14 +99,17 @@ void Game::update()
 
     if (this->hero->is_collide(this->boss) && !this->fight)
     {
-      // TODO
-      this->fight = new Fight{this->hero, this->boss};
-      delete this->npc;
-      this->npc = nullptr;
+      this->init_fight();
     }
   }
 }
 
+void Game::init_fight()
+{
+  this->fight = new Fight{this->hero, this->boss};
+  delete this->npc;
+  this->npc = nullptr;
+}
 void Game::render()
 {
   this->window->clear();

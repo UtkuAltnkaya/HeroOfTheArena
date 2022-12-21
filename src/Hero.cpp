@@ -43,15 +43,25 @@ void Hero::init_game_animations()
   this->insert_new_animation(AnimationNames::JUMP_UP_LEFT, "jump_up_left", "jump_up_", this->jump_up_num, false);
   this->insert_new_animation(AnimationNames::JUMP_DOWN_LEFT, "jump_down_left", "jump_down_", this->jump_down_num, false);
 }
-
+void Hero::load_fight_multi_thread(AnimationNames num, std::string type, std::string file, int num_of_png, bool is_repeated)
+{
+  this->insert_new_animation(num, type, file, num_of_png, is_repeated);
+}
 void Hero::init_fight_animations()
 {
-  this->insert_new_animation(AnimationNames::ONE_ATK, "1_atk", "atk_", this->atk_one_num, false);
-  this->insert_new_animation(AnimationNames::TWO_ATK, "2_atk", "atk_", this->atk_two_num, false);
-  this->insert_new_animation(AnimationNames::SP_ATK, "sp_atk", "sp_atk_", this->atk_sp_num, false);
-  this->insert_new_animation(AnimationNames::DEFEND, "defend", "defend_", this->defend_num, false);
-  this->insert_new_animation(AnimationNames::DEATH, "death", "death_", this->death_num, false);
-  this->insert_new_animation(AnimationNames::TAKE_HIT, "take_hit", "take_hit_", this->take_dmg_num, true);
+  std::thread t1(&Hero::load_fight_multi_thread, this, AnimationNames::ONE_ATK, "1_atk", "atk_", this->atk_one_num, false);
+  std::thread t2(&Hero::load_fight_multi_thread, this, AnimationNames::TWO_ATK, "2_atk", "atk_", this->atk_two_num, false);
+  std::thread t3(&Hero::load_fight_multi_thread, this, AnimationNames::SP_ATK, "sp_atk", "sp_atk_", this->atk_sp_num, false);
+  std::thread t4(&Hero::load_fight_multi_thread, this, AnimationNames::DEFEND, "defend", "defend_", this->defend_num, false);
+  std::thread t5(&Hero::load_fight_multi_thread, this, AnimationNames::DEATH, "death", "death_", this->death_num, false);
+  std::thread t6(&Hero::load_fight_multi_thread, this, AnimationNames::TAKE_HIT, "take_hit", "take_hit_", this->take_dmg_num, true);
+
+  t1.join();
+  t2.join();
+  t3.join();
+  t4.join();
+  t5.join();
+  t6.join();
 }
 
 void Hero::update()

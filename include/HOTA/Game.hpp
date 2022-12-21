@@ -24,6 +24,7 @@ private:
   sf::Event event;
 
   void init_var();
+  void init_fight();
   void init_window();
   void init_background();
   void init_main_menu();

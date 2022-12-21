@@ -31,12 +31,21 @@ void Boss::init_game_animations()
   this->insert_new_animation(AnimationNames::RUN_LEFT, "run_left", "run_", this->run_num, true);
 }
 
+void Boss::load_fight_multi_thread(const AnimationNames num, std::string type, std::string file, int num_of_png, bool is_repeated)
+{
+  this->insert_new_animation(num, type, file, num_of_png, is_repeated);
+}
 void Boss::init_fight_animations()
 {
-  this->insert_new_animation(AnimationNames::ONE_ATK, "1_atk", "atk_", this->atk_one_num, false);
-  this->insert_new_animation(AnimationNames::DEFEND, "defend", "defend_", this->defend_num, false);
-  this->insert_new_animation(AnimationNames::TAKE_HIT, "take_hit", "take_hit_", this->take_dmg_num, false);
-  this->insert_new_animation(AnimationNames::DEATH, "death", "death_", this->death_num, false);
+  std::thread t1(&Boss::load_fight_multi_thread, this, AnimationNames::ONE_ATK, "1_atk", "atk_", this->atk_one_num, false);
+  std::thread t2(&Boss::load_fight_multi_thread, this, AnimationNames::DEFEND, "defend", "defend_", this->defend_num, false);
+  std::thread t3(&Boss::load_fight_multi_thread, this, AnimationNames::DEATH, "death", "death_", this->death_num, false);
+  std::thread t4(&Boss::load_fight_multi_thread, this, AnimationNames::TAKE_HIT, "take_hit", "take_hit_", this->take_dmg_num, false);
+
+  t1.join();
+  t2.join();
+  t3.join();
+  t4.join();
 }
 
 void Boss::update()

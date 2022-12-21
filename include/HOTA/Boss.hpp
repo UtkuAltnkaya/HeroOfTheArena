@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "HOTA/Physics.hpp"
 #include "HOTA/Ui.hpp"
-
+#include <thread>
 class Boss : public Physics
 {
 protected:
@@ -24,6 +24,7 @@ protected:
     void init_all_animations();
 
 private:
+    void load_fight_multi_thread(const AnimationNames num, std::string type, std::string file, int num_of_png, bool is_repeated);
     void init_fight_animations();
     void init_game_animations();
 
