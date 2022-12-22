@@ -115,6 +115,7 @@ void Fight::hero_move_initial_position()
     else
     {
         this->boss_decrease_health();
+        this->hero_decrease_mana();
         this->is_turn_hero = false;
         this->hero->set_is_ani_over(false);
         this->hero->set_ani_name(AnimationNames::IDLE);
@@ -185,4 +186,9 @@ void Fight::hero_decrease_health()
 void Fight::boss_decrease_health()
 {
     this->boss->decrease_heath(this->hero->get_damage());
+}
+
+void Fight::hero_decrease_mana()
+{
+    this->hero->decrease_mana(100);
 }

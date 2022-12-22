@@ -17,7 +17,8 @@ void BladeKeeper::init_var()
     this->init_stats();
     this->init_position();
     this->ui->init_character_photo(this->path, "blade_keeper");
-    this->ui->init_health(this->health);
+    this->ui->init_health_or_mana_bar(this->health);
+    this->ui->init_health_or_mana_bar(this->mana, 100, "ManaUI");
 }
 
 void BladeKeeper::init_ani_stats()
