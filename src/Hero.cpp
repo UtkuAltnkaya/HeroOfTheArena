@@ -207,6 +207,11 @@ void Hero::decrease_heath(const int &number)
   this->ui->reduce_health(number, true);
 }
 
+void Hero::decrease_mana(const int &number)
+{
+  this->ui->reduce_hero_mana(number);
+}
+
 bool Hero::get_is_ani_over()
 {
   return this->is_ani_over;

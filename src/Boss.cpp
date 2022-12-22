@@ -107,7 +107,7 @@ void Boss::fight_start()
 
   this->ui = new Ui{};
   this->ui->init_character_photo(this->path, "demon_slime", sf::Vector2f{this->window_width - 140.f, 40.f});
-  this->ui->init_health(this->health, sf::Vector2f{this->window_width - 625.f, 45.f});
+  this->ui->init_health_or_mana_bar(this->health, 400, "HealthUI", sf::Vector2f{this->window_width - 625.f, 45.f});
   this->ui->rotate_health();
 }
 

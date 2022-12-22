@@ -30,6 +30,7 @@ private:
 
     void hero_decrease_health();
     void boss_decrease_health();
+    void hero_decrease_mana();
 
 public:
     Fight(Hero *&hero, Boss *&boss);

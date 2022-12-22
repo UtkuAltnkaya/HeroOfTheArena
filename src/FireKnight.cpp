@@ -17,7 +17,8 @@ void FireKnight::init_var()
     this->init_stats();
     this->init_position();
     this->ui->init_character_photo(this->path, "fire_knight");
-    this->ui->init_health(this->health);
+    this->ui->init_health_or_mana_bar(this->health);
+    this->ui->init_health_or_mana_bar(this->mana, 100, "ManaUI");
 }
 
 void FireKnight::init_ani_stats()
