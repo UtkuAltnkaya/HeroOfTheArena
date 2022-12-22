@@ -18,13 +18,15 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+<div align="center">
 
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Forks][forks-shield]][forks-url]
+  [![Stargazers][stars-shield]][stars-url]
+  [![Issues][issues-shield]][issues-url]
+  [![MIT License][license-shield]][license-url]
 
+</div>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -62,7 +64,7 @@
   <tr>
     <td align="center">Bayram Alper KILIÇ</td>
     <td align="center">Utku ALTINKAYA</td>
-    <td align="center">BURAK ATEŞ</td>
+    <td align="center">Burak ATEŞ</td>
   </tr>
 </table>
 
@@ -73,6 +75,7 @@
 <div style="margin-top:50px" align ="center">
     <img src="./screenshots/fight_1.png" alt="Logo" width="75%" height="75%">
 </div>
+
 
 
 <!-- TABLE OF CONTENTS -->
@@ -121,7 +124,7 @@ Of course, no one template will serve all projects since your needs may be diffe
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Hero Of The Arena is made with C++ and SFML. No such game engine was used in the project, so all animations, physics and logic were done manually. Over 200 hours were spent producing the game.
 
 * <a href="https://cplusplus.com/">
     <img src="https://img.shields.io/badge/C ++-004488?style=for-the-badge&logo=c%2B%2B&logoColor=white">
@@ -173,11 +176,65 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Gameplay
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Below you can find some of the UI and character skills. Music options, store and character selection are available for the UI. There is a chance to beat the boss with the purchased items, but the character will most likely die if the wrong items are bought. As for the characters, each character has 3 attack skills, one special attack (R) and the other two basic attack (Q,W). Special Attack can't be used often as it consumes more mana than other skills. Each turn regenerates the character's mana so that the special attack becomes available. On some rounds, attacking may not be the best option. Therefore, you can choose defense (E) for a Turn to regenerate mana for the special attack.
 
-<img> </img>
+<br/>
+<br/>
 
-_For more examples, please refer to the [HOTA Website](https://example.com)_
+<h1 align="center">User Interface</h1>
+
+<table>
+  <tr>
+        <td align ="center"><img src="./screenshots/main_menu.png" alt="Logo" width="75%" height="75%"></img></td>
+        <td align ="center"><img src="./screenshots/character_menu.png" alt="Logo" width="75%" height="75%"></img></td>
+  </tr>
+  <tr>
+        <td align ="center">Main Menu</td>
+        <td align ="center">Character Menu</td>
+  </tr>
+    <tr>
+        <td align ="center"><img src="./screenshots/options.png" alt="Logo" width="75%" height="75%"></img></td>
+        <td align ="center"><img src="./screenshots/shop.png" alt="Logo" width="75%" height="75%"></img></td>
+  </tr>
+  <tr>
+        <td align ="center">Options</td>
+        <td align ="center">Shop</td>
+  </tr>
+</table>
+
+</br>
+</br>
+
+<h1 align="center">Character Animations</h1>
+
+<table>
+      <tr>
+        <td align ="center"><img src="./screenshots/fight_2.png" alt="Logo" width="75%" height="75%"></img></td>
+        <td align ="center"><img src="./screenshots/fight_3.png" alt="Logo" width="75%" height="75%"></img></td>
+  </tr>
+  <tr>
+        <td align ="center">Fire Knight</td>
+        <td align ="center">Blade Keeper</td>
+  </tr>
+  <tr>
+        <td align ="center"><img src="./screenshots/fight_4.png" alt="Logo" width="75%" height="75%"></img></td>
+        <td align ="center"><img src="./screenshots/fight_5.png" alt="Logo" width="75%" height="75%"></img></td>
+  </tr>
+  <tr>
+        <td align ="center">Ground Monk</td>
+        <td align ="center">Leaf Arhcer</td>
+  </tr>
+  <tr>
+        <td align ="center"><img src="./screenshots/fight_6.png" alt="Logo" width="75%" height="75%"></img></td>
+        <td align ="center"><img src="./screenshots/fight_7.png" alt="Logo" width="75%" height="75%"></img></td>
+  </tr>
+  <tr>
+        <td align ="center">Water</td>
+        <td align ="center">Wind</td>
+  </tr>
+</table>
+
+_For more examples, please visit the [HOTA Website](https://example.com)_
 
 <!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 <!-- CONTRIBUTING -->
@@ -210,9 +267,12 @@ Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Bayram Alper KILIÇ - alperkilicbusiness@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Utku ALTINKAYA - email@example.com
+
+Burak ATEŞ - burakates2011@hotmail.com
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
