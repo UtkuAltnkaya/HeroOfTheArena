@@ -26,26 +26,29 @@ void Fight::poll_events()
 
 void Fight::hero_attack()
 {
+    if (this->hero->get_ani_name() == AnimationNames::IDLE)
+    {
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-    {
-        this->key = sf::Keyboard::Q;
-        this->is_key_pressed = true;
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-    {
-        this->key = sf::Keyboard::W;
-        this->is_key_pressed = true;
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-    {
-        this->key = sf::Keyboard::R;
-        this->is_key_pressed = true;
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-    {
-        this->key = sf::Keyboard::E;
-        this->is_key_pressed = true; // TODO
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        {
+            this->key = sf::Keyboard::Q;
+            this->is_key_pressed = true;
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        {
+            this->key = sf::Keyboard::W;
+            this->is_key_pressed = true;
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+        {
+            this->key = sf::Keyboard::R;
+            this->is_key_pressed = true;
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+        {
+            this->key = sf::Keyboard::E;
+            this->is_key_pressed = true; // TODO
+        }
     }
 
     this->hero_control_collide();

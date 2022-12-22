@@ -37,7 +37,7 @@ void Options::move_left()
 {
     if (this->selected_index > 0)
     {
-        this->selected_index -= 1;
+        this->selected_index--;
         return;
     }
 }
@@ -46,12 +46,12 @@ void Options::move_left_right(sf::Event &event, Musics *&music, bool &menu_open)
 {
     if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::Right)
     {
-        move_right();
+        this->move_right();
         music->set_volume(this->selected_index * 5.0);
     }
     else if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::Left)
     {
-        move_left();
+        this->move_left();
         music->set_volume(this->selected_index * 5.0);
     }
     else if (event.key.code == sf::Keyboard::Escape)
