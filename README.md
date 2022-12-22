@@ -72,9 +72,9 @@
 
 <table width="100%">
   <tr>
-    <td align ="left"><img src="https://avatars.githubusercontent.com/u/103885392?v=4" width="65%" style="padding-left:20px"></td>
+    <td align ="center"><img src="https://avatars.githubusercontent.com/u/103885392?v=4" width="65%" style="padding-left:20px"></td>
     <td align ="center"><img src="https://avatars.githubusercontent.com/u/88653820?v=4" width="65%"></td>
-    <td align ="right"><img src="https://avatars.githubusercontent.com/u/97343351?v=4" width="65%" style="padding-right:20px"></td>
+    <td align ="center"><img src="https://avatars.githubusercontent.com/u/97343351?v=4" width="65%" style="padding-right:20px"></td>
   </tr>
   <tr>
     <td align="center">Bayram Alper KILIÇ</td>
