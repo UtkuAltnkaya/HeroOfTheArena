@@ -96,7 +96,7 @@
       </ul>
     </li>
     <li><a href="#gameplay">Gameplay</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <!-- <li><a href="#contributing">Contributing</a></li> -->
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -108,14 +108,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Hero of The Arena is designed as a Turn-based game where our hero fights against a boss. There are six characters. Five of the characters are warriors and one is archer. For the Archer we are using Multi-threading. All of the pixel art, character animes, are free assets and taken from <a href="itch.io">itch.io</a>. Our code is open-source and could be contributed. However, commercializing is forbidden.
+Hero of The Arena is designed as a Turn-based game where our hero fights against a boss. There are six characters. Five of the characters are warriors and one is archer. All of the pixel art, character animes, are free assets and taken from <a href="itch.io">itch.io</a>. Our code is open-source and could be contributed. However, commercializing is forbidden.
 
 To improve our work:
 * We welcome comments and criticisms. You can contact us by sending an e-mail.
 * You can report errors in the Issues section.
 * We welcome new teammates who want to work with us.
 
-Of course the game still needs many improvements. We will continue to add new features in the future. This is our first game we developed, we hope you all like the game. For other projects, please follow us.
+ Although over 200 hours were spent producing, the game still needs many improvements. We will continue to add new features in the future. This is our first game we developed, we hope you all like the game. For other projects, please follow us.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -124,7 +124,7 @@ Of course the game still needs many improvements. We will continue to add new fe
 
 ### Built With
 
-Hero Of The Arena is made with C++ and SFML. No such game engine was used in the project, so all animations, physics and logic were done manually. Over 200 hours were spent producing the game.
+Hero Of The Arena is made with C++ and SFML. No such game engine was used in the project, so all animations, physics and logic were done manually.
 
 * <a href="https://cplusplus.com/">
     <img src="https://img.shields.io/badge/C ++-004488?style=for-the-badge&logo=c%2B%2B&logoColor=white">
@@ -139,7 +139,7 @@ Hero Of The Arena is made with C++ and SFML. No such game engine was used in the
 <!-- GETTING STARTED -->
 ## Getting Started
 
-You need a gcc compiler before playing the game. The game consumes about 120 mb of RAM, which is a really small amount. And it will be enough for about 200 mb of storage.
+You need a gcc compiler before playing the game. The game consumes about 120mb of RAM and 200mb of storage.
 
 ### Prerequisites
 
@@ -149,9 +149,9 @@ You can download g++ from the link below.
   https://gcc.gnu.org/
   ```
 
-### Installation
+### Installation and Compiling
 
-_You can download and install the game from our website. You can also run the game with a compiler. For this, clone our project and create objects for the game with the "make" command, and after the objects are created, it is enough to open the game with the "make run" command._
+_You can download and install the game from our website. You can also run the game with a compiler. For this, clone our project and create object files using Makefile commands._
 
 -  <a href="">Download</a>
 
