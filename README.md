@@ -53,28 +53,41 @@
 
 <h1 align="center">Creators</h1>
 
-<div style="display: flex; flex-direction: row; justify-content: space-between; padding:20px 20px">
+<!-- <div style="display: flex; flex-direction: row; justify-content: space-between; padding:20px 20px"> -->
 
-<a href="https://github.com/alperrkilic" align ="left"> 
-    <img src="https://avatars.githubusercontent.com/u/103885392?v=4" width="50%" style="border-radius:50%">
-</a>
+  <!-- <a href="https://github.com/alperrkilic" align ="left"> 
+      <img src="https://avatars.githubusercontent.com/u/103885392?v=4" width="50%" style="border-radius:50%">
+  </a> -->
 
 
-<a href="https://github.com/UtkuAltnkaya" align ="center"> 
-    <img src="https://avatars.githubusercontent.com/u/88653820?v=4" width="50%" style="border-radius:50%">
-</a>
+  <!-- <a href="https://github.com/UtkuAltnkaya" align ="center"> 
+      <img src="https://avatars.githubusercontent.com/u/88653820?v=4" width="50%" style="border-radius:50%">
+  </a> -->
 
-<a href="https://github.com/AtesBurak1" align ="right"> 
-    <img src="https://avatars.githubusercontent.com/u/97343351?v=4" width="50%" style="border-radius:50%">
-</a>
+  <!-- <a href="https://github.com/AtesBurak1" align ="right"> 
+      <img src="https://avatars.githubusercontent.com/u/97343351?v=4" width="50%" style="border-radius:50%">
+  </a> -->
 
- </div>
+<!-- </div> -->
 
-<div style="display: flex; flex-direction: row; justify-content: space-between; margin:5px 0">
+<table width="100%">
+  <tr>
+    <td align ="left"><img src="https://avatars.githubusercontent.com/u/103885392?v=4" width="65%" style="padding-left:20px"></td>
+    <td align ="center"><img src="https://avatars.githubusercontent.com/u/88653820?v=4" width="65%"></td>
+    <td align ="right"><img src="https://avatars.githubusercontent.com/u/97343351?v=4" width="65%" style="padding-right:20px"></td>
+  </tr>
+  <tr>
+    <td align="center">Bayram Alper KILIÇ</td>
+    <td align="center">Utku ALTINKAYA</td>
+    <td align="center">BURAK ATEŞ</td>
+  </tr>
+</table>
+
+<!-- <div style="display: flex; flex-direction: row; justify-content: space-between; margin:5px 0">
     <h3 align="left" style="padding-left:12px; font-weight:700"> Bayram Alper KILIÇ</h3>
      <h3 align="left" style="padding-right:30px; font-weight:700"> Utku ALTINKAYA</h3>
       <h3 align="left" style="padding-right:30px; font-weight:700"> Burak ATEŞ</h3>
-</div>
+</div> -->
 
 
 
