@@ -26,7 +26,7 @@ void Wind::init_ani_stats()
     this->atk_one_num = 8;
     this->atk_two_num = 26;
     this->atk_sp_num = 30;
-    this->death_num = 19;
+    this->death_num = 20;
     this->defend_num = 8;
     this->idle_num = 8;
     this->jump_num = 6;
@@ -36,6 +36,7 @@ void Wind::init_ani_stats()
     this->jump_down_num = 3;
     this->jump_up_num = 3;
     this->defend_position_num = 4;
+    this->death_position_num = 18;
 }
 
 void Wind::init_stats()

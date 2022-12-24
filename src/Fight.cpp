@@ -29,6 +29,21 @@ void Fight::poll_events()
     {
         this->boss_attack();
     }
+    if (this->is_hero_dead)
+    {
+        if (this->hero->get_que() == this->hero->get_death_position()) // Stop animation
+        {
+            this->hero->set_is_ani_stop(true);
+        }
+    }
+
+    if (this->is_boss_dead)
+    {
+        if (this->boss->get_que() == 20) // Stop animation
+        {
+            this->boss->set_is_ani_stop(true);
+        }
+    }
 }
 
 void Fight::hero_attack()

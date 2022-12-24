@@ -36,6 +36,7 @@ void FireKnight::init_ani_stats()
     this->jump_down_num = 3;
     this->jump_up_num = 3;
     this->defend_position_num = 7;
+    this->death_position_num = 11;
 }
 
 void FireKnight::init_stats()

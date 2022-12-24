@@ -62,6 +62,7 @@ public:
   const bool &get_is_ani_stop();
   const size_t &get_que();
   const size_t &get_defend_position();
+  const size_t &get_death_position();
 
   // Setters
   void set_is_ani_over(const bool &is_ani_over);

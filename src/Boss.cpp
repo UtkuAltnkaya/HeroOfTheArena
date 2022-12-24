@@ -141,6 +141,11 @@ int Boss::get_crit_chance()
   return this->crit_chance;
 }
 
+const size_t &Boss::get_que()
+{
+  return this->animation->get_que();
+}
+
 void Boss::set_is_ani_over(const bool &is_ani_over)
 {
   this->is_ani_over = is_ani_over;
@@ -169,4 +174,9 @@ void Boss::set_defense_chance(const int &defense_chance)
 void Boss::set_crit_chance(const int &crit_chance)
 {
   this->crit_chance = crit_chance;
+}
+
+void Boss::set_is_ani_stop(const bool &is_ani_stop)
+{
+  this->animation->set_is_stop(is_ani_stop);
 }

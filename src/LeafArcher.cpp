@@ -36,6 +36,7 @@ void LeafArcher::init_ani_stats()
   this->jump_up_num = 3;
   this->jump_down_num = 3;
   this->defend_position_num = 12;
+  this->death_position_num = 17;
 }
 
 void LeafArcher::init_stats()

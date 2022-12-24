@@ -36,6 +36,7 @@ void GroundMonk::init_ani_stats()
     this->jump_down_num = 3;
     this->jump_up_num = 3;
     this->defend_position_num = 9;
+    this->death_position_num = 16;
 }
 
 void GroundMonk::init_stats()

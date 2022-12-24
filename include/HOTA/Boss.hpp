@@ -49,6 +49,7 @@ public:
     int get_health();
     int get_defense_chance();
     int get_crit_chance();
+    const size_t &get_que();
 
     // Setters
     void set_is_ani_over(const bool &is_ani_over);
@@ -57,6 +58,7 @@ public:
     void set_health(const int &health);
     void set_defense_chance(const int &defense_chance);
     void set_crit_chance(const int &crit_chance);
+    void set_is_ani_stop(const bool &is_ani_stop);
 };
 
 #endif

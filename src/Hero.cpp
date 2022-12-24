@@ -262,6 +262,11 @@ const size_t &Hero::get_defend_position()
   return this->defend_position_num;
 }
 
+const size_t &Hero::get_death_position()
+{
+  return this->death_position_num;
+}
+
 // Setters
 void Hero::set_is_ani_over(const bool &is_ani_over)
 {
