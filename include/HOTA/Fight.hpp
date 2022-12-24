@@ -14,8 +14,8 @@ private:
     bool is_key_pressed;
     bool is_turn_hero;
     bool is_boss_attack;
-    // bool is_hero_dead;
-    // bool is_boss_dead;
+    bool is_boss_dead;
+    bool is_hero_dead;
     sf::Keyboard::Key key;
 
     void hero_attack();

@@ -257,6 +257,11 @@ const size_t &Hero::get_que()
   return this->animation->get_que();
 }
 
+const size_t &Hero::get_defend_position()
+{
+  return this->defend_position_num;
+}
+
 // Setters
 void Hero::set_is_ani_over(const bool &is_ani_over)
 {

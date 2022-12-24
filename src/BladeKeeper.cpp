@@ -35,6 +35,7 @@ void BladeKeeper::init_ani_stats()
     this->take_dmg_num = 6;
     this->jump_down_num = 3;
     this->jump_up_num = 3;
+    this->defend_position_num = 7;
 }
 
 void BladeKeeper::init_stats()

@@ -32,6 +32,7 @@ protected:
   size_t take_dmg_num;
   size_t jump_up_num;
   size_t jump_down_num;
+  size_t defend_position_num;
 
   sf::Vector2f initial_positions;
 

@@ -19,6 +19,7 @@ AnimationCreator::AnimationCreator(const std::string &path) : path{path}, animat
   this->take_dmg_num = 0;
   this->jump_up_num = 0;
   this->jump_down_num = 0;
+  this->defend_position_num = 0;
 }
 
 AnimationCreator::~AnimationCreator()

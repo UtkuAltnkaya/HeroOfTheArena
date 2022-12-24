@@ -35,6 +35,7 @@ void Water::init_ani_stats()
     this->take_dmg_num = 7;
     this->jump_down_num = 3;
     this->jump_up_num = 3;
+    this->defend_position_num = 5;
 }
 
 void Water::init_stats()
