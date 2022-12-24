@@ -1,14 +1,14 @@
 #include "HOTA/Boss.hpp"
 #include <iostream>
 // Delegation
-Boss::Boss() : Boss{"", 0, 0, 0, 0, 0}
+Boss::Boss() : Boss{"", 0, 0, 0, 0, 0.0f}
 {
 }
 
-Boss::Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, int critChanceVal)
+Boss::Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal)
     : Physics{pathVal, 300, 300}, ui{nullptr},
       ani_name{AnimationNames::IDLE}, health(healthVal),
-      damage(damageVal), mana(manaVal), defense_chance(damageVal), crit_chance(critChanceVal), is_fight_start{false}, is_ani_over{false}
+      damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal), is_fight_start{false}, is_ani_over{false}
 {
 }
 
@@ -121,26 +121,6 @@ bool Boss::get_is_ani_over()
   return this->is_ani_over;
 }
 
-const int &Boss::get_damage()
-{
-  return this->damage;
-}
-
-int Boss::get_health()
-{
-  return this->health;
-}
-
-int Boss::get_defense_chance()
-{
-  return this->defense_chance;
-}
-
-int Boss::get_crit_chance()
-{
-  return this->crit_chance;
-}
-
 void Boss::set_is_ani_over(const bool &is_ani_over)
 {
   this->is_ani_over = is_ani_over;
@@ -151,22 +131,7 @@ void Boss::set_ani_name(const AnimationNames &ani_name)
   this->ani_name = ani_name;
 }
 
-void Boss::set_damage(const int &damage)
+const int &Boss::get_damage()
 {
-  this->damage = damage;
-}
-
-void Boss::set_health(const int &health)
-{
-  this->health = health;
-}
-
-void Boss::set_defense_chance(const int &defense_chance)
-{
-  this->defense_chance = defense_chance;
-}
-
-void Boss::set_crit_chance(const int &crit_chance)
-{
-  this->crit_chance = crit_chance;
+  return this->damage;
 }
