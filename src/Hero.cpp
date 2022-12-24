@@ -1,14 +1,14 @@
 #include "HOTA/Hero.hpp"
 #include <iostream>
 // Delegation
-Hero::Hero() : Hero{"", 0, 0, 0, 0, 0, 0, 0}
+Hero::Hero() : Hero{"", 0, 0, 0, 0, 0.0f, 0, 0}
 {
 }
 
-Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, int critChanceVal, int actualWidth, int actualHeight)
+Hero::Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal, int actualWidth, int actualHeight)
     : Physics{pathVal, actualWidth, actualHeight},
       ui{new Ui{}},
-      health(healthVal), damage(damageVal), mana(manaVal), defense_chance(defenseVal), crit_chance(critChanceVal),
+      health(healthVal), damage(damageVal), mana(manaVal), defense(damageVal), crit_chance(critChanceVal),
       is_fight_start{false}, is_ani_over{false}, ani_name{AnimationNames::IDLE}
 
 {
@@ -227,24 +227,14 @@ int Hero::get_damage()
   return this->damage;
 }
 
-int Hero::get_mana()
-{
-  return this->mana;
-}
-
-int Hero::get_crit_chance()
-{
-  return this->crit_chance;
-}
-
-int Hero::get_defense_chance()
-{
-  return this->defense_chance;
-}
-
 void Hero::set_is_ani_over(const bool &is_ani_over)
 {
   this->is_ani_over = is_ani_over;
+}
+
+void Hero::set_health(const int &health)
+{
+  this->health = health;
 }
 
 void Hero::set_ani_name(const AnimationNames &ani_name)
@@ -254,29 +244,4 @@ void Hero::set_ani_name(const AnimationNames &ani_name)
 const AnimationNames &Hero::get_ani_name()
 {
   return this->ani_name;
-}
-
-void Hero::set_health(const int &health)
-{
-  this->health = health;
-}
-
-void Hero::set_damage(const int &damage)
-{
-  this->damage = damage;
-}
-
-void Hero::set_mana(const int &mana)
-{
-  this->mana = mana;
-}
-
-void Hero::set_crit_chance(const int &crit_chance)
-{
-  this->crit_chance = crit_chance;
-}
-
-void Hero::set_defense_chance(const int &defense_chance)
-{
-  this->defense_chance = defense_chance;
 }

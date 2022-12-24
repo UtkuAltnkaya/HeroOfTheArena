@@ -1,7 +1,7 @@
 #include "HOTA/FireKnight.hpp"
 #include <iostream>
 
-FireKnight::FireKnight() : Hero{"image/Fire Knight", 5000, 200, 500, 0, 0, 150, 150}
+FireKnight::FireKnight() : Hero{"image/Fire Knight", 5000, 200, 500, 250, 0.1f, 150, 150}
 {
     this->init_var();
 }
@@ -40,10 +40,10 @@ void FireKnight::init_ani_stats()
 void FireKnight::init_stats()
 {
     this->health -= 1000;
-    this->damage += 200;
-    this->mana += 100;
-    // this->defense -= 50;
-    //  this->crit_chance += 0.25;
+    this->damage += 100;
+    this->mana += 200;
+    this->defense -= 50;
+    this->crit_chance += 0.25;
 }
 
 void FireKnight::skill()

@@ -14,8 +14,8 @@ protected:
     int health;
     int damage;
     int mana;
-    int defense_chance;
-    int crit_chance;
+    int defense;
+    float crit_chance;
 
     bool is_fight_start;
     bool is_ani_over;
@@ -30,7 +30,7 @@ private:
 
 public:
     Boss();
-    Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, int critChanceVal);
+    Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, float critChanceVal);
     virtual ~Boss();
     virtual void skill() = 0;
     virtual void upgrade() = 0;
@@ -43,20 +43,10 @@ public:
     void fight_start();
     void decrease_heath(const int &number);
 
-    // Getters
     bool get_is_ani_over();
-    const int &get_damage();
-    int get_health();
-    int get_defense_chance();
-    int get_crit_chance();
-
-    // Setters
     void set_is_ani_over(const bool &is_ani_over);
     void set_ani_name(const AnimationNames &ani_name);
-    void set_damage(const int &damage);
-    void set_health(const int &health);
-    void set_defense_chance(const int &defense_chance);
-    void set_crit_chance(const int &crit_chance);
+    const int &get_damage();
 };
 
 #endif

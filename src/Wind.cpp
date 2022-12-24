@@ -1,7 +1,7 @@
 #include "HOTA/Wind.hpp"
 #include <iostream>
 
-Wind::Wind() : Hero{"image/Wind", 5000, 200, 500, 0, 0, 100, 100}
+Wind::Wind() : Hero{"image/Wind", 5000, 200, 500, 250, 0.1f, 100, 100}
 {
     this->init_var();
 }
@@ -39,11 +39,11 @@ void Wind::init_ani_stats()
 
 void Wind::init_stats()
 {
-    this->health -= 2200;
-    this->damage += 800;
+    this->health -= 1800;
+    this->damage += 100;
     this->mana += 200;
-    // this->defense_chance = 0;
-    //  this->crit_chance += 0.25;
+    this->defense -= 50;
+    this->crit_chance += 0.25;
 }
 
 void Wind::skill()
