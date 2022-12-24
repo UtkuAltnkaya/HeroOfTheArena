@@ -13,6 +13,7 @@ Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{
 Fight::~Fight()
 {
     std::cout << "Test" << std::endl;
+    std::cout << "Another test" << std::endl;
 }
 
 void Fight::poll_events()
