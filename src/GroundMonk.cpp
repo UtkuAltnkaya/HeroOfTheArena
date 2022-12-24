@@ -1,7 +1,7 @@
 #include "HOTA/GroundMonk.hpp"
 #include <iostream>
 
-GroundMonk::GroundMonk() : Hero{"image/Ground Monk", 5000, 200, 500, 250, 0.1f, 10, 100}
+GroundMonk::GroundMonk() : Hero{"image/Ground Monk", 5000, 200, 500, 0, 0, 10, 100}
 {
     this->init_var();
 }
@@ -39,11 +39,11 @@ void GroundMonk::init_ani_stats()
 
 void GroundMonk::init_stats()
 {
-    this->health -= 1800;
-    this->damage += 100;
-    this->mana += 200;
-    this->defense -= 50;
-    this->crit_chance += 0.25;
+    this->health -= 1000;
+    this->damage += 200;
+    this->mana += 100;
+    // this->defense -= 50;
+    //  this->crit_chance += 0.25;
 }
 
 void GroundMonk::skill()

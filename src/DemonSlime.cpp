@@ -1,7 +1,7 @@
 #include "HOTA/DemonSlime.hpp"
 #include <iostream>
 
-DemonSlime::DemonSlime() : Boss{"image/DemonSlime", 5000, 200, 500, 250, 0.1f}
+DemonSlime::DemonSlime() : Boss{"image/DemonSlime", 5000, 200, 500, 0, 0}
 {
     this->init_var();
 }
@@ -43,8 +43,8 @@ void DemonSlime::init_stats()
     this->health += 1000;
     this->damage += 200;
     this->mana += 100;
-    this->defense -= 50;
-    this->crit_chance += 0.25;
+    // this->defense_chance -= 50;
+    // this->crit_chance += 0.25;
 }
 
 void DemonSlime::skill()
