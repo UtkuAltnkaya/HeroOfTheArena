@@ -59,6 +59,8 @@ public:
   int get_mana();
   int get_crit_chance();
   int get_defense_chance();
+  const bool &get_is_ani_stop();
+  const size_t &get_que();
 
   // Setters
   void set_is_ani_over(const bool &is_ani_over);
@@ -69,6 +71,7 @@ public:
   void set_mana(const int &mana);
   void set_crit_chance(const int &crit_chance);
   void set_defense_chance(const int &defense_chance);
+  void set_is_ani_stop(const bool &is_ani_stop);
 };
 
 #endif

@@ -17,6 +17,10 @@ Fight::~Fight()
 
 void Fight::poll_events()
 {
+    // TODO
+    //    if (this->is_fight_over)
+    //    {
+    //    }
     if (this->is_turn_hero)
     {
         this->hero_attack();
@@ -29,9 +33,9 @@ void Fight::poll_events()
 
 void Fight::hero_attack()
 {
+
     if (this->hero->get_ani_name() == AnimationNames::IDLE)
     {
-
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         {
             this->key = sf::Keyboard::Q;
@@ -51,9 +55,13 @@ void Fight::hero_attack()
         {
             // TODO
             this->key = sf::Keyboard::E;
-            this->is_key_pressed = false;
-            this->hero_perform_defense();
+            this->is_key_pressed = true;
         }
+    }
+
+    if (this->key == sf::Keyboard::E)
+    {
+        return this->hero_perform_defense();
     }
 
     this->hero_control_collide();
@@ -96,10 +104,6 @@ void Fight::hero_skill_perform()
     else if (this->key == sf::Keyboard::R)
     {
         this->hero->set_ani_name(AnimationNames::SP_ATK);
-    }
-    else if (this->key == sf::Keyboard::E)
-    {
-        this->hero->set_ani_name(AnimationNames::DEFEND);
     }
 }
 
@@ -145,7 +149,10 @@ void Fight::boss_control_collide()
     else if (check && !is_boss_hit && !this->hero->get_is_ani_over())
     {
         this->boss_skill_perform();
-        this->hero->set_ani_name(AnimationNames::TAKE_HIT);
+        if (this->key != sf::Keyboard::Unknown)
+        {
+            this->hero->set_ani_name(AnimationNames::TAKE_HIT);
+        }
     }
     else if (is_boss_hit)
     {
@@ -171,6 +178,13 @@ void Fight::boss_move_initial_position()
 {
     if (this->boss->get_position_x() != 800.f) // Until Boss goes back to his initial position , move his position with "run" animation
     {
+        // if (this->hero->get_ani_name() == AnimationNames::DEFEND)
+        // {
+        //     this->hero->set_is_ani_stop(false);
+        // }
+        // else
+        // {
+        // }
         this->hero->set_ani_name(AnimationNames::IDLE);
         this->is_boss_attack = false;
         this->boss_move_position(AnimationNames::RUN, sf::Keyboard::D);
@@ -183,17 +197,17 @@ void Fight::boss_move_initial_position()
         this->boss->set_is_ani_over(false);
         this->boss->set_ani_name(AnimationNames::IDLE);
         this->hero->set_is_ani_over(false);
+        this->hero->set_is_ani_stop(false);
     }
 }
 
 // HERO
 void Fight::hero_decrease_health()
 {
-    // for UI hero health
-    this->hero->decrease_heath(this->boss->get_damage());
+    // TODO
+    this->hero->decrease_heath(this->boss->get_damage()); // for UI hero health
 
     // for stats hero health
-
     this->hero->set_health(this->hero->get_health() - this->boss->get_damage());
 }
 
@@ -260,6 +274,15 @@ void Fight::hero_defense_chance_control()
 
 void Fight::hero_perform_defense()
 {
+    this->hero->set_ani_name(AnimationNames::DEFEND);
+    if (this->hero->get_que() == 7) // TODO: stop ani
+    {
+        this->hero->set_is_ani_stop(true);
+        this->is_key_pressed = false;
+        this->is_turn_hero = false;
+        this->is_boss_attack = true;
+        this->key = sf::Keyboard::Unknown;
+    }
 }
 
 void Fight::hero_is_dead()
@@ -277,11 +300,8 @@ void Fight::hero_perform_death()
 
 void Fight::boss_crit_attack_control()
 {
-
     int temp_crit_chance{1 + std::rand() % 10};
-
     this->boss->set_crit_chance(temp_crit_chance);
-
     if (this->boss->get_crit_chance() >= 7)
     {
         this->boss_double_damage();

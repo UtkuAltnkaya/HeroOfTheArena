@@ -8,7 +8,7 @@ class UiHeartAndMana
 private:
   std::string png_name;
 
-  sf::Texture *texture; // TODO: Static ?
+  sf::Texture *texture;
   sf::Sprite *sprite;
 
   sf::Vector2f scale;

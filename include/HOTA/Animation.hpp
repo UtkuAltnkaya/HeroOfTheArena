@@ -18,6 +18,7 @@ private:
   size_t que;
 
   bool is_repeat;
+  bool is_stop;
 
   void init_texture();
   void init_sprite();
@@ -31,9 +32,12 @@ public:
   ~Animation();
   void render(sf::RenderTarget &);
   void render_background(sf::RenderTarget &);
-
   void update(bool &is_ani_over);
+
   std::vector<sf::Sprite *> *get_sprite();
+  void set_is_stop(const bool &is_stop);
+  const bool &get_is_stop();
+  const size_t &get_que();
 };
 
 #endif

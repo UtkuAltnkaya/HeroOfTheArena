@@ -33,7 +33,7 @@ protected:
   size_t jump_up_num;
   size_t jump_down_num;
 
-  sf::Vector2f initial_positions; // TODO
+  sf::Vector2f initial_positions;
 
   int character_width;
   int character_height;

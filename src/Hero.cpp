@@ -247,6 +247,17 @@ int Hero::get_defense_chance()
   return this->defense_chance;
 }
 
+const bool &Hero::get_is_ani_stop()
+{
+  return this->animation->get_is_stop();
+}
+
+const size_t &Hero::get_que()
+{
+  return this->animation->get_que();
+}
+
+// Setters
 void Hero::set_is_ani_over(const bool &is_ani_over)
 {
   this->is_ani_over = is_ani_over;
@@ -284,4 +295,9 @@ void Hero::set_crit_chance(const int &crit_chance)
 void Hero::set_defense_chance(const int &defense_chance)
 {
   this->defense_chance = defense_chance;
+}
+
+void Hero::set_is_ani_stop(const bool &is_ani_stop)
+{
+  this->animation->set_is_stop(is_ani_stop);
 }
