@@ -212,6 +212,11 @@ void Hero::decrease_mana(const int &number)
   this->ui->reduce_hero_mana(number);
 }
 
+void Hero::increase_mana()
+{
+  this->ui->increase_hero_mana();
+}
+
 bool Hero::get_is_ani_over()
 {
   return this->is_ani_over;

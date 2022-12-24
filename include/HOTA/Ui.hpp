@@ -31,6 +31,7 @@ public:
 
   void reduce_health(const int &atk_power, const bool &is_hero);
   void reduce_hero_mana(const int &amount);
+  void increase_hero_mana();
   void rotate_health();
   void render(sf::RenderTarget &target);
 };

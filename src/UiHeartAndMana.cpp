@@ -2,7 +2,7 @@
 #include <iostream>
 
 UiHeartAndMana::UiHeartAndMana(const sf::Vector2f &position, const sf::IntRect &rect, const sf::Vector2f &scale, const std::string &png_name)
-    : png_name{png_name}, scale{scale}, position{position}, rect{rect}, inital_rec{rect}, is_over{false}
+    : png_name{png_name}, scale{scale}, position{position}, rect{rect}, inital_rec{rect}, is_over{false}, is_full{true}
 {
   this->init_texture();
   this->init_sprite();
@@ -28,10 +28,25 @@ void UiHeartAndMana::init_sprite()
   this->sprite->setTextureRect(this->inital_rec);
 }
 
+void UiHeartAndMana::increase()
+{
+  this->rect = sf::IntRect{this->rect.left, this->rect.top - 11, this->rect.width, this->rect.height};
+  this->sprite->setTextureRect(this->rect);
+  this->is_over = false;
+
+  if (this->rect.top == 0)
+  {
+    this->is_full = true;
+    return;
+  }
+}
+
 void UiHeartAndMana::decrease()
 {
   this->rect = sf::IntRect{this->rect.left, this->rect.top + 11, this->rect.width, this->rect.height};
   this->sprite->setTextureRect(this->rect);
+  this->is_full = false;
+
   if (this->rect.top == 66)
   {
     this->is_over = true;
@@ -51,6 +66,11 @@ void UiHeartAndMana::set_full()
 const bool &UiHeartAndMana::get_is_over()
 {
   return this->is_over;
+}
+
+const bool &UiHeartAndMana::get_is_full()
+{
+  return this->is_full;
 }
 
 void UiHeartAndMana::render(sf::RenderTarget &target)

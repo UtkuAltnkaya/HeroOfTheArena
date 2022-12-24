@@ -113,6 +113,21 @@ void Ui::reduce_hero_mana(const int &amount)
   }
 }
 
+void Ui::increase_hero_mana()
+{
+  for (size_t i = 0; i < 2; i++)
+  {
+    for (int i{static_cast<int>(this->mana_bar.size()) - 1}; i >= 0; i--)
+    {
+      if (!this->mana_bar.at(i)->get_is_full())
+      {
+        this->mana_bar.at(i)->increase();
+        break;
+      }
+    }
+  }
+}
+
 void Ui::rotate_health()
 {
   for (auto &&i : this->health_bar)

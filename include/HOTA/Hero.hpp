@@ -50,6 +50,7 @@ public:
   void fight_start();
   void decrease_heath(const int &number);
   void decrease_mana(const int &number);
+  void increase_mana();
 
   // Getters
   bool get_is_ani_over();
