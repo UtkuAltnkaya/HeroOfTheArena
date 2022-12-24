@@ -1,7 +1,7 @@
 #include "HOTA/BladeKeeper.hpp"
 #include <iostream>
 
-BladeKeeper::BladeKeeper() : Hero{"image/BladeKeeper", 5000, 200, 500, 250, 0.1f, 100, 100}
+BladeKeeper::BladeKeeper() : Hero{"image/BladeKeeper", 5000, 200, 500, 0, 0, 100, 100}
 {
     this->init_var();
 }
@@ -39,11 +39,11 @@ void BladeKeeper::init_ani_stats()
 
 void BladeKeeper::init_stats()
 {
-    this->health -= 1800;
-    this->damage += 100;
-    this->mana += 200;
-    this->defense -= 50;
-    this->crit_chance += 0.25;
+    this->health -= 3000; // 5000 - 3000
+    this->damage += 1000; // 200 + 1000
+    this->mana += 200;    // 500 + 200
+    // this->defense -= 50;  // 250 - 50
+    //  this->crit_chance += 0.25; // 0. + 0.25
 }
 
 void BladeKeeper::skill()

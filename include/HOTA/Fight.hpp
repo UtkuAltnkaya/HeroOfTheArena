@@ -14,6 +14,8 @@ private:
     bool is_key_pressed;
     bool is_turn_hero;
     bool is_boss_attack;
+    // bool is_hero_dead;
+    // bool is_boss_dead;
     sf::Keyboard::Key key;
 
     void hero_attack();
@@ -28,9 +30,25 @@ private:
     void boss_move_initial_position();
     void boss_control_collide();
 
+    // UI
     void hero_decrease_health();
-    void boss_decrease_health();
     void hero_decrease_mana();
+    void boss_decrease_health();
+
+    // Gameplay
+    void hero_crit_attack_control();
+    void hero_double_damage();
+    void hero_split_damage();
+    void hero_defense_chance_control();
+    void hero_perform_defense();
+    void hero_is_dead();
+    void hero_perform_death();
+
+    void boss_crit_attack_control();
+    void boss_double_damage();
+    void boss_split_damage();
+    void boss_is_dead();
+    void boss_perform_death();
 
 public:
     Fight(Hero *&hero, Boss *&boss);
