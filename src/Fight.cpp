@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 
-Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}, is_turn_hero{true}, is_boss_attack{true}, is_boss_dead{false}, is_hero_dead{false}, max_hero_mana{this->hero->get_mana()}
+Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}, is_turn_hero{true}, is_boss_attack{true}, is_boss_dead{false}, is_hero_dead{false}, max_hero_mana{this->hero->get_mana()}, is_fight_over{false}
 {
     this->hero->fight_start();
     this->boss->fight_start();
@@ -30,6 +30,8 @@ void Fight::poll_events()
         if (this->hero->get_que() == this->hero->get_death_position()) // Stop animation
         {
             this->hero->set_is_ani_stop(true);
+            std::cout << "hero_dead" << std::endl;
+            this->is_fight_over = true;
         }
     }
 
@@ -38,6 +40,8 @@ void Fight::poll_events()
         if (this->boss->get_que() == 20) // Stop animation
         {
             this->boss->set_is_ani_stop(true);
+            std::cout << "boss_dead" << std::endl;
+            this->is_fight_over = true;
         }
     }
 }
@@ -63,6 +67,7 @@ void Fight::hero_attack()
             else
             {
                 std::cout << "Don't have enough mana for W" << std::endl;
+                this->key = sf::Keyboard::Unknown;
             }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
@@ -76,6 +81,7 @@ void Fight::hero_attack()
             else
             {
                 std::cout << "Don't have enough mana for R" << std::endl;
+                this->key = sf::Keyboard::Unknown;
             }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
@@ -387,4 +393,9 @@ void Fight::boss_perform_death()
     std::cout << "boss_perform_death" << std::endl;
 
     this->boss->set_ani_name(AnimationNames::DEATH);
+}
+
+bool Fight::get_is_fight_over()
+{
+    return this->is_fight_over;
 }

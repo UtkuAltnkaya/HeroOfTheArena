@@ -17,6 +17,7 @@ private:
     bool is_boss_dead;
     bool is_hero_dead;
     int max_hero_mana;
+    bool is_fight_over;
     sf::Keyboard::Key key;
 
     void hero_attack();
@@ -56,6 +57,7 @@ public:
     Fight(Hero *&hero, Boss *&boss);
     ~Fight();
     void poll_events();
+    bool get_is_fight_over();
 };
 
 #endif

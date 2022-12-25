@@ -6,6 +6,7 @@
 #include "HOTA/Music.hpp"
 #include "HOTA/Npc.hpp"
 #include "HOTA/Fight.hpp"
+#include "HOTA/BlackSmith.hpp"
 
 class Game
 {
@@ -30,6 +31,7 @@ private:
   void init_main_menu();
   void delete_main_menu();
   void play_music();
+  void create_npcs();
 
 public:
   Game();
