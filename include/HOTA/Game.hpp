@@ -5,7 +5,7 @@
 #include "HOTA/MainMenu.hpp"
 #include "HOTA/Music.hpp"
 #include "HOTA/Npc.hpp"
-#include "HOTA/Fight.hpp"
+#include "HOTA/BaseFight.hpp"
 #include "HOTA/BlackSmith.hpp"
 
 class Game
@@ -17,7 +17,8 @@ private:
   Boss *boss;
   Npc *npc;
   Musics *music;
-  Fight *fight;
+  BaseFight *fight;
+
   bool music_playing;
 
   sf::RenderWindow *window;

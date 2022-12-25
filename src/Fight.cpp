@@ -4,11 +4,8 @@
 #include <cstdlib>
 #include <ctime>
 
-Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}, is_turn_hero{true}, is_boss_attack{true}, is_boss_dead{false}, is_hero_dead{false}, max_hero_mana{this->hero->get_mana()}, is_fight_over{false}
+Fight::Fight(Hero *&hero, Boss *&boss) : BaseFight{hero, boss}, hero{hero}, boss{boss}
 {
-
-    this->hero->fight_start();
-    this->boss->fight_start();
     std::srand(std::time(NULL));
 }
 
@@ -96,30 +93,25 @@ void Fight::hero_attack()
         return this->hero_perform_defense();
     }
 
-    if (this->leaf_fight())
-    {
-        return;
-    }
-
     this->hero_control_collide();
     // it's being called repeatedly to get closer to the boss so hero can perform the attack animation
 }
 
-bool Fight::leaf_fight()
-{
-    if (this->hero->get_path() != "image/Leaf Archer")
-    {
-        return false;
-    }
-    this->hero_skill_perform();
-    if (this->hero->get_ani_name() == AnimationNames::ONE_ATK)
-    {
-        this->boss->set_ani_name(AnimationNames::TAKE_HIT);
-    }
+// bool Fight::leaf_fight()
+// {
+//     if (this->hero->get_path() != "image/Leaf Archer")
+//     {
+//         return false;
+//     }
+//     this->hero_skill_perform();
+//     if (this->hero->get_ani_name() == AnimationNames::ONE_ATK)
+//     {
+//         this->boss->set_ani_name(AnimationNames::TAKE_HIT);
+//     }
 
-    // this->hero_move_initial_position();
-    return true;
-}
+//     // this->hero_move_initial_position();
+//     return true;
+// }
 
 void Fight::hero_control_collide()
 {
@@ -262,142 +254,3 @@ void Fight::boss_move_initial_position()
 }
 
 // HERO
-void Fight::hero_decrease_health()
-{
-    this->hero->decrease_heath(this->boss->get_damage());                        // for UI hero health
-    this->hero->set_health(this->hero->get_health() - this->boss->get_damage()); // for stats hero health
-}
-
-void Fight::hero_decrease_mana()
-{
-    if (this->key == sf::Keyboard::R)
-    {
-        this->hero->decrease_mana(300);                     // for UI hero mana
-        this->hero->set_mana(this->hero->get_mana() - 300); // for stats hero mana
-    }
-    else if (this->key == sf::Keyboard::W)
-    {
-        this->hero->decrease_mana(200);                     // for UI hero mana
-        this->hero->set_mana(this->hero->get_mana() - 200); // for stats hero mana
-    }
-}
-
-void Fight::hero_increase_mana()
-{
-    int temp_mana{this->hero->get_mana()};
-
-    if (temp_mana != this->max_hero_mana)
-    {
-        temp_mana += 100;
-        this->hero->set_mana(temp_mana);
-    }
-}
-
-// BOSS
-void Fight::boss_decrease_health()
-{
-    this->boss->decrease_heath(this->hero->get_damage());                        // for UI Boss health
-    this->boss->set_health(this->boss->get_health() - this->hero->get_damage()); // for stats boss health
-}
-
-void Fight::hero_crit_attack_control()
-{
-    int temp_crit_chance{1 + std::rand() % 10}; // if crit_chance is higher than or equal to 7, hero will perform double damage for one round
-    this->hero->set_crit_chance(temp_crit_chance);
-
-    if (this->hero->get_crit_chance() >= 7)
-    {
-        this->hero_double_damage();
-    }
-}
-
-void Fight::hero_double_damage()
-{
-    int temp_damage{this->hero->get_damage()};
-    temp_damage *= 2;
-    this->hero->set_damage(temp_damage);
-}
-
-void Fight::hero_split_damage()
-{
-    int temp_damage{this->hero->get_damage()};
-    temp_damage /= 2;
-    this->hero->set_damage(temp_damage);
-}
-
-void Fight::hero_defense_chance_control()
-{
-
-    int temp_defense_chance{1 + std::rand() % 10};
-    this->hero->set_defense_chance(temp_defense_chance);
-
-    if (this->hero->get_defense_chance() >= 7)
-    {
-        this->hero_perform_defense();
-    }
-}
-
-void Fight::hero_perform_defense()
-{
-    this->hero->set_ani_name(AnimationNames::DEFEND);
-    if (this->hero->get_que() == this->hero->get_defend_position()) // Stop animation
-    {
-        std::cout << "Hero increase mana UI" << std::endl;
-        this->boss_split_damage();
-        this->hero->increase_mana(); // Ui
-        this->hero_increase_mana();  // stats
-        this->hero->set_is_ani_stop(true);
-        this->is_key_pressed = false;
-        this->is_turn_hero = false;
-        this->is_boss_attack = true;
-        this->key = sf::Keyboard::Unknown;
-    }
-}
-
-void Fight::hero_is_dead()
-{
-    std::cout << "hero_is_dead" << std::endl;
-    if (this->hero->get_health() <= 0)
-    {
-        this->is_hero_dead = true;
-        this->hero->set_ani_name(AnimationNames::DEATH);
-    }
-}
-
-void Fight::boss_crit_attack_control()
-{
-    int temp_crit_chance{1 + std::rand() % 10};
-    this->boss->set_crit_chance(temp_crit_chance);
-    if (this->boss->get_crit_chance() >= 7)
-    {
-        this->boss_double_damage();
-    }
-}
-
-void Fight::boss_double_damage()
-{
-    int temp_damage{this->boss->get_damage()};
-    temp_damage *= 2;
-    this->boss->set_damage(temp_damage);
-}
-
-void Fight::boss_split_damage()
-{
-    int temp_damage{this->boss->get_damage()};
-    temp_damage /= 2;
-    this->boss->set_damage(temp_damage);
-}
-
-void Fight::boss_is_dead()
-{
-    if (this->boss->get_health() <= 0)
-    {
-        this->is_boss_dead = true;
-        this->boss->set_ani_name(AnimationNames::DEATH);
-    }
-}
-
-bool Fight::get_is_fight_over()
-{
-    return this->is_fight_over;
-}

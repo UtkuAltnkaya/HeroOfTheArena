@@ -1,3 +1,5 @@
+#include "HOTA/Fight.hpp"
+#include "HOTA/RangerFight.hpp"
 #include "HOTA/Game.hpp"
 #include <iostream>
 
@@ -122,7 +124,15 @@ void Game::update()
 
 void Game::init_fight()
 {
-  this->fight = new Fight{this->hero, this->boss};
+  if (this->hero->get_path() == "image/Leaf Archer")
+  {
+    this->fight = new RangerFight{dynamic_cast<LeafArcher *>(hero), boss};
+  }
+  else
+  {
+    this->fight = new Fight{this->hero, this->boss};
+  }
+
   delete this->npc;
   this->npc = nullptr;
 }
