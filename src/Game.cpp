@@ -52,7 +52,7 @@ void Game::init_var()
   this->video_mode.height = 256 * 3;
 
   this->music_playing = false;
-  this->music = new Musics("moonlight.ogg");
+  this->music = new Musics("Battle Encounter.ogg");
 
   //  this->music.stopMusic();
 }

@@ -160,7 +160,7 @@ void MainMenu::selected_option()
 void MainMenu::init_char_menu()
 {
   this->char_menu = new CharMenu("", "image");
-  this->music = new Musics("Battle Encounter.ogg");
+  this->music = new Musics("moonlight.ogg");
   this->music->play();
 }
 
