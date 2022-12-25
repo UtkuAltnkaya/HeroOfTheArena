@@ -27,6 +27,7 @@ public:
   void render(sf::RenderTarget &target);
 
   const bool &get_hit();
+  void set_hit(const bool &is_hit);
 };
 
 #endif

@@ -156,7 +156,12 @@ const size_t &Boss::get_que()
 {
   return this->animation->get_que();
 }
+const AnimationNames &Boss::get_ani_name()
+{
+  return this->ani_name;
+}
 
+// Setter
 void Boss::set_is_ani_over(const bool &is_ani_over)
 {
   this->is_ani_over = is_ani_over;

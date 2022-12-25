@@ -23,6 +23,11 @@ protected:
   bool is_fight_over;
   sf::Keyboard::Key key;
 
+  void boss_attack();
+  void boss_move_position(const AnimationNames &boss_ani_name, const sf::Keyboard::Key &move);
+  void boss_move_initial_position();
+  void boss_control_collide();
+
   // UI
   void hero_decrease_health();
   void hero_decrease_mana();

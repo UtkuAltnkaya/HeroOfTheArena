@@ -87,6 +87,15 @@ void LeafArcher::fight_start()
   this->arrow->calculate_arrow_position(this->initial_positions);
 }
 
+const bool &LeafArcher::get_hit()
+{
+  return this->arrow->get_hit();
+}
+void LeafArcher::set_hit(const bool &is_hit)
+{
+  this->arrow->set_hit(is_hit);
+}
+
 void LeafArcher::skill()
 {
   // TODO

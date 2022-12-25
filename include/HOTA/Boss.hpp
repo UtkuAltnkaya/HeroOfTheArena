@@ -51,6 +51,7 @@ public:
     int get_defense_chance();
     int get_crit_chance();
     const size_t &get_que();
+    const AnimationNames &get_ani_name();
 
     // Setters
     void set_is_ani_over(const bool &is_ani_over);

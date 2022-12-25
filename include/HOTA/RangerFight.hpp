@@ -10,6 +10,14 @@ private:
   LeafArcher *hero;
   Boss *boss;
 
+  sf::Keyboard::Key key_archer;
+
+  void hero_attack();
+  void hero_attack_control();
+  void arrow_hit_moment();
+
+  // void boss_attack();
+
 public:
   RangerFight(LeafArcher *hero, Boss *boss);
   ~RangerFight();

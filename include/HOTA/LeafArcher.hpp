@@ -26,6 +26,8 @@ public:
 
   void update() override;
   void render(sf::RenderTarget &target) override;
+  const bool &get_hit();
+  void set_hit(const bool &is_hit);
 };
 
 #endif

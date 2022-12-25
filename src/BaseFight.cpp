@@ -17,6 +17,70 @@ BaseFight::~BaseFight()
 {
 }
 
+void BaseFight::boss_attack()
+{
+  this->boss_control_collide();
+}
+
+void BaseFight::boss_control_collide()
+{
+  bool check{this->boss->is_collide(this->hero)};
+  bool is_boss_hit{this->boss->get_is_ani_over()};
+
+  if (!check && this->is_boss_attack)
+  {
+    this->boss_move_position(AnimationNames::RUN_LEFT, sf::Keyboard::A);
+  }
+  else if (check && !is_boss_hit && !this->hero->get_is_ani_over())
+  {
+    this->boss->set_ani_name(AnimationNames::ONE_ATK);
+    this->is_boss_attack = true;
+    if (this->key != sf::Keyboard::Unknown)
+    {
+      this->hero->set_ani_name(AnimationNames::TAKE_HIT);
+    }
+  }
+  else if (is_boss_hit)
+  {
+    // TODO
+    // after boss performed his skill hero must perform take hit animation once
+    this->boss_move_initial_position();
+  }
+}
+
+void BaseFight::boss_move_position(const AnimationNames &boss_ani_name, const sf::Keyboard::Key &move)
+{
+  this->boss->set_ani_name(boss_ani_name);
+  this->boss->move_left_right(move, 8.f);
+}
+
+void BaseFight::boss_move_initial_position()
+{
+  if (this->boss->get_position_x() != 800.f) // Until Boss goes back to his initial position , move his position with "run" animation
+  {
+    this->hero->set_ani_name(AnimationNames::IDLE);
+    this->is_boss_attack = false;
+    this->boss_move_position(AnimationNames::RUN, sf::Keyboard::D);
+  }
+  else // Boss has arrived to his initial position
+  {
+    this->hero_decrease_health();
+    std::cout << this->boss->get_damage() << std::endl;
+
+    if (this->key == sf::Keyboard::Unknown) // if E is pressed boss will split damage before attacking
+    {
+      this->boss_double_damage(); // and after attacking damage will be doubled up to its default value
+    }
+
+    this->hero_is_dead(); // check if hero is dead after decreasing health, if so end fight.
+    this->is_turn_hero = true;
+    this->boss->set_is_ani_over(false);
+    this->boss->set_ani_name(AnimationNames::IDLE);
+    this->hero->set_is_ani_over(false);
+    this->hero->set_is_ani_stop(false);
+  }
+}
+
 void BaseFight::hero_decrease_health()
 {
   this->hero->decrease_heath(this->boss->get_damage());                        // for UI hero health

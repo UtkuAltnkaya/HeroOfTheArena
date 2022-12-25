@@ -282,6 +282,7 @@ void Hero::set_ani_name(const AnimationNames &ani_name)
 {
   this->ani_name = ani_name;
 }
+
 const AnimationNames &Hero::get_ani_name()
 {
   return this->ani_name;

@@ -40,6 +40,7 @@ void Arrow::move_first_arrow()
     std::this_thread::sleep_for(std::chrono::milliseconds(5));
   }
   this->animation_name = AnimationNames::ARROW_ONE;
+  // TODO
 }
 
 void Arrow::finished_arrow_animation()
@@ -48,7 +49,6 @@ void Arrow::finished_arrow_animation()
   {
     if (this->is_ani_over)
     {
-      this->hit = true;
       this->join_thread();
       this->back_to_start();
     }
@@ -57,6 +57,7 @@ void Arrow::finished_arrow_animation()
 
 void Arrow::back_to_start()
 {
+  this->hit = true;
   this->is_ani_over = false;
   this->animation = nullptr;
   this->animation_name = AnimationNames::NONE;
@@ -78,22 +79,24 @@ void Arrow::join_thread()
 
 void Arrow::update(const AnimationNames &leaf_animation, const size_t &que)
 {
+
   if (this->animation_name == AnimationNames::NONE && leaf_animation == AnimationNames::ONE_ATK && que == 7)
   {
-    this->hit = false;
     this->animation_name = AnimationNames::ARROW;
     this->thread = new std::thread{&Arrow::move_first_arrow, this};
   }
+
   if (leaf_animation == AnimationNames::TWO_ATK && que == 10)
   {
-    this->hit = false;
     this->animation_name = AnimationNames::ARROW_TWO;
     this->set_position(sf::Vector2f{850, this->initial_positions.y - 85});
   }
+
   if (this->animation)
   {
     this->animation->update(this->is_ani_over);
   }
+
   if (this->animation_name != AnimationNames::NONE)
   {
     this->finished_arrow_animation();
@@ -112,4 +115,8 @@ void Arrow::render(sf::RenderTarget &target)
 const bool &Arrow::get_hit()
 {
   return this->hit;
+}
+void Arrow::set_hit(const bool &is_hit)
+{
+  this->hit = is_hit;
 }

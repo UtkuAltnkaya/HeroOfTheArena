@@ -17,11 +17,6 @@ private:
     void hero_skill_perform();
     void hero_move_initial_position();
 
-    void boss_attack();
-    void boss_move_position(const AnimationNames &boss_ani_name, const sf::Keyboard::Key &move);
-    void boss_move_initial_position();
-    void boss_control_collide();
-
 public:
     Fight(Hero *&hero, Boss *&boss);
     ~Fight();

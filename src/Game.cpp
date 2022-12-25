@@ -148,14 +148,14 @@ void Game::render()
   if (this->hero)
   {
     this->delete_main_menu();
+    if (this->boss)
+    {
+      this->boss->render(*this->window);
+    }
     this->hero->render(*this->window);
     if (!this->fight)
     {
       this->npc->render(*this->window);
-    }
-    if (this->boss)
-    {
-      this->boss->render(*this->window);
     }
   }
 
