@@ -16,6 +16,7 @@ private:
     bool is_boss_attack;
     bool is_boss_dead;
     bool is_hero_dead;
+    int max_hero_mana;
     sf::Keyboard::Key key;
 
     void hero_attack();
@@ -33,6 +34,7 @@ private:
     // UI
     void hero_decrease_health();
     void hero_decrease_mana();
+    void hero_increase_mana();
     void boss_decrease_health();
 
     // Gameplay

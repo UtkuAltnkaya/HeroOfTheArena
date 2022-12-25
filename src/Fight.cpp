@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 
-Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}, is_turn_hero{true}, is_boss_attack{true}, is_boss_dead{false}, is_hero_dead{false}
+Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}, is_turn_hero{true}, is_boss_attack{true}, is_boss_dead{false}, is_hero_dead{false}, max_hero_mana{this->hero->get_mana()}
 {
     this->hero->fight_start();
     this->boss->fight_start();
@@ -17,10 +17,6 @@ Fight::~Fight()
 
 void Fight::poll_events()
 {
-    // TODO
-    //    if (this->is_fight_over)
-    //    {
-    //    }
     if (this->is_turn_hero && !is_hero_dead)
     {
         this->hero_attack();
@@ -84,9 +80,6 @@ void Fight::hero_attack()
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
         {
-            // TODO
-            // increase hero mana 100
-            // split boss damage for one round
             this->key = sf::Keyboard::E;
             this->is_key_pressed = true;
         }
@@ -111,7 +104,7 @@ void Fight::hero_control_collide()
     {
         this->hero_move_position(AnimationNames::RUN, sf::Keyboard::D);
     }
-    else if (check && !is_hero_hit && !this->boss->get_is_ani_over()) // TODO
+    else if (check && !is_hero_hit && !this->boss->get_is_ani_over())
     {
         this->hero_skill_perform();                         // hero performs his/her skill.
         this->boss->set_ani_name(AnimationNames::TAKE_HIT); // Boss performs his skill.
@@ -230,6 +223,13 @@ void Fight::boss_move_initial_position()
     else // Boss has arrived to his initial position
     {
         this->hero_decrease_health();
+        std::cout << this->boss->get_damage() << std::endl;
+
+        if (this->key == sf::Keyboard::Unknown) // if E is pressed boss will split damage before attacking
+        {
+            this->boss_double_damage(); // and after attacking damage will be doubled up to its default value
+        }
+
         this->hero_is_dead(); // check if hero is dead after decreasing health, if so end fight.
         this->is_turn_hero = true;
         this->boss->set_is_ani_over(false);
@@ -257,6 +257,17 @@ void Fight::hero_decrease_mana()
     {
         this->hero->decrease_mana(200);                     // for UI hero mana
         this->hero->set_mana(this->hero->get_mana() - 200); // for stats hero mana
+    }
+}
+
+void Fight::hero_increase_mana()
+{
+    int temp_mana{this->hero->get_mana()};
+
+    if (temp_mana != this->max_hero_mana)
+    {
+        temp_mana += 100;
+        this->hero->set_mana(temp_mana);
     }
 }
 
@@ -309,8 +320,10 @@ void Fight::hero_perform_defense()
     this->hero->set_ani_name(AnimationNames::DEFEND);
     if (this->hero->get_que() == this->hero->get_defend_position()) // Stop animation
     {
-        // TODO
+        std::cout << "Hero increase mana UI" << std::endl;
+        this->boss_split_damage();
         this->hero->increase_mana(); // Ui
+        this->hero_increase_mana();  // stats
         this->hero->set_is_ani_stop(true);
         this->is_key_pressed = false;
         this->is_turn_hero = false;
