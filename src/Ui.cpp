@@ -1,4 +1,5 @@
 #include "HOTA/Ui.hpp"
+#include <iostream>
 
 Ui::Ui()
 {
@@ -102,11 +103,11 @@ void Ui::reduce_hero_mana(const int &amount)
   size_t size{static_cast<size_t>(amount * 0.02f)};
   for (size_t i{0}; i < size; i++)
   {
-    for (int i{static_cast<int>(this->mana_bar.size()) - 1}; i >= 0; i--)
+    for (int j{static_cast<int>(this->mana_bar.size()) - 1}; j >= 0; j--)
     {
-      if (!this->mana_bar.at(i)->get_is_over())
+      if (!this->mana_bar.at(j)->get_is_over())
       {
-        this->mana_bar.at(i)->decrease();
+        this->mana_bar.at(j)->decrease();
         break;
       }
     }
@@ -115,13 +116,14 @@ void Ui::reduce_hero_mana(const int &amount)
 
 void Ui::increase_hero_mana()
 {
+  int size{static_cast<int>(this->mana_bar.size())};
   for (size_t i = 0; i < 2; i++)
   {
-    for (int i{static_cast<int>(this->mana_bar.size()) - 1}; i >= 0; i--)
+    for (int j{0}; j < size; j++)
     {
-      if (!this->mana_bar.at(i)->get_is_full())
+      if (!this->mana_bar.at(j)->get_is_full())
       {
-        this->mana_bar.at(i)->increase();
+        this->mana_bar.at(j)->increase();
         break;
       }
     }

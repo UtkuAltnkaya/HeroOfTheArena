@@ -310,7 +310,7 @@ void Fight::hero_perform_defense()
     if (this->hero->get_que() == this->hero->get_defend_position()) // Stop animation
     {
         // TODO
-        //  this->hero->increase_mana();
+        this->hero->increase_mana(); // Ui
         this->hero->set_is_ani_stop(true);
         this->is_key_pressed = false;
         this->is_turn_hero = false;
