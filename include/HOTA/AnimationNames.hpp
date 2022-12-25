@@ -22,7 +22,11 @@ enum class AnimationNames
   TAKE_HIT,
   GREETING,
   WORK_ONE,
-  WORK_TWO
+  WORK_TWO,
+  ARROW,
+  ARROW_ONE,
+  ARROW_TWO,
+  NONE,
 };
 
 #endif

@@ -23,15 +23,14 @@ Animation::Animation(Animation &source)
 // Destructor deallocates memory after sprites and textures being used.
 Animation::~Animation()
 {
-  for (auto &i : *this->sprite)
-  {
-    delete i;
-  }
   for (auto &i : *this->texture)
   {
     delete i;
   }
-
+  for (auto &i : *this->sprite)
+  {
+    delete i;
+  }
   delete this->texture;
   delete this->sprite;
   delete this->clock;

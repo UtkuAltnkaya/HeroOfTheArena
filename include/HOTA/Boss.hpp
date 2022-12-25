@@ -42,6 +42,7 @@ public:
 
     void fight_start();
     void decrease_heath(const int &number);
+    void delete_ui();
 
     // Getters
     bool get_is_ani_over();

@@ -7,8 +7,8 @@ Ui::Ui()
 
 Ui::~Ui()
 {
-  delete this->character_photo.texture;
   delete this->character_photo.sprite;
+  delete this->character_photo.texture;
   for (auto &&i : this->health_bar)
   {
     delete i;
@@ -140,6 +140,7 @@ void Ui::rotate_health()
 
 void Ui::render(sf::RenderTarget &target)
 {
+
   target.draw(*this->character_photo.sprite);
   for (auto &&i : this->health_bar)
   {

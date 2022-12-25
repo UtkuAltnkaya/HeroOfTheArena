@@ -1,13 +1,17 @@
 #include "HOTA/LeafArcher.hpp"
 #include <iostream>
 
-LeafArcher::LeafArcher() : Hero{"image/Leaf Archer", 5000, 200, 500, 0, 0, 100, 100}
+LeafArcher::LeafArcher() : Hero{"image/Leaf Archer", 5000, 200, 500, 0, 0, 100, 100}, arrow{nullptr}
 {
   this->init_var();
 }
 
 LeafArcher::~LeafArcher()
 {
+  if (this->arrow)
+  {
+    delete arrow;
+  }
 }
 
 void LeafArcher::init_var()
@@ -16,15 +20,13 @@ void LeafArcher::init_var()
   this->init_all_animations();
   this->init_stats();
   this->init_position();
-  this->ui->init_character_photo(this->path, "leaf_archer");
-  this->ui->init_health_or_mana_bar(this->health);
-  this->ui->init_health_or_mana_bar(this->mana, 100, "ManaUI");
+  this->init_ui();
 }
 
 void LeafArcher::init_ani_stats()
 {
   this->atk_one_num = 15;
-  this->atk_two_num = 20;
+  this->atk_two_num = 12;
   this->atk_sp_num = 17;
   this->death_num = 19;
   this->defend_num = 19;
@@ -46,6 +48,43 @@ void LeafArcher::init_stats()
   this->mana += 500;
   // this->defense -= 50;
   //  this->crit_chance += 0.25;
+}
+
+void LeafArcher::init_ui()
+{
+  this->ui->init_character_photo(this->path, "leaf_archer");
+  this->ui->init_health_or_mana_bar(this->health);
+  this->ui->init_health_or_mana_bar(this->mana, 100, "ManaUI");
+}
+
+void LeafArcher::calculate_arrow_position()
+{
+}
+
+void LeafArcher::update()
+{
+  Hero::update();
+  if (this->arrow)
+  {
+    this->arrow->update(this->ani_name, this->animation->get_que());
+  }
+}
+
+void LeafArcher::render(sf::RenderTarget &target)
+{
+  Hero::render(target);
+  if (this->arrow)
+  {
+    this->arrow->render(target);
+  }
+}
+
+void LeafArcher::fight_start()
+{
+  Hero::fight_start();
+  this->arrow = new Arrow{"image/Leaf Archer", 50, 50};
+  this->arrow->init_all_animations();
+  this->arrow->calculate_arrow_position(this->initial_positions);
 }
 
 void LeafArcher::skill()

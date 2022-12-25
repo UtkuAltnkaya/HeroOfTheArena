@@ -13,8 +13,12 @@ Game::~Game()
 {
   delete this->window;
   delete this->background;
-  delete this->boss;
   delete this->music;
+
+  if (this->boss)
+  {
+    delete this->boss;
+  }
   if (this->main_menu)
   {
     delete this->main_menu;
@@ -89,29 +93,29 @@ void Game::update()
   if (this->hero)
   {
     this->play_music();
-    this->boss->update();
+    if (this->boss)
+    {
+      this->boss->update();
+      if (this->hero->is_collide(this->boss) && !this->fight)
+      {
+        this->init_fight();
+      }
+    }
+
     this->hero->update();
 
     if (!this->fight)
     {
-      // std::cout << "1" << std::endl;
       this->npc->update(this->hero->is_collide(this->npc));
-      // std::cout << "2" << std::endl;
     }
 
-    if (this->hero->is_collide(this->boss) && !this->fight)
-    {
-      // std::cout << "3" << std::endl;
-      this->init_fight();
-      // std::cout << "4" << std::endl;
-    }
     if (this->fight && this->fight->get_is_fight_over())
     {
-      std::cout << "BEFORE-DELETE" << std::endl;
       this->create_npcs();
       delete this->fight;
+      delete this->boss;
       this->fight = nullptr;
-      std::cout << "AFTER-DELETE" << std::endl;
+      this->boss = nullptr;
     }
   }
 }
@@ -122,6 +126,7 @@ void Game::init_fight()
   delete this->npc;
   this->npc = nullptr;
 }
+
 void Game::render()
 {
   this->window->clear();
@@ -133,16 +138,17 @@ void Game::render()
   if (this->hero)
   {
     this->delete_main_menu();
-    this->boss->render(*this->window);
     this->hero->render(*this->window);
-
-    if (!(this->fight))
+    if (!this->fight)
     {
-      // std::cout << "5" << std::endl;
       this->npc->render(*this->window);
-      // std::cout << "6" << std::endl;
+    }
+    if (this->boss)
+    {
+      this->boss->render(*this->window);
     }
   }
+
   this->window->display();
 }
 
@@ -170,9 +176,7 @@ void Game::poll_events()
   }
   if (this->fight)
   {
-    // std::cout << "7" << std::endl;
     this->fight->poll_events();
-    // std::cout << "8" << std::endl;
   }
 }
 
@@ -197,7 +201,7 @@ void Game::play_music()
 
 void Game::create_npcs()
 {
-  if (!this->npc && this->fight->get_is_fight_over())
+  if (!this->npc)
   {
     this->npc = new BlackSmith();
   }

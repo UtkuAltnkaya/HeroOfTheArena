@@ -57,7 +57,6 @@ void AnimationCreator::select_animation(const AnimationNames &animation_name)
       return;
     }
   }
-  this->animation = this->all_animations[AnimationNames::IDLE];
 }
 
 bool AnimationCreator::select_jump_animation(const AnimationNames &animation_name)

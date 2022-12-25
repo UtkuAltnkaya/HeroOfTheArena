@@ -267,6 +267,11 @@ const size_t &Hero::get_death_position()
   return this->death_position_num;
 }
 
+const std::string &Hero::get_path()
+{
+  return this->path;
+}
+
 // Setters
 void Hero::set_is_ani_over(const bool &is_ani_over)
 {

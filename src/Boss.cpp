@@ -14,7 +14,10 @@ Boss::Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int d
 
 Boss::~Boss()
 {
-  delete this->ui;
+  if (this->ui)
+  {
+    delete this->ui;
+  }
 }
 
 void Boss::init_all_animations()
@@ -109,6 +112,14 @@ void Boss::fight_start()
   this->ui->init_character_photo(this->path, "demon_slime", sf::Vector2f{this->window_width - 140.f, 40.f});
   this->ui->init_health_or_mana_bar(this->health, 400, "HealthUI", sf::Vector2f{this->window_width - 625.f, 45.f});
   this->ui->rotate_health();
+}
+
+void Boss::delete_ui()
+{
+  if (this->ui)
+  {
+    delete this->ui;
+  }
 }
 
 void Boss::decrease_heath(const int &number)

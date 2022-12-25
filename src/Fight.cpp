@@ -6,6 +6,7 @@
 
 Fight::Fight(Hero *&hero, Boss *&boss) : hero{hero}, boss{boss}, is_key_pressed{false}, is_turn_hero{true}, is_boss_attack{true}, is_boss_dead{false}, is_hero_dead{false}, max_hero_mana{this->hero->get_mana()}, is_fight_over{false}
 {
+
     this->hero->fight_start();
     this->boss->fight_start();
     std::srand(std::time(NULL));
@@ -67,7 +68,7 @@ void Fight::hero_attack()
             else
             {
                 std::cout << "Don't have enough mana for W" << std::endl;
-                this->key = sf::Keyboard::Unknown;
+                // this->key = sf::Keyboard::Unknown;
             }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
@@ -81,7 +82,7 @@ void Fight::hero_attack()
             else
             {
                 std::cout << "Don't have enough mana for R" << std::endl;
-                this->key = sf::Keyboard::Unknown;
+                // this->key = sf::Keyboard::Unknown;
             }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
@@ -90,14 +91,34 @@ void Fight::hero_attack()
             this->is_key_pressed = true;
         }
     }
-
     if (this->key == sf::Keyboard::E)
     {
         return this->hero_perform_defense();
     }
 
+    if (this->leaf_fight())
+    {
+        return;
+    }
+
     this->hero_control_collide();
     // it's being called repeatedly to get closer to the boss so hero can perform the attack animation
+}
+
+bool Fight::leaf_fight()
+{
+    if (this->hero->get_path() != "image/Leaf Archer")
+    {
+        return false;
+    }
+    this->hero_skill_perform();
+    if (this->hero->get_ani_name() == AnimationNames::ONE_ATK)
+    {
+        this->boss->set_ani_name(AnimationNames::TAKE_HIT);
+    }
+
+    // this->hero_move_initial_position();
+    return true;
 }
 
 void Fight::hero_control_collide()
@@ -192,7 +213,8 @@ void Fight::boss_control_collide()
     }
     else if (check && !is_boss_hit && !this->hero->get_is_ani_over())
     {
-        this->boss_skill_perform();
+        this->boss->set_ani_name(AnimationNames::ONE_ATK);
+        this->is_boss_attack = true;
         if (this->key != sf::Keyboard::Unknown)
         {
             this->hero->set_ani_name(AnimationNames::TAKE_HIT);
@@ -210,12 +232,6 @@ void Fight::boss_move_position(const AnimationNames &boss_ani_name, const sf::Ke
 {
     this->boss->set_ani_name(boss_ani_name);
     this->boss->move_left_right(move, 8.f);
-}
-
-void Fight::boss_skill_perform()
-{
-    this->boss->set_ani_name(AnimationNames::ONE_ATK);
-    this->is_boss_attack = true;
 }
 
 void Fight::boss_move_initial_position()
@@ -343,15 +359,9 @@ void Fight::hero_is_dead()
     std::cout << "hero_is_dead" << std::endl;
     if (this->hero->get_health() <= 0)
     {
-        this->hero_perform_death();
+        this->is_hero_dead = true;
+        this->hero->set_ani_name(AnimationNames::DEATH);
     }
-}
-
-void Fight::hero_perform_death()
-{
-    std::cout << "hero_perform_death" << std::endl;
-    this->is_hero_dead = true;
-    this->hero->set_ani_name(AnimationNames::DEATH);
 }
 
 void Fight::boss_crit_attack_control()
@@ -380,19 +390,11 @@ void Fight::boss_split_damage()
 
 void Fight::boss_is_dead()
 {
-    std::cout << "boss_is_dead" << std::endl;
     if (this->boss->get_health() <= 0)
     {
-        this->boss_perform_death();
+        this->is_boss_dead = true;
+        this->boss->set_ani_name(AnimationNames::DEATH);
     }
-}
-
-void Fight::boss_perform_death()
-{
-    this->is_boss_dead = true;
-    std::cout << "boss_perform_death" << std::endl;
-
-    this->boss->set_ani_name(AnimationNames::DEATH);
 }
 
 bool Fight::get_is_fight_over()

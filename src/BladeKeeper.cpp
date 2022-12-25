@@ -42,7 +42,7 @@ void BladeKeeper::init_ani_stats()
 void BladeKeeper::init_stats()
 {
     this->health -= 3000; // 5000 - 3000
-    this->damage += 1000; // 200 + 1000
+    this->damage += 3000; // 200 + 1000
     this->mana += 200;    // 500 + 200
     // this->defense -= 50;  // 250 - 50
     //  this->crit_chance += 0.25; // 0. + 0.25
