@@ -51,6 +51,7 @@ void Game::init_var()
   this->video_mode.width = 512 * 3;
   this->video_mode.height = 256 * 3;
 
+  this->game_over = false;
   this->music_playing = false;
   this->music = new Musics("Battle Encounter.ogg");
 
@@ -106,18 +107,31 @@ void Game::update()
 
     this->hero->update();
 
-    if (!this->fight)
-    {
-      this->npc->update(this->hero->is_collide(this->npc));
-    }
-
     if (this->fight && this->fight->get_is_fight_over())
     {
-      this->create_npcs();
+      if (this->boss->get_health() <= 0)
+      {
+        this->create_npcs();
+      }
+      else
+      {
+        this->game_over = true;
+        this->font.loadFromFile("Fonts/PixExtrusion.ttf");
+        this->end_text.setFont(font);
+        this->end_text.setCharacterSize(80);
+
+        this->end_text.setColor(sf::Color(121, 109, 116));
+        this->end_text.setString("GAME OVER!");
+        this->end_text.setPosition(sf::Vector2f(500, 120));
+      }
       delete this->fight;
       delete this->boss;
       this->fight = nullptr;
       this->boss = nullptr;
+    }
+    if (this->npc)
+    {
+      this->npc->update();
     }
   }
 }
@@ -132,9 +146,6 @@ void Game::init_fight()
   {
     this->fight = new Fight{this->hero, this->boss};
   }
-
-  delete this->npc;
-  this->npc = nullptr;
 }
 
 void Game::render()
@@ -153,9 +164,13 @@ void Game::render()
       this->boss->render(*this->window);
     }
     this->hero->render(*this->window);
-    if (!this->fight)
+    if (this->npc)
     {
       this->npc->render(*this->window);
+    }
+    if (this->game_over)
+    {
+      this->window->draw(end_text);
     }
   }
 
@@ -211,8 +226,5 @@ void Game::play_music()
 
 void Game::create_npcs()
 {
-  if (!this->npc)
-  {
-    this->npc = new BlackSmith();
-  }
+  this->npc = new BlackSmith();
 }

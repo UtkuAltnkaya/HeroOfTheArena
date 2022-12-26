@@ -193,7 +193,6 @@ void CharMenu::selectedHero(Hero *&hero, Boss *&boss, Npc *&npc) // the function
 {
   hero = this->characters[this->selectedItem]();
   boss = new DemonSlime();
-  npc = new BlackSmith();
 }
 
 void CharMenu::MoveLeftRight(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc, bool &menuOpen) // character menu key control function

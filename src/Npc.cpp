@@ -19,26 +19,30 @@ void Npc::init_all_animations()
   this->insert_new_animation(AnimationNames::WORK_ONE, "work_1", "work_", this->work_one_num, true);
   this->insert_new_animation(AnimationNames::WORK_TWO, "work_2", "work_", this->work_two_num, false);
   this->set_and_calculate_position();
+  this->font.loadFromFile("Fonts/PixExtrusion.ttf");
+  end_text.setFont(font);
+  end_text.setCharacterSize(80);
+
+  end_text.setColor(sf::Color(121, 109, 116));
+  end_text.setString("CONGRATULATIONS!");
+  end_text.setPosition(sf::Vector2f(300, 120));
 }
 
-void Npc::update(const bool &is_collide)
+void Npc::update()
 {
   this->animation->update(this->is_ani_over);
-  this->select_npc_animation(is_collide);
+  this->select_npc_animation();
   this->select_animation(this->ani_name);
 }
 
 void Npc::render(sf::RenderTarget &target)
 {
   this->animation->render(target);
+  target.draw(this->end_text);
 }
 
-void Npc::select_npc_animation(const bool &is_collide)
+void Npc::select_npc_animation()
 {
-  if (is_collide)
-  {
-    this->ani_name = AnimationNames::GREETING;
-    return;
-  }
-  this->ani_name = AnimationNames::IDLE;
+
+  this->ani_name = AnimationNames::GREETING;
 }

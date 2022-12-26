@@ -18,7 +18,9 @@ private:
   Npc *npc;
   Musics *music;
   BaseFight *fight;
-
+  sf::Font font;
+  sf::Text end_text;
+  bool game_over;
   bool music_playing;
 
   sf::RenderWindow *window;

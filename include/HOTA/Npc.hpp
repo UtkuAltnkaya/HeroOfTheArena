@@ -16,14 +16,16 @@ protected:
 private:
   bool is_ani_over;
   AnimationNames ani_name;
+  sf::Text end_text;
+  sf::Font font;
 
-  void select_npc_animation(const bool &is_collide);
+  void select_npc_animation();
 
 public:
   Npc();
   Npc(const std::string &path);
   virtual ~Npc();
-  void update(const bool &is_collide);
+  void update();
   void render(sf::RenderTarget &target);
 };
 
