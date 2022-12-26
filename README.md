@@ -153,7 +153,7 @@ You can download g++ from the link below.
 
 _You can download and install the game from our website. You can also run the game with a compiler. For this, clone our project and create object files using Makefile commands._
 
--  <a href="">Download</a>
+-  <a href=" https://www.hero-of-the-arena.netlify.app">Download</a>
 
 
 <!-- USAGE EXAMPLES -->
@@ -254,7 +254,7 @@ Bayram Alper KILIÇ - alperkilicbusiness@gmail.com
 
 Utku ALTINKAYA - utkualtinkayabusiness@outlook.com
 
-Burak ATEŞ - burakates2011@hotmail.com
+Burak ATEŞ - burakatesbusiness@gmail.com
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
