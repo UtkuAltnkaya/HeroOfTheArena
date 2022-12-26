@@ -32,7 +32,7 @@ void Ui::init_character_photo(const std::string &folder, const std::string &png,
 
 void Ui::init_health_or_mana_bar(const int &number, const int &denominator, const std::string &type, sf::Vector2f &&position)
 {
-  int item_number{(number / denominator)}, remainder{item_number % 3}, size{(item_number - remainder) / 3};
+  int item_number{(number / denominator)}, remainder{item_number % 3}, size{(item_number - remainder) / 3}; // Determining to number of heath and mana according to stats
   if (type == "ManaUI")
   {
     position.y = 85.f;

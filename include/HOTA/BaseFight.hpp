@@ -39,7 +39,7 @@ protected:
   void hero_double_damage();
   void hero_split_damage();
   void hero_defense_chance_control();
-  void hero_perform_defense();
+  void hero_perform_defense(sf::Keyboard::Key &key);
   void hero_is_dead();
 
   //

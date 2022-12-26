@@ -13,7 +13,7 @@ private:
 
   std::thread *thread;
 
-  void move_first_arrow();
+  void move_first_arrow(const AnimationNames &leaf_archer);
   void finished_arrow_animation();
   void join_thread();
   void back_to_start();

@@ -26,6 +26,7 @@ enum class AnimationNames
   ARROW,
   ARROW_ONE,
   ARROW_TWO,
+  ARROW_THREE,
   NONE,
 };
 

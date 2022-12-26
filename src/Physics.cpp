@@ -39,7 +39,7 @@ void Physics::move_left_right(const sf::Keyboard::Key &Key, float velocity_x)
   }
 }
 
-void Physics::move_right()
+void Physics::move_right() // Move right
 {
   if (this->position.x < this->window_width - this->character_width * 0.5 - this->character_actual_width)
   {
@@ -47,7 +47,7 @@ void Physics::move_right()
   }
 }
 
-void Physics::move_left()
+void Physics::move_left() // Move left
 {
   if (this->position.x > (this->character_width * 0.5 - this->character_actual_width) * -1)
   {
@@ -103,7 +103,7 @@ void Physics::jump_down(AnimationNames &jump_ani_name)
   this->set_position(sf::Vector2f{this->position.x, this->position.y + this->velocity_y});
 }
 
-void Physics::set_position(const sf::Vector2f &new_position)
+void Physics::set_position(const sf::Vector2f &new_position) // Set all animation position to new position
 {
   this->position = new_position;
   this->set_all_animation_position(this->position);

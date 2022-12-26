@@ -27,7 +27,7 @@ void LeafArcher::init_ani_stats()
 {
   this->atk_one_num = 15;
   this->atk_two_num = 12;
-  this->atk_sp_num = 17;
+  this->atk_sp_num = 15;
   this->death_num = 19;
   this->defend_num = 19;
   this->idle_num = 9;
@@ -44,7 +44,7 @@ void LeafArcher::init_ani_stats()
 void LeafArcher::init_stats()
 {
   this->health -= 2200;
-  this->damage += 600;
+  this->damage += 3000;
   this->mana += 500;
   // this->defense -= 50;
   //  this->crit_chance += 0.25;

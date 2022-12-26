@@ -152,11 +152,11 @@ void BaseFight::hero_defense_chance_control()
 
   if (this->hero->get_defense_chance() >= 7)
   {
-    this->hero_perform_defense();
+    this->hero_perform_defense(this->key);
   }
 }
 
-void BaseFight::hero_perform_defense()
+void BaseFight::hero_perform_defense(sf::Keyboard::Key &key)
 {
   this->hero->set_ani_name(AnimationNames::DEFEND);
   if (this->hero->get_que() == this->hero->get_defend_position()) // Stop animation
@@ -169,7 +169,7 @@ void BaseFight::hero_perform_defense()
     this->is_key_pressed = false;
     this->is_turn_hero = false;
     this->is_boss_attack = true;
-    this->key = sf::Keyboard::Unknown;
+    key = sf::Keyboard::Unknown;
   }
 }
 

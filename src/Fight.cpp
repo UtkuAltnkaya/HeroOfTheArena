@@ -35,6 +35,7 @@ void Fight::poll_events()
 
     if (this->is_boss_dead)
     {
+
         if (this->boss->get_que() == 20) // Stop animation
         {
             this->boss->set_is_ani_stop(true);
@@ -90,7 +91,7 @@ void Fight::hero_attack()
     }
     if (this->key == sf::Keyboard::E)
     {
-        return this->hero_perform_defense();
+        return this->hero_perform_defense(this->key);
     }
 
     this->hero_control_collide();
