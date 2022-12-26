@@ -153,7 +153,7 @@ You can download g++ from the link below.
 
 _You can download and install the game from our website. You can also run the game with a compiler. For this, clone our project and create object files using Makefile commands._
 
--  <a href="https://www.hero-of-the-arena.netlify.app">Download</a>
+-  <a href="https://hero-of-the-arena.netlify.app">Download</a>
 
 
 <!-- USAGE EXAMPLES -->
@@ -217,7 +217,7 @@ Below you can find some of the UI and character skills. Music options, store and
   </tr>
 </table>
 
-_For more details, please visit the [HOTA Website](https://www.hero-of-the-arena.netlify.app)_
+_For more details, please visit the [HOTA Website](https://hero-of-the-arena.netlify.app)_
 
 <!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 <!-- CONTRIBUTING -->
