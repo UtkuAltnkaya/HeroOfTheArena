@@ -109,7 +109,7 @@ void Physics::set_position(const sf::Vector2f &new_position)
   this->set_all_animation_position(this->position);
 }
 
-bool Physics::is_collide(const Physics *obj) // Boss IS a Physics
+bool Physics::is_collide(const Physics *obj) // Check boss and player is collide
 {
   float char_start_pos{this->position.x + (this->character_width + this->character_actual_width) * 0.5f}; // Character start postion
   float char_end_pos{this->position.x + (this->character_width - this->character_actual_width) * 0.5f};   // Character end position

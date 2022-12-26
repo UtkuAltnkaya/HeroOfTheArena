@@ -42,8 +42,8 @@ void FireKnight::init_ani_stats()
 void FireKnight::init_stats()
 {
     this->health -= 1000;
-    this->damage += 200;
-    this->mana += 100;
+    this->damage += 600;
+    this->mana += 0;
     // this->defense -= 50;
     //  this->crit_chance += 0.25;
 }
