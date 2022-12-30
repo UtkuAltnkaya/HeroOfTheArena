@@ -1,5 +1,4 @@
 #include "HOTA/Ui.hpp"
-#include <iostream>
 
 Ui::Ui()
 {
@@ -11,11 +10,11 @@ Ui::~Ui()
   delete this->character_photo.texture;
   for (auto &&i : this->health_bar)
   {
-    delete i;
+    delete i; // Delete all variables
   }
   for (auto &&i : this->mana_bar)
   {
-    delete i;
+    delete i; // Delete all variables
   }
 }
 
@@ -33,7 +32,7 @@ void Ui::init_character_photo(const std::string &folder, const std::string &png,
 void Ui::init_health_or_mana_bar(const int &number, const int &denominator, const std::string &type, sf::Vector2f &&position)
 {
   int item_number{(number / denominator)}, remainder{item_number % 3}, size{(item_number - remainder) / 3}; // Determining to number of heath and mana according to stats
-  if (type == "ManaUI")
+  if (type == "ManaUI")                                                                                     // Positions for ManaUIs
   {
     position.y = 85.f;
   }
@@ -43,7 +42,7 @@ void Ui::init_health_or_mana_bar(const int &number, const int &denominator, cons
 
 void Ui::init_heart_or_mana(const int &size, const float &multiplier, const sf::IntRect &rect, sf::Vector2f &position, const std::string &type)
 {
-  for (int i{0}; i < size; i++)
+  for (int i{0}; i < size; i++) // Initialize health bar and mana bar
   {
     if (type == "HealthUI")
     {
@@ -58,7 +57,7 @@ void Ui::init_heart_or_mana(const int &size, const float &multiplier, const sf::
 }
 
 void Ui::reduce_health(const int &atk_power, const bool &is_hero)
-{
+{ // Reduce hero or boss health after got hit
   size_t size{static_cast<size_t>(atk_power * 0.005f)};
   for (size_t i{0}; i < size; i++)
   {
@@ -74,7 +73,7 @@ void Ui::reduce_health(const int &atk_power, const bool &is_hero)
 }
 
 void Ui::reduce_hero_health()
-{
+{ // Reduce hero health
   for (int i{static_cast<int>(this->health_bar.size()) - 1}; i >= 0; i--)
   {
     if (!this->health_bar.at(i)->get_is_over())
@@ -86,7 +85,7 @@ void Ui::reduce_hero_health()
 }
 
 void Ui::reduce_boss_health()
-{
+{ // Reduce boss health
   size_t size{this->health_bar.size()};
   for (size_t i{0}; i < size; i++)
   {
@@ -99,7 +98,7 @@ void Ui::reduce_boss_health()
 }
 
 void Ui::reduce_hero_mana(const int &amount)
-{
+{ // Reduce mana
   size_t size{static_cast<size_t>(amount * 0.02f)};
   for (size_t i{0}; i < size; i++)
   {
@@ -115,7 +114,7 @@ void Ui::reduce_hero_mana(const int &amount)
 }
 
 void Ui::increase_hero_mana()
-{
+{ // Increase mana after defend skill
   int size{static_cast<int>(this->mana_bar.size())};
   for (size_t i = 0; i < 2; i++)
   {
@@ -131,7 +130,7 @@ void Ui::increase_hero_mana()
 }
 
 void Ui::rotate_health()
-{
+{ // Rotate health bar for the boss
   for (auto &&i : this->health_bar)
   {
     i->rotate();
@@ -140,7 +139,7 @@ void Ui::rotate_health()
 
 void Ui::render(sf::RenderTarget &target)
 {
-
+  // Draw the health and mana bars
   target.draw(*this->character_photo.sprite);
   for (auto &&i : this->health_bar)
   {

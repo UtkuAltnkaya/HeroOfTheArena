@@ -1,5 +1,4 @@
 #include "HOTA/Water.hpp"
-#include <iostream>
 
 Water::Water() : Hero{"image/Water", 5000, 200, 500, 0, 0, 100, 100}
 {

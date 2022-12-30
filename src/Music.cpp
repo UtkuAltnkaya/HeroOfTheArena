@@ -1,13 +1,13 @@
 #include "HOTA/Music.hpp"
 #include <SFML/Audio.hpp>
-#include <iostream>
+
 Musics::Musics()
 {
     this->init_musics();
 }
-float Musics::volume = 5;
+float Musics::volume = 10; // Static music volume
 Musics::Musics(std::string path)
-{
+{ // Getting music path from calling class
     this->path = "music/" + path;
     this->init_musics();
 }
@@ -17,7 +17,7 @@ Musics::~Musics()
 }
 
 void Musics::init_musics()
-{
+{ // Initialize variables
     this->is_music_playing = false;
     this->playingMusic = new sf::Music;
     this->playingMusic->openFromFile(path);
@@ -26,18 +26,18 @@ void Musics::init_musics()
 }
 
 void Musics::play()
-{
+{ // Start the music
     this->playingMusic->play();
     this->is_music_playing = true;
 }
 void Musics::stopMusic()
-{
+{ // Stop the music
     this->playingMusic->stop();
     this->is_music_playing = false;
 }
 
 void Musics::set_volume(float volume)
-{
+{ // Set volume of music with a static variable
     this->volume = volume;
     float temp = volume;
     this->playingMusic->setVolume(temp);

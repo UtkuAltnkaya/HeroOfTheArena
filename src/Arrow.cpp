@@ -1,6 +1,5 @@
 #include "HOTA/Arrow.hpp"
 #include "HOTA/AnimationNames.hpp"
-#include <iostream>
 #include <chrono>
 
 Arrow::Arrow(const std::string &path, const int &actual_width, const int &actual_height) : Physics{path, actual_width, actual_height}, animation_name{AnimationNames::NONE}, is_ani_over{false}, hit{false}, thread{nullptr}
@@ -73,7 +72,7 @@ void Arrow::back_to_start() // Set all arrow position to start
 
 void Arrow::join_thread() // Join thread
 {
-  if (this->animation_name == AnimationNames::ARROW_ONE || this->animation_name == AnimationNames::ARROW_THREE) // If thread func is and anime ARROW_ONE or ARROW_THREE
+  if (this->animation_name == AnimationNames::ARROW_ONE || this->animation_name == AnimationNames::ARROW_THREE) // If thread func is called and animate ARROW_ONE or ARROW_THREE
   {
     if (this->thread) // Join the thread and delete existing thread
     {

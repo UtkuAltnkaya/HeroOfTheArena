@@ -8,7 +8,6 @@
 #include "HOTA/FrostGuardian.hpp"
 #include "HOTA/DemonSlime.hpp"
 #include "HOTA/BlackSmith.hpp"
-#include <iostream>
 
 CharMenu::CharMenu(std::string type, std::string version)
 {
@@ -60,7 +59,7 @@ void CharMenu::init_texture_vec(int i) // karakterleri filedan okuyoruz
   this->texture.push_back(tx);
   if (!this->texture.at(i)->loadFromFile(this->path + "_1.png"))
   {
-    std::cout << "ERROR:CharMenu::INIT_TEXTURE_VEC::Could not load the texture" << std::endl;
+    // std::cout << "ERROR:CharMenu::INIT_TEXTURE_VEC::Could not load the texture" << std::endl;
   }
 }
 

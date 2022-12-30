@@ -1,5 +1,4 @@
 #include "HOTA/FrostGuardian.hpp"
-#include <iostream>
 
 FrostGuardian::FrostGuardian() : Boss{"image", 5000, 200, 500, 0, 0}
 {

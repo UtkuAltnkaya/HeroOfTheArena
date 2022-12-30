@@ -1,5 +1,4 @@
 #include "HOTA/UiHeartAndMana.hpp"
-#include <iostream>
 
 UiHeartAndMana::UiHeartAndMana(const sf::Vector2f &position, const sf::IntRect &rect, const sf::Vector2f &scale, const std::string &png_name)
     : png_name{png_name}, scale{scale}, position{position}, rect{rect}, inital_rec{rect}, is_over{false}, is_full{true}
@@ -15,13 +14,13 @@ UiHeartAndMana::~UiHeartAndMana()
 }
 
 void UiHeartAndMana::init_texture()
-{
+{ // Initialize all textures
   this->texture = new sf::Texture{};
   this->texture->loadFromFile("image/ui/" + png_name + ".png");
 }
 
 void UiHeartAndMana::init_sprite()
-{
+{ // Initiaze all sprites                                                                                          es
   this->sprite = new sf::Sprite{*this->texture};
   this->sprite->setScale(this->scale);
   this->sprite->setPosition(this->position);
@@ -29,7 +28,7 @@ void UiHeartAndMana::init_sprite()
 }
 
 void UiHeartAndMana::increase()
-{
+{ // Increase heart and mana
   this->rect = sf::IntRect{this->rect.left, this->rect.top - 11, this->rect.width, this->rect.height};
   this->sprite->setTextureRect(this->rect);
   this->is_over = false;
@@ -42,7 +41,7 @@ void UiHeartAndMana::increase()
 }
 
 void UiHeartAndMana::decrease()
-{
+{ // Decrease heart and mana
   this->rect = sf::IntRect{this->rect.left, this->rect.top + 11, this->rect.width, this->rect.height};
   this->sprite->setTextureRect(this->rect);
   this->is_full = false;
@@ -54,7 +53,7 @@ void UiHeartAndMana::decrease()
   }
 }
 void UiHeartAndMana::rotate()
-{
+{ // Roate heart for the boss
   this->sprite->setScale(-3.5f, 3.5f);
 }
 

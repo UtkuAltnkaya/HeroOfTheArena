@@ -1,5 +1,4 @@
 #include "HOTA/FireKnight.hpp"
-#include <iostream>
 
 FireKnight::FireKnight() : Hero{"image/Fire Knight", 5000, 200, 500, 0, 0, 150, 150}
 {

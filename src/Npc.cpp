@@ -14,6 +14,7 @@ Npc::~Npc()
 
 void Npc::init_all_animations()
 {
+  // Initiliaze  all npc animiations
   this->insert_new_animation(AnimationNames::IDLE, "idle", "idle_", this->idle_num, true);
   this->insert_new_animation(AnimationNames::GREETING, "greeting", "greeting_", this->greeting_num, true);
   this->insert_new_animation(AnimationNames::WORK_ONE, "work_1", "work_", this->work_one_num, true);
@@ -29,20 +30,20 @@ void Npc::init_all_animations()
 }
 
 void Npc::update()
-{
+{ // Update npc animations
   this->animation->update(this->is_ani_over);
   this->select_npc_animation();
   this->select_animation(this->ani_name);
 }
 
 void Npc::render(sf::RenderTarget &target)
-{
+{ // Display npc to the screen
   this->animation->render(target);
   target.draw(this->end_text);
 }
 
 void Npc::select_npc_animation()
 {
-
+  // Npc animation name
   this->ani_name = AnimationNames::GREETING;
 }

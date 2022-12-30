@@ -2,7 +2,7 @@
 
 Options::Options(sf::Font &font)
 {
-    init_var(font);
+    init_var(font); // Init font
 }
 
 Options::~Options()
@@ -10,7 +10,7 @@ Options::~Options()
 }
 
 void Options::init_var(sf::Font &font)
-{
+{ // Initialize SFX text and the sound bar
     this->is_open = true;
     this->selected_index = 1;
     // init boxes
@@ -26,7 +26,7 @@ void Options::init_var(sf::Font &font)
 
 void Options::move_right()
 {
-    if (this->selected_index < 19)
+    if (this->selected_index < 19) // Upper limit for music up
     {
         this->selected_index++;
         return;
@@ -35,7 +35,7 @@ void Options::move_right()
 
 void Options::move_left()
 {
-    if (this->selected_index > 0)
+    if (this->selected_index > 0) // Lower limit for music down
     {
         this->selected_index--;
         return;
@@ -43,7 +43,7 @@ void Options::move_left()
 }
 
 void Options::move_left_right(sf::Event &event, Musics *&music, bool &menu_open)
-{
+{ // Arranging music volume with changing the static variable of Music class
     if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::Right)
     {
         this->move_right();
@@ -62,7 +62,7 @@ void Options::move_left_right(sf::Event &event, Musics *&music, bool &menu_open)
 }
 
 void Options::render(sf::RenderWindow &window)
-{
+{ // Draw the options part
     this->sfx.setPosition(sf::Vector2f(460, 256 * 3 / 2 - 20));
     window.draw(this->sfx);
     for (int i{0}; i < 20; i++)

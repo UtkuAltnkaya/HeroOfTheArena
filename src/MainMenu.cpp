@@ -2,6 +2,7 @@
 
 MainMenu::MainMenu(float width, float height)
 {
+  // Setting the textes and their qualties
   std::string menuText[3] = {"Play", "Options", "Quit"};
   this->titleFont.loadFromFile("Fonts/PixExtrusion.ttf");
   title.setFont(titleFont);
@@ -15,8 +16,9 @@ MainMenu::MainMenu(float width, float height)
 
   if (!font.loadFromFile("Fonts/PixelHigh.ttf"))
   {
-    // handle error
+    // Handle error
   }
+  // Init all textex and their positions with a for loop index
   for (size_t i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
   {
     menu[i].setFont(font);
@@ -28,12 +30,12 @@ MainMenu::MainMenu(float width, float height)
   menu[0].setColor(sf::Color::Red);
   this->selectedItemIndex = 0;
 
-  this->options = new Options(font);
-  this->init_char_menu();
+  this->options = new Options(font); // Creating options part with comparision
+  this->init_char_menu();            // Initializing character menu for the paly button
 }
 
 MainMenu::~MainMenu()
-{
+{ // Delete all heap memories for main menu
   delete this->char_menu;
   delete this->music;
   delete this->options;
@@ -41,7 +43,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::render(sf::RenderWindow &window, Hero *&hero)
 {
-  if (this->open)
+  if (this->open) // If the main menu is open draw the main menu
   {
     window.draw(title);
 
@@ -51,23 +53,23 @@ void MainMenu::render(sf::RenderWindow &window, Hero *&hero)
     }
     return;
   }
-  else if (this->options->get_is_open())
+  else if (this->options->get_is_open()) // If options selected then display options
   {
     this->options->render(window);
     return;
   }
-  else if (this->char_menu->get_open())
+  else if (this->char_menu->get_open()) // Play button is selected then display characters
   {
     this->char_menu->render(window);
     return;
   }
-  if (!hero)
+  if (!hero) // If quit selected then close the game
     window.close();
 }
 
 void MainMenu::MoveUp()
 {
-
+  // Move selected index upward handling limits with a index based if condition
   if (this->selectedItemIndex - 1 >= 0)
   {
     menu[this->selectedItemIndex].setColor(sf::Color::White);
@@ -84,6 +86,7 @@ void MainMenu::MoveUp()
 
 void MainMenu::MoveDown()
 {
+  // Move selected index downward handling limits with a index based if condition
   if (this->selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS)
   {
     menu[this->selectedItemIndex].setColor(sf::Color::White);
@@ -107,11 +110,11 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
       this->move_it(event);
     }
   }
-  else if (this->options->get_is_open())
+  else if (this->options->get_is_open()) // Move for options
   {
     this->options->move_left_right(event, this->music, this->open);
   }
-  else if (this->char_menu->get_open())
+  else if (this->char_menu->get_open()) // Move for charmenu
   {
 
     this->char_menu->MoveLeftRight(event, hero, boss, npc, this->open);
@@ -139,17 +142,18 @@ void MainMenu::move_it(sf::Event &event)
 }
 void MainMenu::selected_option()
 {
-  if (this->selectedItemIndex == 0)
+  // Check which options is selected
+  if (this->selectedItemIndex == 0) // Play index
   {
     this->open = false;
     this->options->set_is_open(false);
   }
-  else if (this->selectedItemIndex == 1)
+  else if (this->selectedItemIndex == 1) // Options index
   {
     this->open = false;
     this->options->set_is_open(true);
   }
-  else if (this->selectedItemIndex == 2)
+  else if (this->selectedItemIndex == 2) // Quit index
   {
     this->open = false;
     this->options->set_is_open(false);
@@ -158,7 +162,7 @@ void MainMenu::selected_option()
 }
 
 void MainMenu::init_char_menu()
-{
+{ // Initialize all variables
   this->char_menu = new CharMenu("", "image");
   this->music = new Musics("moonlight.ogg");
   this->music->play();
@@ -168,10 +172,11 @@ void MainMenu::update()
 {
   if (this->open)
   {
+    // Todo
   }
   else if (this->char_menu->get_open())
   {
 
-    this->char_menu->Update();
+    this->char_menu->Update(); // Update CharMenu
   }
 }

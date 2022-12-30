@@ -34,16 +34,16 @@ private:
   void init_main_menu();
   void delete_main_menu();
   void play_music();
-  void create_npcs();
+  void create_npc();
+  void poll_events();
+  void update();
+  void render();
 
 public:
   Game();
   ~Game();
 
   void run();
-  void poll_events();
-  void update();
-  void render();
 };
 
 #endif
