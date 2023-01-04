@@ -48,7 +48,7 @@ void Hero::load_fight_multi_thread(AnimationNames num, std::string type, std::st
   this->insert_new_animation(num, type, file, num_of_png, is_repeated);
 }
 void Hero::init_fight_animations()
-{ // Load hero fgiht animations with Multi Threading
+{ // Load hero fight animations with Multi Threading
   std::thread t1(&Hero::load_fight_multi_thread, this, AnimationNames::ONE_ATK, "1_atk", "atk_", this->atk_one_num, false);
   std::thread t2(&Hero::load_fight_multi_thread, this, AnimationNames::TWO_ATK, "2_atk", "atk_", this->atk_two_num, false);
   std::thread t3(&Hero::load_fight_multi_thread, this, AnimationNames::SP_ATK, "sp_atk", "sp_atk_", this->atk_sp_num, false);
@@ -216,7 +216,7 @@ void Hero::increase_mana()
 {
   this->ui->increase_hero_mana();
 }
-
+// Getters
 bool Hero::get_is_ani_over()
 {
   return this->is_ani_over;

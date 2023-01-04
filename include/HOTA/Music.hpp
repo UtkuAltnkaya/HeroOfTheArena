@@ -1,23 +1,23 @@
-#ifndef MUSICS_HPP
-#define MUSICS_HPP
+#ifndef Music_HPP
+#define Music_HPP
 
 #include <SFML/Audio.hpp>
 #include <string>
 #include <vector>
-class Musics
+class Music
 {
 private:
     std::string path;
     sf::Music *playingMusic;
     static float volume;
-    void init_musics();
+    void init_music();
     bool is_music_playing;
 
 public:
-    Musics();
-    Musics(std::string);
-    ~Musics();
-    void stopMusic();
+    Music();
+    Music(std::string);
+    ~Music();
+    void stop_music();
     void play();
     void set_volume(float);
     float get_volume();

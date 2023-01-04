@@ -1,4 +1,5 @@
 #include "HOTA/Animation.hpp"
+#include <iostream>
 
 // Constructor that initializes variables texture, sprite and clock.
 
@@ -63,7 +64,7 @@ void Animation::init_texture() // first we initialize textures and after this te
     this->texture->push_back(tx);
     if (!this->texture->at(i)->loadFromFile(this->path + std::to_string(i + 1) + ".png"))
     {
-      // std::cout << "ERROR:Animation::INIT_TEXTURE_VEC::Could not load the texture" << i + 1 << std::endl;
+      std::cout << "ERROR:Animation::INIT_TEXTURE_VEC::Could not load the texture" << i + 1 << std::endl;
     }
   }
 }
@@ -111,7 +112,7 @@ void Animation::update(bool &is_ani_over)
     }
     else // if animation is not over we have to change the frame by increasing que by one. (one frame increase which is 1 png)
     {
-      if (!is_stop)
+      if (!this->is_stop)
       {
         this->que++;
       }

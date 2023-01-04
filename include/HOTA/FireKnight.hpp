@@ -15,8 +15,6 @@ private:
 public:
     FireKnight();
     ~FireKnight();
-    void skill();
-    void upgrade();
 };
 
 #endif

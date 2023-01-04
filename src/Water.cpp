@@ -43,16 +43,4 @@ void Water::init_stats()
     this->health -= 2200;
     this->damage += 600;
     this->mana += 500;
-    // this->defense -= 50;
-    //  this->crit_chance += 0.25;
-}
-
-void Water::skill()
-{
-    // TODO
-}
-
-void Water::upgrade()
-{
-    // TODO
 }

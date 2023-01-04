@@ -1,5 +1,4 @@
 #include "HOTA/AnimationCreator.hpp"
-#include <iostream>
 
 AnimationCreator::AnimationCreator() : AnimationCreator{""}
 {

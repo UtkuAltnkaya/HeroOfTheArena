@@ -15,8 +15,6 @@ private:
 public:
     GroundMonk();
     ~GroundMonk();
-    void skill();
-    void upgrade();
 };
 
 #endif

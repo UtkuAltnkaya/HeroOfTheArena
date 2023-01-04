@@ -20,7 +20,7 @@ public:
     Options(sf::Font &font);
     ~Options();
 
-    void move_left_right(sf::Event &, Musics *&, bool &);
+    void move_left_right(sf::Event &, Music *&, bool &);
     void render(sf::RenderWindow &);
     bool get_is_open();
     void set_is_open(bool is_open);

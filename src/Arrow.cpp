@@ -72,7 +72,7 @@ void Arrow::back_to_start() // Set all arrow position to start
 
 void Arrow::join_thread() // Join thread
 {
-  if (this->animation_name == AnimationNames::ARROW_ONE || this->animation_name == AnimationNames::ARROW_THREE) // If thread func is called and animate ARROW_ONE or ARROW_THREE
+  if (this->animation_name == AnimationNames::ARROW_ONE || this->animation_name == AnimationNames::ARROW_THREE) // If thread func is called and animation name is ARROW_ONE or ARROW_THREE
   {
     if (this->thread) // Join the thread and delete existing thread
     {
@@ -86,7 +86,7 @@ void Arrow::join_thread() // Join thread
 void Arrow::update(const AnimationNames &leaf_animation, const size_t &que)
 {
 
-  if (this->animation_name == AnimationNames::NONE && (leaf_animation == AnimationNames::ONE_ATK || leaf_animation == AnimationNames::SP_ATK) && que == 7) // If Leaf archer animation ONE_ATK or SP_ATK
+  if (this->animation_name == AnimationNames::NONE && (leaf_animation == AnimationNames::ONE_ATK || leaf_animation == AnimationNames::SP_ATK) && que == 7) // If Leaf archer animation ONE_ATK or SP_ATK and attack animation png is 7
   {
     this->animation_name = AnimationNames::ARROW;
     this->thread = new std::thread{&Arrow::move_first_arrow, this, leaf_animation}; // Start new tread

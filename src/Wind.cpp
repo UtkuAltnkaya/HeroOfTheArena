@@ -43,16 +43,4 @@ void Wind::init_stats()
     this->health -= 2200;
     this->damage += 600;
     this->mana += 200;
-    // this->defense_chance = 0;
-    //  this->crit_chance += 0.25;
-}
-
-void Wind::skill()
-{
-    // TODO
-}
-
-void Wind::upgrade()
-{
-    // TODO
 }

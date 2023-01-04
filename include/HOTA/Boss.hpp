@@ -32,8 +32,6 @@ public:
     Boss();
     Boss(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, int critChanceVal);
     virtual ~Boss();
-    virtual void skill() = 0;
-    virtual void upgrade() = 0;
 
     void update();
     void render(sf::RenderTarget &target);

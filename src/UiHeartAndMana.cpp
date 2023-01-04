@@ -20,7 +20,7 @@ void UiHeartAndMana::init_texture()
 }
 
 void UiHeartAndMana::init_sprite()
-{ // Initiaze all sprites                                                                                          es
+{ // Initialize all sprites
   this->sprite = new sf::Sprite{*this->texture};
   this->sprite->setScale(this->scale);
   this->sprite->setPosition(this->position);
@@ -32,11 +32,9 @@ void UiHeartAndMana::increase()
   this->rect = sf::IntRect{this->rect.left, this->rect.top - 11, this->rect.width, this->rect.height};
   this->sprite->setTextureRect(this->rect);
   this->is_over = false;
-
   if (this->rect.top == 0)
   {
     this->is_full = true;
-    return;
   }
 }
 
@@ -45,15 +43,13 @@ void UiHeartAndMana::decrease()
   this->rect = sf::IntRect{this->rect.left, this->rect.top + 11, this->rect.width, this->rect.height};
   this->sprite->setTextureRect(this->rect);
   this->is_full = false;
-
   if (this->rect.top == 66)
   {
     this->is_over = true;
-    return;
   }
 }
 void UiHeartAndMana::rotate()
-{ // Roate heart for the boss
+{ // Rotate heart for the boss
   this->sprite->setScale(-3.5f, 3.5f);
 }
 

@@ -15,8 +15,6 @@ private:
 public:
     FrostGuardian();
     ~FrostGuardian();
-    void skill();
-    void upgrade();
 };
 
 #endif

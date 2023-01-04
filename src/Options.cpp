@@ -42,7 +42,7 @@ void Options::move_left()
     }
 }
 
-void Options::move_left_right(sf::Event &event, Musics *&music, bool &menu_open)
+void Options::move_left_right(sf::Event &event, Music *&music, bool &menu_open)
 { // Arranging music volume with changing the static variable of Music class
     if (event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::Right)
     {

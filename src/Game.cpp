@@ -52,12 +52,12 @@ void Game::init_var()
 
   this->game_over = false;
   this->music_playing = false;
-  this->music = new Musics("Battle Encounter.ogg");
+  this->music = new Music("Battle Encounter.ogg");
 }
 
 void Game::init_window()
 {
-  // window that we draw characthers and other things
+  // window that we draw characters and other things
   this->window = new sf::RenderWindow(this->video_mode, "Hero of the Arena");
   this->window->setFramerateLimit(60);
   // this->window->setVerticalSyncEnabled(false);
@@ -80,7 +80,7 @@ void Game::run()
 {
   while (this->window->isOpen())
   {
-    // updating and rendering animatians and the other objects
+    // updating and rendering animations and the other objects
     this->update();
     this->render();
   }
@@ -115,7 +115,7 @@ void Game::update()
         this->create_npc(); // create the npc that celebrate us
       }
       else
-      { // We lost game basicly
+      { // We lost game basically
         this->game_over = true;
         this->font.loadFromFile("Fonts/PixExtrusion.ttf");
         this->end_text.setFont(font);
@@ -175,7 +175,7 @@ void Game::render()
     }
   }
 
-  this->window->display(); // Dispaly the window so we can see the changes
+  this->window->display(); // Display the window so we can see the changes
 }
 
 void Game::poll_events()

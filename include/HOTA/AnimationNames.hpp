@@ -1,5 +1,6 @@
 #ifndef ANIMATION_NAMES_HPP
 #define ANIMATION_NAMES_HPP
+#include <iostream>
 
 enum class AnimationNames
 {
@@ -29,5 +30,12 @@ enum class AnimationNames
   ARROW_THREE,
   NONE,
 };
+
+#define DEBUG 1
+#if DEBUG
+std::ostream &operator<<(std::ostream &os, const AnimationNames ani_name);
+#else
+std::ostream &operator<<(std::ostream &os, const AnimationNames ani_name);
+#endif
 
 #endif

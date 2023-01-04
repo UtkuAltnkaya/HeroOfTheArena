@@ -15,8 +15,6 @@ private:
 public:
     Wind();
     ~Wind();
-    void skill();
-    void upgrade();
 };
 
 #endif

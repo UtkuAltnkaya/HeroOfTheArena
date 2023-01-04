@@ -39,8 +39,6 @@ public:
   Hero();
   Hero(std::string pathVal, int healthVal, int damageVal, int manaVal, int defenseVal, int critChanceVal, int actualWidth, int actualHeight);
   virtual ~Hero();
-  virtual void skill() = 0;
-  virtual void upgrade() = 0;
   virtual void update();
   virtual void render(sf::RenderTarget &target);
   virtual void fight_start();

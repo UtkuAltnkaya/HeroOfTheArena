@@ -43,16 +43,4 @@ void FrostGuardian::init_stats()
     this->health -= 2800;
     this->damage += 50;
     this->mana += 200;
-    // this->defense -= 50;
-    // this->crit_chance += 0.25;
-}
-
-void FrostGuardian::skill()
-{
-    // TODO
-}
-
-void FrostGuardian::upgrade()
-{
-    // TODO
 }

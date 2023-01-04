@@ -3,7 +3,6 @@
 #define MAIN_MENU_HPP
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include "HOTA/CharacterMenu.hpp"
 #include "HOTA/Music.hpp"
 #include "HOTA/Options.hpp"
@@ -19,7 +18,7 @@ private:
 
   sf::Font titleFont;
   sf::Text title;
-  Musics *music;
+  Music *music;
   CharMenu *char_menu;
   Options *options;
 

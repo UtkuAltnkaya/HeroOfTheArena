@@ -14,15 +14,12 @@ private:
   void init_ani_stats();
   void init_stats();
   void init_ui();
-  void calculate_arrow_position();
 
   void fight_start() override;
 
 public:
   LeafArcher();
   ~LeafArcher();
-  void skill();
-  void upgrade();
 
   void update() override;
   void render(sf::RenderTarget &target) override;

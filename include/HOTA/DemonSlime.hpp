@@ -15,8 +15,6 @@ private:
 public:
     DemonSlime();
     ~DemonSlime();
-    void skill();
-    void upgrade();
 };
 
 #endif

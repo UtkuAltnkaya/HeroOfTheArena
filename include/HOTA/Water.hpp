@@ -15,8 +15,6 @@ private:
 public:
     Water();
     ~Water();
-    void skill();
-    void upgrade();
 };
 
 #endif

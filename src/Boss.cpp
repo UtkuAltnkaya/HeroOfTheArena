@@ -39,7 +39,7 @@ void Boss::load_fight_multi_thread(const AnimationNames num, std::string type, s
   this->insert_new_animation(num, type, file, num_of_png, is_repeated);
 }
 void Boss::init_fight_animations()
-{ // Loading boss fight animation with multitheading
+{ // Loading boss fight animation with multithreading
   std::thread t1(&Boss::load_fight_multi_thread, this, AnimationNames::ONE_ATK, "1_atk", "atk_", this->atk_one_num, false);
   std::thread t2(&Boss::load_fight_multi_thread, this, AnimationNames::DEFEND, "defend", "defend_", this->defend_num, false);
   std::thread t3(&Boss::load_fight_multi_thread, this, AnimationNames::DEATH, "death", "death_", this->death_num, false);

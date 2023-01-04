@@ -45,8 +45,6 @@ void LeafArcher::init_stats()
   this->health -= 2200;
   this->damage += 600;
   this->mana += 500;
-  // this->defense -= 50;
-  //  this->crit_chance += 0.25;
 }
 
 void LeafArcher::init_ui()
@@ -54,10 +52,6 @@ void LeafArcher::init_ui()
   this->ui->init_character_photo(this->path, "leaf_archer");
   this->ui->init_health_or_mana_bar(this->health);
   this->ui->init_health_or_mana_bar(this->mana, 100, "ManaUI");
-}
-
-void LeafArcher::calculate_arrow_position()
-{
 }
 
 void LeafArcher::update()
@@ -79,7 +73,7 @@ void LeafArcher::render(sf::RenderTarget &target)
 }
 
 void LeafArcher::fight_start()
-{ // If fight has started init arraw class which leafArcher has
+{ // If fight has started init arrow class which leafArcher has
   Hero::fight_start();
   this->arrow = new Arrow{"image/Leaf Archer", 50, 50};
   this->arrow->init_all_animations();
@@ -90,19 +84,10 @@ const bool &LeafArcher::get_hit() // Arrow hit control
 {
   return this->arrow->get_hit();
 }
+
 void LeafArcher::set_hit(const bool &is_hit)
 {
   this->arrow->set_hit(is_hit);
-}
-
-void LeafArcher::skill()
-{
-  // TODO
-}
-
-void LeafArcher::upgrade()
-{
-  // TODO
 }
 
 /*

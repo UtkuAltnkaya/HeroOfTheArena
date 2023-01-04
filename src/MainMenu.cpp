@@ -2,7 +2,7 @@
 
 MainMenu::MainMenu(float width, float height)
 {
-  // Setting the textes and their qualties
+  // Setting the texts and their qualities
   std::string menuText[3] = {"Play", "Options", "Quit"};
   this->titleFont.loadFromFile("Fonts/PixExtrusion.ttf");
   title.setFont(titleFont);
@@ -18,7 +18,7 @@ MainMenu::MainMenu(float width, float height)
   {
     // Handle error
   }
-  // Init all textex and their positions with a for loop index
+  // Init all texts and their positions with a for loop index
   for (size_t i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
   {
     menu[i].setFont(font);
@@ -114,7 +114,7 @@ void MainMenu::MenuUpDown(sf::Event &event, Hero *&hero, Boss *&boss, Npc *&npc)
   {
     this->options->move_left_right(event, this->music, this->open);
   }
-  else if (this->char_menu->get_open()) // Move for charmenu
+  else if (this->char_menu->get_open()) // Move for character menu
   {
 
     this->char_menu->MoveLeftRight(event, hero, boss, npc, this->open);
@@ -164,7 +164,7 @@ void MainMenu::selected_option()
 void MainMenu::init_char_menu()
 { // Initialize all variables
   this->char_menu = new CharMenu("", "image");
-  this->music = new Musics("moonlight.ogg");
+  this->music = new Music("moonlight.ogg");
   this->music->play();
 }
 

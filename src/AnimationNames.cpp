@@ -1,5 +1,4 @@
 #include "HOTA/AnimationNames.hpp"
-#include <iostream>
 #define DEBUG 1
 
 #if DEBUG

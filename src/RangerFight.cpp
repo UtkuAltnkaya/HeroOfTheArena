@@ -15,7 +15,7 @@ void RangerFight::poll_events()
   {
     this->hero_attack();
   }
-  else if (!this->is_turn_hero && !this->is_boss_dead) // Boss attack conditon
+  else if (!this->is_turn_hero && !this->is_boss_dead) // Boss attack condition
   {
     this->boss_attack();
   }
@@ -60,7 +60,6 @@ void RangerFight::hero_attack()
       else
       {
         std::cout << "Don't have enough mana for W" << std::endl;
-        // this->key = sf::Keyboard::Unknown;
       }
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
@@ -79,7 +78,6 @@ void RangerFight::hero_attack()
       else
       {
         std::cout << "Don't have enough mana for R" << std::endl;
-        // this->key = sf::Keyboard::Unknown;
       }
     }
   }

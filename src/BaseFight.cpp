@@ -1,5 +1,4 @@
 #include "HOTA/BaseFight.hpp"
-#include <iostream>
 
 BaseFight::BaseFight(Hero *hero, Boss *boss) : hero{hero}, boss{boss}, is_key_pressed{false}, is_turn_hero{true}, is_boss_attack{true}, is_boss_dead{false}, is_hero_dead{false}, max_hero_mana{this->hero->get_mana()}, is_fight_over{false}
 {
@@ -65,7 +64,6 @@ void BaseFight::boss_move_initial_position()
   else // Boss has arrived to his initial position
   {
     this->hero_decrease_health();
-    std::cout << this->boss->get_damage() << std::endl;
 
     if (this->key == sf::Keyboard::Unknown) // if E is pressed boss will split damage before attacking
     {
@@ -161,7 +159,6 @@ void BaseFight::hero_perform_defense(sf::Keyboard::Key &key)
   this->hero->set_ani_name(AnimationNames::DEFEND);
   if (this->hero->get_que() == this->hero->get_defend_position()) // Stop animation
   {
-    std::cout << "Hero increase mana UI" << std::endl;
     this->boss_split_damage();
     this->hero->increase_mana(); // Ui
     this->hero_increase_mana();  // stats
@@ -175,7 +172,6 @@ void BaseFight::hero_perform_defense(sf::Keyboard::Key &key)
 
 void BaseFight::hero_is_dead()
 {
-  std::cout << "hero_is_dead" << std::endl;
   if (this->hero->get_health() <= 0)
   {
     this->is_hero_dead = true;

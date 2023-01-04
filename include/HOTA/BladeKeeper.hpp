@@ -15,8 +15,6 @@ private:
 public:
     BladeKeeper();
     ~BladeKeeper();
-    void skill();
-    void upgrade();
 };
 
 #endif

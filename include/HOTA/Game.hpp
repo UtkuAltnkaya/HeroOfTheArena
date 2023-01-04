@@ -16,7 +16,7 @@ private:
   MainMenu *main_menu;
   Boss *boss;
   Npc *npc;
-  Musics *music;
+  Music *music;
   BaseFight *fight;
   sf::Font font;
   sf::Text end_text;

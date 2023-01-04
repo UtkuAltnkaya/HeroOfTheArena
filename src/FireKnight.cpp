@@ -43,16 +43,4 @@ void FireKnight::init_stats()
     this->health -= 1000;
     this->damage += 600;
     this->mana += 0;
-    // this->defense -= 50;
-    //  this->crit_chance += 0.25;
-}
-
-void FireKnight::skill()
-{
-    // TODO
-}
-
-void FireKnight::upgrade()
-{
-    // TODO
 }
