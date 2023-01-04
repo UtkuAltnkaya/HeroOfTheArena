@@ -1,5 +1,4 @@
 #include "HOTA/DemonSlime.hpp"
-#include <iostream>
 
 DemonSlime::DemonSlime() : Boss{"image/DemonSlime", 5000, 200, 500, 0, 0}
 {
@@ -11,7 +10,7 @@ DemonSlime::~DemonSlime()
 }
 
 void DemonSlime::init_var()
-{
+{ // Initialize all variables
     this->init_ani_stats();
     this->init_all_animations();
     this->init_stats();
@@ -19,7 +18,7 @@ void DemonSlime::init_var()
 }
 
 void DemonSlime::init_ani_stats()
-{
+{ // Initialize all animation stats
     this->atk_one_num = 15;
     this->atk_two_num = 0;
     this->atk_sp_num = 0;
@@ -39,7 +38,7 @@ void DemonSlime::init_ani_stats()
 }
 
 void DemonSlime::init_stats()
-{
+{ // Initialize all fight stats
     this->health += 1000;
     this->damage += 200;
     this->mana += 100;

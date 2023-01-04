@@ -1,5 +1,4 @@
 #include "HOTA/LeafArcher.hpp"
-#include <iostream>
 
 LeafArcher::LeafArcher() : Hero{"image/Leaf Archer", 5000, 200, 500, 0, 0, 100, 100}, arrow{nullptr}
 {
@@ -80,14 +79,14 @@ void LeafArcher::render(sf::RenderTarget &target)
 }
 
 void LeafArcher::fight_start()
-{
+{ // If fight has started init arraw class which leafArcher has
   Hero::fight_start();
   this->arrow = new Arrow{"image/Leaf Archer", 50, 50};
   this->arrow->init_all_animations();
   this->arrow->calculate_arrow_position(this->initial_positions);
 }
 
-const bool &LeafArcher::get_hit()
+const bool &LeafArcher::get_hit() // Arrow hit control
 {
   return this->arrow->get_hit();
 }

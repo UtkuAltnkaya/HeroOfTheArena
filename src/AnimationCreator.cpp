@@ -6,7 +6,7 @@ AnimationCreator::AnimationCreator() : AnimationCreator{""}
 }
 
 AnimationCreator::AnimationCreator(const std::string &path) : path{path}, animation{nullptr}, window_width{1536}, window_height{768}
-{
+{ // Set all animations png number for 0
   this->idle_num = 0;
   this->atk_one_num = 0;
   this->atk_two_num = 0;
@@ -25,7 +25,7 @@ AnimationCreator::AnimationCreator(const std::string &path) : path{path}, animat
 
 AnimationCreator::~AnimationCreator()
 {
-  for (auto &&i : this->all_animations)
+  for (auto &&i : this->all_animations) // Delete the animation vector
   {
     delete i.second;
   }
@@ -45,7 +45,7 @@ void AnimationCreator::set_and_calculate_position()
 
 void AnimationCreator::select_animation(const AnimationNames &animation_name)
 {
-  if (this->select_jump_animation(animation_name))
+  if (this->select_jump_animation(animation_name)) // Checking if the animation is jump or not
   {
     return;
   }
@@ -61,22 +61,22 @@ void AnimationCreator::select_animation(const AnimationNames &animation_name)
 
 bool AnimationCreator::select_jump_animation(const AnimationNames &animation_name)
 {
-  if (animation_name == AnimationNames::JUMP_PROJECTILE_UP)
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_UP) // Jump up right
   {
     this->animation = this->all_animations[AnimationNames::JUMP_UP];
     return true;
   }
-  if (animation_name == AnimationNames::JUMP_PROJECTILE_DOWN)
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_DOWN) // jump down right
   {
     this->animation = this->all_animations[AnimationNames::JUMP_DOWN];
     return true;
   }
-  if (animation_name == AnimationNames::JUMP_PROJECTILE_UP_LEFT)
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_UP_LEFT) // Jump up left
   {
     this->animation = this->all_animations[AnimationNames::JUMP_UP_LEFT];
     return true;
   }
-  if (animation_name == AnimationNames::JUMP_PROJECTILE_DOWN_LEFT)
+  if (animation_name == AnimationNames::JUMP_PROJECTILE_DOWN_LEFT) // Jump down left
   {
     this->animation = this->all_animations[AnimationNames::JUMP_DOWN_LEFT];
     return true;
@@ -86,7 +86,7 @@ bool AnimationCreator::select_jump_animation(const AnimationNames &animation_nam
 
 void AnimationCreator::set_all_animation_position(const sf::Vector2f &last_position)
 {
-  for (auto &&i : this->all_animations)
+  for (auto &&i : this->all_animations) // Set all animation positions one by one
   {
     this->set_animation_position(i.second, last_position);
   }
@@ -94,7 +94,7 @@ void AnimationCreator::set_all_animation_position(const sf::Vector2f &last_posit
 
 void AnimationCreator::set_animation_position(Animation *animation, const sf::Vector2f &last_position)
 {
-  for (auto &&i : *animation->get_sprite())
+  for (auto &&i : *animation->get_sprite()) // Set the last position of animations
   {
     i->setPosition(last_position);
   }

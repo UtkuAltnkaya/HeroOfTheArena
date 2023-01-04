@@ -17,7 +17,7 @@ void BlackSmith::init_var()
 }
 
 void BlackSmith::init_ani_stats()
-{
+{ // Initialize variables for npc blacksmith
   this->idle_num = 4;
   this->greeting_num = 4;
   this->work_one_num = 5;

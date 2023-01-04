@@ -1,5 +1,5 @@
 #include "HOTA/Boss.hpp"
-#include <iostream>
+
 // Delegation
 Boss::Boss() : Boss{"", 0, 0, 0, 0, 0}
 {
@@ -35,16 +35,16 @@ void Boss::init_game_animations()
 }
 
 void Boss::load_fight_multi_thread(const AnimationNames num, std::string type, std::string file, int num_of_png, bool is_repeated)
-{
+{ // Multi threading function for loading animates
   this->insert_new_animation(num, type, file, num_of_png, is_repeated);
 }
 void Boss::init_fight_animations()
-{
+{ // Loading boss fight animation with multitheading
   std::thread t1(&Boss::load_fight_multi_thread, this, AnimationNames::ONE_ATK, "1_atk", "atk_", this->atk_one_num, false);
   std::thread t2(&Boss::load_fight_multi_thread, this, AnimationNames::DEFEND, "defend", "defend_", this->defend_num, false);
   std::thread t3(&Boss::load_fight_multi_thread, this, AnimationNames::DEATH, "death", "death_", this->death_num, false);
   std::thread t4(&Boss::load_fight_multi_thread, this, AnimationNames::TAKE_HIT, "take_hit", "take_hit_", this->take_dmg_num, false);
-
+  // Join all threads
   t1.join();
   t2.join();
   t3.join();
@@ -52,14 +52,14 @@ void Boss::init_fight_animations()
 }
 
 void Boss::update()
-{
+{ // Update boss animations
   this->animation->update(this->is_ani_over);
   this->atk_boss();
   this->select_animation(this->ani_name);
 }
 
 void Boss::render(sf::RenderTarget &target)
-{
+{ // Draw boss to the window
   this->animation->render(target);
   if (this->ui)
   {
@@ -68,7 +68,7 @@ void Boss::render(sf::RenderTarget &target)
 }
 
 void Boss::atk_boss()
-{
+{ // Make boss attack
   if (this->ani_name == AnimationNames::ONE_ATK || this->ani_name == AnimationNames::TAKE_HIT)
   {
     if (this->is_ani_over)
@@ -79,7 +79,7 @@ void Boss::atk_boss()
 }
 
 void Boss::poll_events(sf::Event &event)
-{
+{ // Set boss animation name as attack
   if (this->ani_name == AnimationNames::ONE_ATK)
   {
     return;
@@ -102,7 +102,7 @@ void Boss::poll_events_loop(sf::Event &event)
 }
 
 void Boss::fight_start()
-{
+{ // When fight start init hearts and boss photo
   this->is_fight_start = true;
   this->is_ani_over = false;
   this->init_fight_animations();

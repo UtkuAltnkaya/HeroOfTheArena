@@ -1,5 +1,4 @@
 #include "HOTA/Physics.hpp"
-#include <iostream>
 
 Physics::Physics(const std::string &path, const int &character_actual_width, const int &character_actual_height)
     : AnimationCreator{path},

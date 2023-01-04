@@ -23,23 +23,21 @@ void Fight::poll_events()
     {
         this->boss_attack();
     }
-    if (this->is_hero_dead)
+    if (this->is_hero_dead) // Hero is dead
     {
         if (this->hero->get_que() == this->hero->get_death_position()) // Stop animation
         {
             this->hero->set_is_ani_stop(true);
-            std::cout << "hero_dead" << std::endl;
             this->is_fight_over = true;
         }
     }
 
-    if (this->is_boss_dead)
+    if (this->is_boss_dead) // Boss is dead
     {
 
         if (this->boss->get_que() == 20) // Stop animation
         {
             this->boss->set_is_ani_stop(true);
-            std::cout << "boss_dead" << std::endl;
             this->is_fight_over = true;
         }
     }
@@ -64,7 +62,7 @@ void Fight::hero_attack()
                 this->is_key_pressed = true;
             }
             else
-            {
+            { // TODO
                 std::cout << "Don't have enough mana for W" << std::endl;
                 // this->key = sf::Keyboard::Unknown;
             }
@@ -78,7 +76,7 @@ void Fight::hero_attack()
                 this->is_key_pressed = true;
             }
             else
-            {
+            { // TODO
                 std::cout << "Don't have enough mana for R" << std::endl;
                 // this->key = sf::Keyboard::Unknown;
             }
@@ -99,7 +97,7 @@ void Fight::hero_attack()
 }
 
 void Fight::hero_control_collide()
-{
+{ // Hero collide with boss
     bool is_hero_hit{this->hero->get_is_ani_over()};
     bool check{this->hero->is_collide(this->boss)};
     this->boss->set_is_ani_over(false);
@@ -120,7 +118,7 @@ void Fight::hero_control_collide()
 }
 
 void Fight::hero_skill_perform()
-{
+{ // Setting animation name with key value
     if (this->key == sf::Keyboard::Q)
     {
         this->hero->set_ani_name(AnimationNames::ONE_ATK);
@@ -143,18 +141,14 @@ void Fight::hero_move_position(const AnimationNames &ani_name, const sf::Keyboar
 
 void Fight::hero_move_initial_position()
 {
-    if (this->hero->get_position_x() != -200.f)
+    if (this->hero->get_position_x() != -200.f) // Return hero initial position
     {
         this->hero_move_position(AnimationNames::RUN_LEFT, sf::Keyboard::A);
         this->is_key_pressed = false;
     }
     else
     {
-        std::cout << " before boss_health: " << boss->get_health() << std::endl;
-
         this->boss_decrease_health();
-
-        std::cout << " after boss_health: " << boss->get_health() << std::endl;
 
         if (this->key == sf::Keyboard::Q)
         {

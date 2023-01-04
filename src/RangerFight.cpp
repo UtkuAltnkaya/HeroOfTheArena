@@ -11,11 +11,11 @@ RangerFight::~RangerFight()
 
 void RangerFight::poll_events()
 {
-  if (this->is_turn_hero && !this->is_hero_dead)
+  if (this->is_turn_hero && !this->is_hero_dead) // Hero attack condition
   {
     this->hero_attack();
   }
-  else if (!this->is_turn_hero && !this->is_boss_dead)
+  else if (!this->is_turn_hero && !this->is_boss_dead) // Boss attack conditon
   {
     this->boss_attack();
   }
@@ -25,7 +25,6 @@ void RangerFight::poll_events()
     if (this->hero->get_que() == this->hero->get_death_position()) // Stop animation
     {
       this->hero->set_is_ani_stop(true);
-      std::cout << "hero_dead" << std::endl;
       this->is_fight_over = true;
     }
   }
@@ -36,7 +35,6 @@ void RangerFight::poll_events()
     if (this->boss->get_que() == 20) // Stop animation
     {
       this->boss->set_is_ani_stop(true);
-      std::cout << "boss_dead" << std::endl;
       this->is_fight_over = true;
     }
   }

@@ -1,5 +1,4 @@
 #include "HOTA/Wind.hpp"
-#include <iostream>
 
 Wind::Wind() : Hero{"image/Wind", 5000, 200, 500, 0, 0, 100, 100}
 {
